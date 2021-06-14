@@ -390,6 +390,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5F-6d-BZE">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem image="chevron.up" catalog="system" id="Yeg-pF-VCd">
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                    </barButtonItem>
+                                    <barButtonItem image="chevron.down" catalog="system" id="hcp-2l-TVr">
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="c4p-5L-SM3">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="코멘트를 입력하세요" textAlignment="natural" minimumFontSize="17" id="u5U-HD-ZD1">
+                                            <rect key="frame" x="80" y="10" width="307" height="34"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem width="16" style="plain" systemItem="flexibleSpace" id="m4u-oW-C4N"/>
+                                </items>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mqb-99-c4h">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -454,26 +474,6 @@
                                     <outlet property="delegate" destination="hOw-Fs-n81" id="Amv-c2-BRk"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5F-6d-BZE">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <items>
-                                    <barButtonItem image="chevron.up" catalog="system" id="Yeg-pF-VCd">
-                                        <color key="tintColor" systemColor="systemGray2Color"/>
-                                    </barButtonItem>
-                                    <barButtonItem image="chevron.down" catalog="system" id="hcp-2l-TVr">
-                                        <color key="tintColor" systemColor="systemGray2Color"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="c4p-5L-SM3">
-                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="코멘트를 입력하세요" textAlignment="natural" minimumFontSize="17" id="u5U-HD-ZD1">
-                                            <rect key="frame" x="80" y="10" width="307" height="34"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem width="16" style="plain" systemItem="flexibleSpace" id="m4u-oW-C4N"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Icw-VX-y8w"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
