@@ -11,7 +11,7 @@ public class JasyptConfig {
     public StringEncryptor stringEncryptor() {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-        config.setPassword("cocomarco");
+        config.setPassword("${kye}");
         encryptor.setConfig(config);
         return encryptor;
     }
