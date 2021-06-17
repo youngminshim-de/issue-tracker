@@ -55,5 +55,3 @@ const LoginPageWrapper = styled(Container)`
   width: 500px;
   margin-top: 10rem;
 `;
-
-const FormBox = styled(Box)``;
