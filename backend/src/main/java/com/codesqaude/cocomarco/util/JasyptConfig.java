@@ -7,11 +7,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JasyptConfig {
+    
+    @Value("${key}")
+    private String key;
 
     public StringEncryptor stringEncryptor() {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-        config.setPassword("${key}");
+        config.setPassword(key);
         encryptor.setConfig(config);
         return encryptor;
     }
