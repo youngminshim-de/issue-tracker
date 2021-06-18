@@ -50,9 +50,13 @@
 - 레이블, 마일스톤, 담당자 선택 가능 (미구현)
 - 레이블 화면에서는 작성된 모든 레이블 출력 (네트워크 미구현)
 
+---
+
 ### FrontEnd
 
 https://user-images.githubusercontent.com/72348034/122523952-8c9e1c80-d052-11eb-8b3f-d5b7bc5db09c.mp4
+
+---
 
 ### BackEnd
 
