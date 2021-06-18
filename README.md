@@ -60,7 +60,10 @@ https://user-images.githubusercontent.com/72348034/122523952-8c9e1c80-d052-11eb-
 
 ### BackEnd
 
-- [DB Schema](https://github.com/Sonjh1306/issue-tracker/wiki/%5BBE%5D-DB-Schema)
+- **DB Schema**
+
+![issue-tracker](https://user-images.githubusercontent.com/46085281/122386485-e5b17600-cfa8-11eb-8469-0f46b21ffd0a.png)
+
 - [백엔드 스토리](https://github.com/Sonjh1306/issue-tracker/wiki/%5BBE%5D-%EC%8A%A4%ED%86%A0%EB%A6%AC)
 - [백엔드 기술스택](https://github.com/Sonjh1306/issue-tracker/wiki/%EB%B0%B1%EC%97%94%EB%93%9C-%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D)
 - [Mockup API](https://documenter.getpostman.com/view/15041629/TzeWHTpw)
