@@ -1,3 +1,4 @@
+
 # issue-tracker
 
 ## 팀 소개 (TEAM 2)
@@ -51,6 +52,7 @@
 
 ### FrontEnd
 
+https://user-images.githubusercontent.com/72348034/122523952-8c9e1c80-d052-11eb-8b3f-d5b7bc5db09c.mp4
 
 ### BackEnd
 
