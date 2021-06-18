@@ -13,4 +13,7 @@ MVC 패턴이용
     
 3. 테스트함수 작성
     - Network Test 함수 작성
-    /Users/shim/Downloads/ezgif.com-gif-maker-2.gif
+
+4. 실행결과화면
+![ezgif com-gif-maker-2](https://user-images.githubusercontent.com/69951890/122515350-48a61a00-d048-11eb-9515-fbff18689155.gif)
+
