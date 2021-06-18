@@ -14,6 +14,7 @@
 - [WIKI](https://github.com/ChoiGiSung/issue-tracker/wiki)
 - [API 설계 (1주차)](https://github.com/ChoiGiSung/issue-tracker/wiki/%5BBE%5D-API-%EC%A0%95%EB%B3%B4)
 
+# iOS
 
 # issue-tracker
 그룹프로젝트 #5
@@ -34,3 +35,6 @@ MVC 패턴이용
 4. 실행결과화면
 ![ezgif com-gif-maker-2](https://user-images.githubusercontent.com/69951890/122515350-48a61a00-d048-11eb-9515-fbff18689155.gif)
 
+# FE
+
+# BE
