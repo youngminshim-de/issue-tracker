@@ -38,3 +38,6 @@ MVC 패턴이용
 # FE
 
 # BE
+
+## DB 테이블
+![image](https://user-images.githubusercontent.com/60220562/121634905-5ac00f80-cac0-11eb-86ca-942ec0438e40.png)
