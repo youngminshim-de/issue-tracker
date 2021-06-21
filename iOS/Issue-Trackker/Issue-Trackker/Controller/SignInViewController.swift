@@ -18,8 +18,12 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var githubSignInButton: UIButton!
     @IBOutlet weak var appleSignInButton: UIButton!
     
+    private var oauthManager: OAuthManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        oauthManager = OAuthManager(parentViewController: self)
+        print(oauthManager.excuteOAuth())
     }
     
     @IBAction func signInButtonToucehd(_ sender: UIButton) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class IssueViewController: UIViewController, UISearchBarDelegate {
     
@@ -13,13 +14,47 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var addIssueButton: UIButton!
     
     private var searchController: UISearchController?
-
+    private var issueList: IssueList
+    private var networkManager: NetworkManager
+    private var requestable: Requestable
+    private var decoder: JSONDecoder
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.issueList = IssueList(issues: [])
+        self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
+        self.decoder = JSONDecoder()
+        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.issueList = IssueList(issues: [])
+        self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
+        self.decoder = JSONDecoder()
+        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.addIssueButton.addTarget(self, action: #selector(addIssueButtonTouched(_:)), for: .touchUpInside)
         configureSearchController()
         configureNavigationItem()
+        fetchIssueList()
+    }
+    
+    func fetchIssueList() {
+        networkManager.request(dataType: IssueList.self, completion: { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.issueList = data
+                self.issueTableView.reloadData()
+            }
+        })
     }
     
     private func configureSearchController() {

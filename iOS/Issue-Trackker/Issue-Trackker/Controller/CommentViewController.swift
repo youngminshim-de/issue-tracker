@@ -79,10 +79,6 @@ class CommentViewController: UIViewController {
         issueNumberLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         issueNumberLabel.trailingAnchor.constraint(lessThanOrEqualTo: headerView.trailingAnchor).isActive = true
 
-        statusLabel.paddingTop = 6
-        statusLabel.paddingLeft = 12
-        statusLabel.paddingBottom = 6
-        statusLabel.paddingRight = 12
         statusLabel.backgroundColor = UIColor(red: 0.782, green: 0.922, blue: 1, alpha: 1)
         statusLabel.layer.cornerRadius = 15
         statusLabel.layer.masksToBounds = true

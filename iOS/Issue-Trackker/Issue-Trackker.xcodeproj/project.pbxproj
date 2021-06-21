@@ -28,14 +28,14 @@
 		D49B7887267622D800CF3FE4 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7886267622D800CF3FE4 /* Milestone.swift */; };
 		D49B788B2676278800CF3FE4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D49B788A2676278800CF3FE4 /* Alamofire */; };
 		D49B788D2676279500CF3FE4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788C2676279500CF3FE4 /* NetworkManager.swift */; };
-		D49B788F267627BC00CF3FE4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788E267627BC00CF3FE4 /* EndPoint.swift */; };
+		D49B788F267627BC00CF3FE4 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788E267627BC00CF3FE4 /* Requestable.swift */; };
 		D49B789326771EA200CF3FE4 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789226771EA200CF3FE4 /* IssueList.swift */; };
 		D49B789526771EAA00CF3FE4 /* IssueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789426771EAA00CF3FE4 /* IssueDetail.swift */; };
 		D49B789726771EC100CF3FE4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789626771EC100CF3FE4 /* Comment.swift */; };
 		D49B789926772F8C00CF3FE4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789826772F8C00CF3FE4 /* CommentCell.swift */; };
 		D49B789B26772FA400CF3FE4 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789A26772FA400CF3FE4 /* CommentViewController.swift */; };
 		D4F09F2626788C1300240AA3 /* Issue_TrackkerNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F2526788C1300240AA3 /* Issue_TrackkerNetworkTests.swift */; };
-		D4F09F2E26788CDF00240AA3 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788E267627BC00CF3FE4 /* EndPoint.swift */; };
+		D4F09F2E26788CDF00240AA3 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788E267627BC00CF3FE4 /* Requestable.swift */; };
 		D4F09F2F2679BA5900240AA3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788C2676279500CF3FE4 /* NetworkManager.swift */; };
 		D4F09F312679D00500240AA3 /* FakeAF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F302679D00500240AA3 /* FakeAF.swift */; };
 		D4F09F322679D04E00240AA3 /* FakeAF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F302679D00500240AA3 /* FakeAF.swift */; };
@@ -47,6 +47,8 @@
 		D4F09F392679D59C00240AA3 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7882267622A500CF3FE4 /* Assignment.swift */; };
 		D4F09F3A2679D59E00240AA3 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7884267622CF00CF3FE4 /* Label.swift */; };
 		D4F09F3B2679D5A000240AA3 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7886267622D800CF3FE4 /* Milestone.swift */; };
+		D4F09F3D267F51BE00240AA3 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F3C267F51BE00240AA3 /* OAuthManager.swift */; };
+		D4F09F3F2680915000240AA3 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F3E2680915000240AA3 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +84,7 @@
 		D49B7884267622CF00CF3FE4 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		D49B7886267622D800CF3FE4 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		D49B788C2676279500CF3FE4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		D49B788E267627BC00CF3FE4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		D49B788E267627BC00CF3FE4 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		D49B789226771EA200CF3FE4 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
 		D49B789426771EAA00CF3FE4 /* IssueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetail.swift; sourceTree = "<group>"; };
 		D49B789626771EC100CF3FE4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -93,6 +95,8 @@
 		D4F09F2726788C1300240AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4F09F302679D00500240AA3 /* FakeAF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAF.swift; sourceTree = "<group>"; };
 		D4F09F332679D31300240AA3 /* mockData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mockData.json; sourceTree = "<group>"; };
+		D4F09F3C267F51BE00240AA3 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
+		D4F09F3E2680915000240AA3 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,9 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				D49B7852266F0D0200CF3FE4 /* SignInViewController.swift */,
-				D49B78762673299400CF3FE4 /* IssueViewController.swift */,
 				D49B78722671E97300CF3FE4 /* FilterTableViewController.swift */,
 				D49B78782673313B00CF3FE4 /* AddingIssueViewController.swift */,
+				D49B78762673299400CF3FE4 /* IssueViewController.swift */,
 				D49B787C2673586E00CF3FE4 /* IssueSelectViewController.swift */,
 				D49B789A26772FA400CF3FE4 /* CommentViewController.swift */,
 			);
@@ -212,7 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				D49B788C2676279500CF3FE4 /* NetworkManager.swift */,
-				D49B788E267627BC00CF3FE4 /* EndPoint.swift */,
+				D49B788E267627BC00CF3FE4 /* Requestable.swift */,
+				D4F09F3C267F51BE00240AA3 /* OAuthManager.swift */,
+				D4F09F3E2680915000240AA3 /* StorageManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -358,13 +364,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49B78692670AD9900CF3FE4 /* PaddingLabel.swift in Sources */,
+				D4F09F3D267F51BE00240AA3 /* OAuthManager.swift in Sources */,
 				D49B78672670A67400CF3FE4 /* IssueCell.swift in Sources */,
 				D49B789526771EAA00CF3FE4 /* IssueDetail.swift in Sources */,
 				D49B788D2676279500CF3FE4 /* NetworkManager.swift in Sources */,
 				D49B789326771EA200CF3FE4 /* IssueList.swift in Sources */,
 				D49B7853266F0D0200CF3FE4 /* SignInViewController.swift in Sources */,
+				D4F09F3F2680915000240AA3 /* StorageManager.swift in Sources */,
 				D49B7887267622D800CF3FE4 /* Milestone.swift in Sources */,
-				D49B788F267627BC00CF3FE4 /* EndPoint.swift in Sources */,
+				D49B788F267627BC00CF3FE4 /* Requestable.swift in Sources */,
 				D49B78732671E97300CF3FE4 /* FilterTableViewController.swift in Sources */,
 				D49B78772673299400CF3FE4 /* IssueViewController.swift in Sources */,
 				D49B789B26772FA400CF3FE4 /* CommentViewController.swift in Sources */,
@@ -392,7 +400,7 @@
 				D4F09F2F2679BA5900240AA3 /* NetworkManager.swift in Sources */,
 				D4F09F322679D04E00240AA3 /* FakeAF.swift in Sources */,
 				D4F09F372679D59700240AA3 /* Comment.swift in Sources */,
-				D4F09F2E26788CDF00240AA3 /* EndPoint.swift in Sources */,
+				D4F09F2E26788CDF00240AA3 /* Requestable.swift in Sources */,
 				D4F09F362679D59400240AA3 /* IssueDetail.swift in Sources */,
 				D4F09F3B2679D5A000240AA3 /* Milestone.swift in Sources */,
 				D4F09F2626788C1300240AA3 /* Issue_TrackkerNetworkTests.swift in Sources */,
