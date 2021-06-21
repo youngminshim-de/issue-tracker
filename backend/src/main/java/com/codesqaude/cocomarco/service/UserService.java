@@ -10,7 +10,6 @@ import com.codesqaude.cocomarco.domain.user.UserRepository;
 import com.codesqaude.cocomarco.domain.user.dto.UserResponse;
 import com.codesqaude.cocomarco.domain.user.dto.UserWrapper;
 import com.codesqaude.cocomarco.util.JwtUtils;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,23 +21,40 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 @Transactional(readOnly = true)
 public class UserService {
 
     private final UserRepository userRepository;
-    private final GitOAuth oauth;
+    private final GitOAuth oauthWeb;
+    private final GitOAuth oauthIos;
+
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+        oauthIos = new GitOAuth(GitOAuthType.IOS);
+        oauthWeb = new GitOAuth(GitOAuthType.WEB);
+    }
 
     public User findById(UUID userId) {
         return userRepository.findById(userId).orElseThrow(NotFoundUserException::new);
     }
 
     @Transactional
-    public JwtResponse login(String code) {
-        AccessToken accessToken = oauth.accessToken(code);
-        GitUserInfo userInfo = oauth.userInfo(accessToken);
+    public JwtResponse loginIOS(String code) {
+        return getJwtResponse(code, oauthIos);
+    }
+
+    @Transactional
+    public JwtResponse loginWeb(String code) {
+        return getJwtResponse(code, oauthWeb);
+    }
+
+    private JwtResponse getJwtResponse(String code, GitOAuth gitOAuth) {
+        AccessToken accessToken = gitOAuth.accessToken(code);
+        GitUserInfo userInfo = gitOAuth.userInfo(accessToken);
         return new JwtResponse(JwtUtils.create(insertUser(userInfo)));
     }
+
 
     public UUID insertUser(GitUserInfo userInfo) {
         Optional<User> DBUser = userRepository.findByGithubId(userInfo.getId());

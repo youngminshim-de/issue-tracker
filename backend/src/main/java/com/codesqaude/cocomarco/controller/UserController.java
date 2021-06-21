@@ -17,9 +17,15 @@ public class UserController {
     private final UserService userService;
 
     //클라이언트가
-    @PostMapping("/git/login")
-    public JwtResponse login(@RequestParam(name = "code") String code) {
-        return userService.login(code);
+    @PostMapping("/git/login/ios")
+    public JwtResponse loginIos(@RequestParam(name = "code") String code) {
+        return userService.loginIOS(code);
+    }
+
+    //클라이언트가
+    @PostMapping("/git/login/web")
+    public JwtResponse loginWeb(@RequestParam(name = "code") String code) {
+        return userService.loginWeb(code);
     }
 
     @GetMapping("/users")
