@@ -7,7 +7,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -15,7 +14,6 @@ import java.util.Collections;
 import static com.codesqaude.cocomarco.domain.oauth.GitOauthUri.ACCESS_TOKEN_URI;
 import static com.codesqaude.cocomarco.domain.oauth.GitOauthUri.USER_INFO_URI;
 
-@Component
 public class GitOAuth implements OAuth {
 
     private final String clientId;
