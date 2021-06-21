@@ -9,9 +9,9 @@ import Foundation
 
 struct Milestone: Decodable {
     var id: Int
-    var name: String
-    var detail: String?
-    var deadLine: String?
+    var title: String
+    var detail: String
+    var deadLine: String
     var complete: Int?
     var openIssueCount: Int?
     var closeIssueCount: Int?

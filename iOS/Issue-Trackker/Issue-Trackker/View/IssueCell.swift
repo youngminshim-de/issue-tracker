@@ -16,8 +16,14 @@ class IssueCell: UITableViewCell {
     
     func configureIssueCell(title: String, milestone: String, label: String) {
         self.issueTitleLabel.text = title
+        
+        if milestone == "" {
+            self.milestoneLabel.isHidden = true
+        }
+        if label == "" {
+            self.label.isHidden = true
+        }
         self.milestoneLabel.text = milestone
         self.label.text = label
-        self.issueDescriptionLabel.text = "이슈에 대한 설명"
     }
 }

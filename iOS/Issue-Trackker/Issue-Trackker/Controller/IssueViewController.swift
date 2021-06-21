@@ -14,13 +14,13 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var addIssueButton: UIButton!
     
     private var searchController: UISearchController?
-    private var issueList: IssueList
+    private var issueList: [Issue]
     private var networkManager: NetworkManager
     private var requestable: Requestable
     private var decoder: JSONDecoder
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.issueList = IssueList(issues: [])
+        self.issueList = []
         self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
         self.decoder = JSONDecoder()
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -29,7 +29,7 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
     }
     
     required init?(coder: NSCoder) {
-        self.issueList = IssueList(issues: [])
+        self.issueList = []
         self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
         self.decoder = JSONDecoder()
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -51,7 +51,7 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
             case .failure(let error):
                 print(error)
             case .success(let data):
-                self.issueList = data
+                self.issueList = data.issues
                 self.issueTableView.reloadData()
             }
         })
@@ -122,13 +122,18 @@ extension IssueViewController: UITableViewDataSource {
     // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return issueList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as? IssueCell else {
             return IssueCell()
         }
+        
+        let label = issueList[indexPath.row].labels ?? nil
+        cell.configureIssueCell(title: issueList[indexPath.row].title,
+                                milestone: issueList[indexPath.row].milestone?.title ?? "",
+                                label: label?.first?.title ?? "")
         return cell
     }
     

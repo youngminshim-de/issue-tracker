@@ -29,16 +29,15 @@ class StorageManager {
               let service = self.service else {
             return false
         }
-        
         let query: [CFString:Any] = [kSecClass: kSecClassGenericPassword,
                                      kSecAttrService: service,
                                      kSecAttrAccount: account,
-                                     kSecAttrGeneric: data]
-        
+                                     kSecValueData: data]
+        //print(SecItemAdd(query as CFDictionary, nil))
         return SecItemAdd(query as CFDictionary, nil) == errSecSuccess
     }
     
-    func readUser(_ user: String) -> String? {
+    func readUser() -> String? {
         let query: [CFString:Any] = [kSecClass: kSecClassGenericPassword,
                                      kSecAttrService: service,
                                      kSecAttrAccount: account,
@@ -52,7 +51,7 @@ class StorageManager {
         }
         
         guard let existingItem = item as? [CFString: Any],
-              let data = existingItem[kSecAttrGeneric] as? Data,
+              let data = existingItem[kSecValueData] as? Data,
               let user = try? JSONDecoder().decode(String.self, from: data) else {
             return nil
         }

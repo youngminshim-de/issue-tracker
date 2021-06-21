@@ -21,20 +21,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueCell" id="q5m-VU-ihu" customClass="IssueCell" customModule="Issue_Trackker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="198"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="203.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q5m-VU-ihu" id="O7Q-f9-At8">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="198"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="203.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYQ-1s-hrX">
-                                                    <rect key="frame" x="16" y="24" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="24" width="56" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="zzzz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsl-Io-cX8">
-                                                    <rect key="frame" x="16" y="61" width="382" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="이슈에 대한 설명(최대 두줄까지 보여줄 수 있다)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsl-Io-cX8">
+                                                    <rect key="frame" x="16" y="66.5" width="382" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="41" id="BEU-9B-E2O"/>
                                                     </constraints>
@@ -43,16 +43,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="milestone" translatesAutoresizingMaskIntoConstraints="NO" id="gei-Vc-6IV">
-                                                    <rect key="frame" x="16" y="100" width="17" height="18"/>
+                                                    <rect key="frame" x="16" y="105.5" width="17" height="18"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-h9-94d">
-                                                    <rect key="frame" x="37" y="100" width="42" height="21"/>
+                                                    <rect key="frame" x="37" y="105.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-XC-qVg" customClass="PaddingLabel" customModule="Issue_Trackker" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="141" width="42" height="21"/>
+                                                    <rect key="frame" x="16" y="146.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -75,6 +75,12 @@
                                         <constraints>
                                             <constraint firstItem="ELt-XC-qVg" firstAttribute="leading" secondItem="q5m-VU-ihu" secondAttribute="leading" constant="16" id="6ay-iC-OFV"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="issueDescriptionLabel" destination="zsl-Io-cX8" id="wv2-U6-Aa5"/>
+                                            <outlet property="issueTitleLabel" destination="tYQ-1s-hrX" id="11M-YY-kpd"/>
+                                            <outlet property="label" destination="ELt-XC-qVg" id="6Gs-E0-XqB"/>
+                                            <outlet property="milestoneLabel" destination="iWd-h9-94d" id="haV-Ub-oPd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

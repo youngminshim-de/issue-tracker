@@ -23,10 +23,18 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         oauthManager = OAuthManager(parentViewController: self)
-        print(oauthManager.excuteOAuth())
     }
     
     @IBAction func signInButtonToucehd(_ sender: UIButton) {
+        moveNetxViewController()
+    }
+    
+    @IBAction func githubSignInButtonTouched(_ sender: UIButton) {
+        oauthManager.excuteOAuth()
+        moveNetxViewController()
+    }
+    
+    func moveNetxViewController() {
         let issueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Tabbar")
         issueViewController.modalPresentationStyle = .fullScreen
         self.present(issueViewController, animated: true, completion: nil)
