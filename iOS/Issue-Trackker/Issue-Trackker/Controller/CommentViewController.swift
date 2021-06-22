@@ -15,24 +15,13 @@ class CommentViewController: UIViewController {
     private var tableHeaderView: CommentTableHeaderView!
     
     private var issueDetail: IssueDetail
-    private var networkManager: NetworkManager
-    private var requestable: Requestable
-    private var decoder: JSONDecoder
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.requestable = MainRequest(baseURL: EndPoint.IssueDetailEndPoint.description, path: "1", httpMethod: .get)
-        self.decoder = JSONDecoder()
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
         self.issueDetail = IssueDetail.empty
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.requestable = MainRequest(baseURL: EndPoint.IssueDetailEndPoint.description, path: "1", httpMethod: .get)
-        self.decoder = JSONDecoder()
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
         self.issueDetail = IssueDetail.empty
         super.init(coder: coder)
     }
@@ -42,23 +31,15 @@ class CommentViewController: UIViewController {
         configureNavigationItem()
         configureTextField()
         configureTableHeaderView()
-        fetchIssueDetail()
     }
     
-    func fetchIssueDetail() {
-        networkManager.request(dataType: IssueDetail.self, completion: { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let data):
-                self.issueDetail = data
-                self.tableHeaderView.configureHeaderView(title: self.issueDetail.title,
-                                                         issueNumber: self.issueDetail.idDescription,
-                                                         status: self.issueDetail.statusDescription,
-                                                         writeTime: self.issueDetail.writeTimeDescription)
-                self.commentTableView.reloadData()
-            }
-        })
+    func fetchIssueDetail(issueDetail: IssueDetail) {
+        self.issueDetail = issueDetail
+        self.tableHeaderView.configureHeaderView(title: self.issueDetail.title,
+                                                 issueNumber: self.issueDetail.idDescription,
+                                                 status: self.issueDetail.statusDescription,
+                                                 writeTime: self.issueDetail.writeTimeDescription)
+        self.commentTableView.reloadData()
     }
     
     func configureTableHeaderView() {

@@ -21,7 +21,7 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.issueList = []
-        self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
+        self.requestable = IssueListRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
         self.decoder = JSONDecoder()
         self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
         super.init(nibName: nil, bundle: nil)
@@ -29,7 +29,7 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
     
     required init?(coder: NSCoder) {
         self.issueList = []
-        self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
+        self.requestable = IssueListRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
         self.decoder = JSONDecoder()
         self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
         super.init(coder: coder)
@@ -161,10 +161,21 @@ extension IssueViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let commentController = storyboard?.instantiateViewController(identifier: "Comment") as? CommentViewController else {
+        guard let commentViewController = storyboard?.instantiateViewController(identifier: "Comment") as? CommentViewController else {
             return
         }
-        let naviController = UINavigationController(rootViewController: commentController)
+        let request = IssueDetailRequest(baseURL: EndPoint.IssueDetailEndPoint.description, path: "\(indexPath.row+1)", httpMethod: .get)
+        let networkManager = NetworkManager(with: AF, with: request, with: JSONDecoder())
+        networkManager.request(dataType: IssueDetail.self, completion: { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                commentViewController.fetchIssueDetail(issueDetail: data)
+            }
+        })
+        
+        let naviController = UINavigationController(rootViewController: commentViewController)
         naviController.modalPresentationStyle = .fullScreen
         self.present(naviController, animated: true, completion: nil)
     }

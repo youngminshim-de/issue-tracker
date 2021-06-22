@@ -15,8 +15,24 @@ protocol Requestable {
     func url() -> URL?
 }
 
-class MainRequest: Requestable {
+class IssueListRequest: Requestable {
     
+    var baseURL: String
+    var path: String
+    var httpMethod: HTTPMethod
+    
+    init(baseURL: String, path: String, httpMethod: HTTPMethod) {
+        self.baseURL = baseURL
+        self.path = path
+        self.httpMethod = httpMethod
+    }
+    
+    func url() -> URL? {
+        return URL(string: baseURL + path)
+    }
+}
+
+class IssueDetailRequest: Requestable {
     var baseURL: String
     var path: String
     var httpMethod: HTTPMethod
