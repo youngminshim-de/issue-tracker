@@ -15,4 +15,16 @@ struct Milestone: Decodable {
     var complete: Int?
     var openIssueCount: Int?
     var closeIssueCount: Int?
+    
+    static var empty = Self.init()
+    
+    init() {
+        self.id = 0
+        self.title = ""
+        self.detail = ""
+        self.deadLine = ""
+        self.complete = nil
+        self.openIssueCount = nil
+        self.closeIssueCount = nil
+    }
 }

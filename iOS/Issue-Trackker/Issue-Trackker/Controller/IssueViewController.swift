@@ -23,7 +23,6 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
         self.issueList = []
         self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
         self.decoder = JSONDecoder()
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
         self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,7 +31,6 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
         self.issueList = []
         self.requestable = MainRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
         self.decoder = JSONDecoder()
-        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
         self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
         super.init(coder: coder)
     }
@@ -78,7 +76,6 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: filterButton)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: selectButton)
-        
     }
     
     private func makeFooterView() -> UIView {

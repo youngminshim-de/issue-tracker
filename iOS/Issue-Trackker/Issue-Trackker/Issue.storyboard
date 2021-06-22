@@ -299,7 +299,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6t-8w-q0l">
                                                     <rect key="frame" x="68" y="16" width="55" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -331,6 +331,12 @@
                                                 <constraint firstItem="oNb-cA-VJj" firstAttribute="top" secondItem="KAf-Jl-Ioz" secondAttribute="bottom" constant="8" id="spK-2E-KHR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="oNb-cA-VJj" id="s4e-r8-iW2"/>
+                                            <outlet property="timeLabel" destination="KAf-Jl-Ioz" id="yjc-Kj-d5n"/>
+                                            <outlet property="writerImageView" destination="6zI-cq-eP5" id="zeW-6W-yqA"/>
+                                            <outlet property="wrtierLabel" destination="c6t-8w-q0l" id="O0S-V9-GQg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -353,7 +359,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="commentTableView" destination="Mqb-99-c4h" id="9eK-nd-ieY"/>
+                        <outlet property="commentTableView" destination="Mqb-99-c4h" id="iiP-sc-EjT"/>
                         <outlet property="commentTextField" destination="u5U-HD-ZD1" id="Dle-ls-hec"/>
                     </connections>
                 </viewController>
@@ -492,24 +498,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0D-wW-s3M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2724.6376811594205" y="81.696428571428569"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="rU6-R8-LU3">
-            <objects>
-                <navigationController storyboardIdentifier="IssueNavi" automaticallyAdjustsScrollViewInsets="NO" id="XT6-jc-3d9" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D80-kH-6N7">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="N0t-zS-8o2" kind="custom" identifier="Issue" customClass="IssueViewController" customModule="Issue_Trackker" customModuleProvider="target" id="mty-AB-vIr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KVH-GT-tZc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="108.69565217391305" y="82.366071428571431"/>
         </scene>
     </scenes>
     <resources>

@@ -6,19 +6,66 @@
 //
 
 import UIKit
+import Alamofire
 
 class CommentViewController: UIViewController {
     
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentTableView: UITableView!
-    private var tableHeaderView: UIView!
+    private var tableHeaderView: CommentTableHeaderView!
+    
+    private var issueDetail: IssueDetail
+    private var networkManager: NetworkManager
+    private var requestable: Requestable
+    private var decoder: JSONDecoder
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.requestable = MainRequest(baseURL: EndPoint.IssueDetailEndPoint.description, path: "1", httpMethod: .get)
+        self.decoder = JSONDecoder()
+        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
+        self.issueDetail = IssueDetail.empty
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.requestable = MainRequest(baseURL: EndPoint.IssueDetailEndPoint.description, path: "1", httpMethod: .get)
+        self.decoder = JSONDecoder()
+        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
+        self.issueDetail = IssueDetail.empty
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableHeaderView = configureHeaderView()
         configureNavigationItem()
         configureTextField()
+        configureTableHeaderView()
+        fetchIssueDetail()
+    }
+    
+    func fetchIssueDetail() {
+        networkManager.request(dataType: IssueDetail.self, completion: { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.issueDetail = data
+                self.tableHeaderView.configureHeaderView(title: self.issueDetail.title,
+                                                         issueNumber: self.issueDetail.idDescription,
+                                                         status: self.issueDetail.statusDescription,
+                                                         writeTime: self.issueDetail.writeTimeDescription)
+                self.commentTableView.reloadData()
+            }
+        })
+    }
+    
+    func configureTableHeaderView() {
+        self.tableHeaderView = CommentTableHeaderView.init(frame: CGRect(origin: self.view.frame.origin, size: CGSize(width: self.view.bounds.width, height: 115)))
+        self.tableHeaderView.makeHeaderView()
+        self.commentTableView.tableHeaderView = tableHeaderView
+        self.commentTableView.tableHeaderView?.backgroundColor = .white
     }
     
     private func configureNavigationItem() {
@@ -29,8 +76,6 @@ class CommentViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
-        self.commentTableView.tableHeaderView = tableHeaderView
-        self.commentTableView.tableHeaderView?.backgroundColor = .white
     }
     
     func configureTextField() {
@@ -43,84 +88,23 @@ class CommentViewController: UIViewController {
     @objc func backButtonTouched(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    func configureHeaderView() -> UIView {
-        let headerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: self.commentTableView.bounds.width, height: 115)))
-        
-        let titleLabel = UILabel()
-        let issueNumberLabel = UILabel()
-        let statusLabel = PaddingLabel()
-        let writerTimeLabel = UILabel()
-    
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        issueNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        writerTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        headerView.addSubview(titleLabel)
-        headerView.addSubview(issueNumberLabel)
-        headerView.addSubview(statusLabel)
-        headerView.addSubview(writerTimeLabel)
-
-        headerView.layer.borderWidth = 1
-        headerView.layer.borderColor = UIColor.systemGray6.cgColor
-
-        titleLabel.text = "테스트 이슈 작성"
-        titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 16).isActive = true
-        
-        issueNumberLabel.text = "#2"
-        issueNumberLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        issueNumberLabel.textColor = .systemGray2
-        issueNumberLabel.font = UIFont.systemFont(ofSize: 28)
-        issueNumberLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8).isActive = true
-        issueNumberLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        issueNumberLabel.trailingAnchor.constraint(lessThanOrEqualTo: headerView.trailingAnchor).isActive = true
-
-        statusLabel.backgroundColor = UIColor(red: 0.782, green: 0.922, blue: 1, alpha: 1)
-        statusLabel.layer.cornerRadius = 15
-        statusLabel.layer.masksToBounds = true
-        statusLabel.text = "열림"
-        statusLabel.textColor = .systemBlue
-        
-        let attributedString = NSMutableAttributedString(string: "")
-        
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "exclamation.png")
-        
-        attributedString.append(NSAttributedString(attachment: imageAttachment))
-        attributedString.append(NSAttributedString(string: " "))
-        attributedString.append(NSAttributedString(string: statusLabel.text ?? ""))
-        statusLabel.attributedText = attributedString
-        
-
-        statusLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        statusLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16).isActive = true
-        statusLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -19).isActive = true
-
-        writerTimeLabel.text = "8분 전, Oni님이 작성했습니다."
-        writerTimeLabel.font = UIFont.systemFont(ofSize: 13)
-        writerTimeLabel.textColor = UIColor.systemGray2
-
-        writerTimeLabel.leadingAnchor.constraint(equalTo: statusLabel.trailingAnchor, constant: 8).isActive = true
-        writerTimeLabel.centerYAnchor.constraint(equalTo: statusLabel.centerYAnchor).isActive = true
-        writerTimeLabel.trailingAnchor.constraint(lessThanOrEqualTo: headerView.trailingAnchor).isActive = true
-        
-        return headerView
-    }
 }
 
 extension CommentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return issueDetail.comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell else {
             return CommentCell()
         }
+        let writer = issueDetail.comments[indexPath.row].name
+        let time = issueDetail.comments[indexPath.row].writeTime
+        let comment = issueDetail.comments[indexPath.row].text
+        let imageURL = issueDetail.comments[indexPath.row].avatarImage
+        
+        cell.configureCommentCell(writer: writer, time: time, comment: comment, imageURL: imageURL)
         return cell
     }
 }

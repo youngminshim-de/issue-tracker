@@ -45,7 +45,7 @@ class LocalRequest: Requestable {
     }
     
     func url() -> URL? {
-        URL(fileURLWithPath: baseURL + path)
+        return URL(fileURLWithPath: baseURL + path)
     }
 }
 
@@ -57,11 +57,11 @@ enum EndPoint: CustomStringConvertible {
     var description: String {
         switch self{
         case .baseURL:
-            return "http://3.35.2.191/"
+            return "http://52.78.45.48:8080/"
         case .IssueListEndPoint:
-            return "http://3.35.2.191/issues"
+            return "http://52.78.45.48:8080/issues"
         case .IssueDetailEndPoint:
-            return "http://3.35.2.191/issues/"
+            return "http://52.78.45.48:8080/issues/"
         }
     }
 }
