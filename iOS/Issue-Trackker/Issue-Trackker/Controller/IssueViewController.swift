@@ -43,7 +43,7 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
         fetchIssueList()
     }
     
-    func fetchIssueList() {
+    private func fetchIssueList() {
         networkManager.request(dataType: IssueList.self, completion: { result in
             switch result {
             case .failure(let error):

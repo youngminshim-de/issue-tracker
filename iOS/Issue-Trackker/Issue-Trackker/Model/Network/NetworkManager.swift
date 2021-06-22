@@ -37,4 +37,28 @@ class NetworkManager {
                 }
         }
     }
+    
+    func post<T: Decodable> (dataType: T.Type, completion: @escaping (Result<T,AFError>) -> Void) {
+        
+        guard let url = request.url() else {
+            return
+        }
+        
+        guard let user = StorageManager.shared.readUser() else {
+            return
+        }
+        
+        let httpHeaders: HTTPHeaders = [HTTPHeader(name: "token" , value: user.token)]
+        
+        manager.request(url, method: request.httpMethod, parameters: nil, encoding: URLEncoding.default, headers: httpHeaders, interceptor: nil, requestModifier: nil)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: T.self, decoder: decoder) { response in
+                switch response.result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let data):
+                    completion(.success((data)))
+                }
+        }
+    }
 }

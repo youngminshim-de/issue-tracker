@@ -62,24 +62,7 @@ class CommentTableHeaderView: UIView {
         issueNumberLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8).isActive = true
         issueNumberLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         issueNumberLabel.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor).isActive = true
-
-        statusLabel.backgroundColor = UIColor(red: 0.782, green: 0.922, blue: 1, alpha: 1)
-        statusLabel.layer.cornerRadius = 15
-        statusLabel.layer.masksToBounds = true
-        statusLabel.text = status
-        statusLabel.textColor = .systemBlue
         
-        let attributedString = NSMutableAttributedString(string: "")
-        
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "exclamation.png")
-        
-        attributedString.append(NSAttributedString(attachment: imageAttachment))
-        attributedString.append(NSAttributedString(string: " "))
-        attributedString.append(NSAttributedString(string: statusLabel.text ?? ""))
-        statusLabel.attributedText = attributedString
-        
-
         statusLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
         statusLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         statusLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -19).isActive = true
@@ -97,6 +80,24 @@ class CommentTableHeaderView: UIView {
         titleLabel.text = title
         issueNumberLabel.text = issueNumber
         writerTimeLabel.text = writeTime
+        configureStatusLabel(status: status ?? "")
+    }
+    
+    private func configureStatusLabel(status: String) {
+        statusLabel.backgroundColor = UIColor(red: 0.782, green: 0.922, blue: 1, alpha: 1)
+        statusLabel.layer.cornerRadius = 15
+        statusLabel.layer.masksToBounds = true
         statusLabel.text = status
+        statusLabel.textColor = .systemBlue
+        
+        let attributedString = NSMutableAttributedString(string: "")
+        
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "exclamation.png")
+        
+        attributedString.append(NSAttributedString(attachment: imageAttachment))
+        attributedString.append(NSAttributedString(string: " "))
+        attributedString.append(NSAttributedString(string: statusLabel.text ?? ""))
+        statusLabel.attributedText = attributedString
     }
 }

@@ -30,10 +30,10 @@ class CommentViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationItem()
         configureTextField()
-        configureTableHeaderView()
+        setUpTableHeaderView()
     }
     
-    func fetchIssueDetail(issueDetail: IssueDetail) {
+    internal func fetchIssueDetail(issueDetail: IssueDetail) {
         self.issueDetail = issueDetail
         self.tableHeaderView.configureHeaderView(title: self.issueDetail.title,
                                                  issueNumber: self.issueDetail.idDescription,
@@ -42,7 +42,7 @@ class CommentViewController: UIViewController {
         self.commentTableView.reloadData()
     }
     
-    func configureTableHeaderView() {
+    private func setUpTableHeaderView() {
         self.tableHeaderView = CommentTableHeaderView.init(frame: CGRect(origin: self.view.frame.origin, size: CGSize(width: self.view.bounds.width, height: 115)))
         self.tableHeaderView.makeHeaderView()
         self.commentTableView.tableHeaderView = tableHeaderView
@@ -59,7 +59,7 @@ class CommentViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
     }
     
-    func configureTextField() {
+    private func configureTextField() {
         let sendButton = UIButton()
         sendButton.setImage(UIImage(named: "ButtonSend.png"), for: .normal)
         commentTextField.rightView = sendButton

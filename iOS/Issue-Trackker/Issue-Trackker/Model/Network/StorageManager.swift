@@ -8,36 +8,33 @@
 import Foundation
 import Security
 
+struct User: Codable {
+    var token: String
+}
+
 class StorageManager {
     
     static let shared = StorageManager()
     private let account = "Issue-Trackker"
-    private let service = Bundle.main.bundleIdentifier
-    private lazy var query: [CFString:Any]? = {
-        guard let service = self.service else {
-            return nil
-        }
-        return [kSecClass: kSecClassGenericPassword,
-                kSecAttrService: service,
-                kSecAttrAccount: account]
-    }()
+    private let service = "github"
     
     private init() {}
     
-    func createUser(_ user: String) -> Bool {
-        guard let data = try? JSONEncoder().encode(user),
-              let service = self.service else {
+    func createUser(_ user: User) -> Bool {
+        
+        guard let data = try? JSONEncoder().encode(user) else {
             return false
         }
+        
         let query: [CFString:Any] = [kSecClass: kSecClassGenericPassword,
                                      kSecAttrService: service,
                                      kSecAttrAccount: account,
                                      kSecValueData: data]
-        //print(SecItemAdd(query as CFDictionary, nil))
+
         return SecItemAdd(query as CFDictionary, nil) == errSecSuccess
     }
     
-    func readUser() -> String? {
+    func readUser() -> User? {
         let query: [CFString:Any] = [kSecClass: kSecClassGenericPassword,
                                      kSecAttrService: service,
                                      kSecAttrAccount: account,
@@ -49,20 +46,24 @@ class StorageManager {
         if SecItemCopyMatching(query as CFDictionary, &item) != errSecSuccess {
             return nil
         }
-        
+
         guard let existingItem = item as? [CFString: Any],
               let data = existingItem[kSecValueData] as? Data,
-              let user = try? JSONDecoder().decode(String.self, from: data) else {
+              let user = try? JSONDecoder().decode(User.self, from: data) else {
             return nil
         }
+        
         return user
     }
     
     func updateUser(_ user: String) -> Bool {
-        guard let query = self.query,
-              let data = try? JSONEncoder().encode(user) else {
+            guard let data = try? JSONEncoder().encode(user) else {
             return false
         }
+        
+        let query: [CFString:Any] = [kSecClass: kSecClassGenericPassword,
+                                     kSecAttrService: service,
+                                     kSecAttrAccount: account]
         
         let attributes: [CFString: Any] = [kSecAttrAccount: account,
                                            kSecAttrGeneric: data]
@@ -71,9 +72,10 @@ class StorageManager {
     }
     
     func deleteUser() -> Bool {
-        guard let query = self.query else {
-            return false
-        }
+        let query: [CFString:Any] = [kSecClass: kSecClassGenericPassword,
+                                     kSecAttrService: service,
+                                     kSecAttrAccount: account]
+        
         return SecItemDelete(query as CFDictionary) == errSecSuccess
     }
 }

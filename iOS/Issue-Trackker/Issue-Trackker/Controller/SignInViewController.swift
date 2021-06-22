@@ -30,11 +30,19 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func githubSignInButtonTouched(_ sender: UIButton) {
-        oauthManager.excuteOAuth()
-        moveNetxViewController()
+        oauthManager.excuteOAuth() { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.moveNetxViewController()
+                }
+            case .failure(_):
+                break
+            }
+        }
     }
     
-    func moveNetxViewController() {
+    private func moveNetxViewController() {
         let issueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Tabbar")
         issueViewController.modalPresentationStyle = .fullScreen
         self.present(issueViewController, animated: true, completion: nil)

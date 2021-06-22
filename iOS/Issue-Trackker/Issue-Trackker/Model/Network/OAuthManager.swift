@@ -21,7 +21,7 @@ class OAuthManager: NSObject, ASWebAuthenticationPresentationContextProviding {
         return parentViewController.view.window ?? ASPresentationAnchor()
     }
     
-    func excuteOAuth() {
+    func excuteOAuth(completion: @escaping (Result<User,Error>) -> Void) {
         var webAuthSession: ASWebAuthenticationSession?
         
         let callbackUrlScheme = "Issue-Trackker"
@@ -37,13 +37,21 @@ class OAuthManager: NSObject, ASWebAuthenticationPresentationContextProviding {
             
             let tempString: String = "\(oauthToken!)"
             OAuthManager.code = tempString
-            let urlurl: URL = URL(string: "http://3.35.141.227:8080/git/login/ios?\(tempString)")!
+            let urlurl: URL = URL(string: "http://52.78.45.48:8080/git/login/ios?\(tempString)")!
             var request: URLRequest = URLRequest(url: urlurl)
             request.httpMethod = "POST"
             
             URLSession.shared.dataTask(with: request) { data, response, error in
-                StorageManager.shared.createUser(String(data: data!, encoding: String.Encoding.utf8) ?? "")
-//                print(String(data: data!, encoding: String.Encoding.utf8))
+                guard let user = try? JSONDecoder().decode(User.self, from: data!) else {
+                    return
+                }
+                StorageManager.shared.createUser(user)
+                
+                if StorageManager.shared.readUser() != nil {
+                    completion(.success(user))
+                } else {
+                    completion(.failure(error as! Error))
+                }
             }.resume()
         })
         
