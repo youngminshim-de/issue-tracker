@@ -262,7 +262,6 @@
         <!--레이블-->
         <scene sceneID="RlN-SI-Tzo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf8-dZ-Ceb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G64-Iz-96I" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="레이블" image="tabbar_label" id="V2K-du-eyY"/>
                     <toolbarItems/>
@@ -275,6 +274,7 @@
                         <segue destination="L5G-Dn-yR9" kind="relationship" relationship="rootViewController" id="acU-4l-Oyi"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf8-dZ-Ceb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1770" y="-220"/>
         </scene>
