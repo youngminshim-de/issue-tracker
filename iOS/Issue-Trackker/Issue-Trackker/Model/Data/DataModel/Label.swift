@@ -9,7 +9,7 @@ import Foundation
 
 struct Label: Decodable {
     var id: Int
-    var name: String
+    var title: String
+    var detail: String
     var hexCode: String
-    var detail: String?
 }

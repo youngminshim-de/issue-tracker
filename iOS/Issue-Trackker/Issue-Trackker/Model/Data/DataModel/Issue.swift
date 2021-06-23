@@ -12,9 +12,10 @@ struct Issue: Decodable {
     var title: String
     var writer: String
     var writeTime: String
-    var milestone: Milestone
-    var assignments: [Assignment]
-    var labels: [Label]
+    var milestone: Milestone?
+    var assignments: [Assignment]?
+    var labels: [Label]?
+    var status: String
 }
 
 

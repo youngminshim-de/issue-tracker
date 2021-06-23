@@ -136,6 +136,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="githubSignInButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fq2-cd-qD4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1OX-sW-dPu"/>
@@ -183,7 +186,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfn-29-rAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="-168"/>
+            <point key="canvasLocation" x="2509" y="-866"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0k9-jp-dYu">
@@ -198,17 +201,20 @@
                     </tabBar>
                     <connections>
                         <segue destination="UHp-O8-aey" kind="relationship" relationship="viewControllers" id="N0B-5h-IjK"/>
+                        <segue destination="G64-Iz-96I" kind="relationship" relationship="viewControllers" id="eE6-Ln-mNj"/>
+                        <segue destination="fZ0-Wk-D8O" kind="relationship" relationship="viewControllers" id="U52-dg-AKV"/>
+                        <segue destination="Kuu-QK-xFM" kind="relationship" relationship="viewControllers" id="SOk-Ui-sUD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayO-ob-mfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="891" y="88"/>
         </scene>
-        <!--Item-->
+        <!--이슈-->
         <scene sceneID="3uD-oD-ipD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UHp-O8-aey" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="nqI-I8-YdY"/>
+                    <tabBarItem key="tabBarItem" title="이슈" image="tabbar_issue" id="nqI-I8-YdY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Vf-Gd-bxs">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -221,12 +227,103 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLX-p5-83v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1787" y="88"/>
+            <point key="canvasLocation" x="1770" y="-866"/>
+        </scene>
+        <!--Label-->
+        <scene sceneID="lu7-PE-TEg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Label" referencedIdentifier="Label" id="L5G-Dn-yR9" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8ss-Hq-sdt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6Y-3M-bK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2509" y="-220"/>
+        </scene>
+        <!--Milestone-->
+        <scene sceneID="2eV-Rc-e1S">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Milestone" referencedIdentifier="Milestone" id="V2E-aM-c97" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4jo-7x-ERT"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ja1-EC-t2w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2459" y="433"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="o42-kZ-xci">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Account" referencedIdentifier="Account" id="m1h-eB-K2V" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uHC-hL-qJi"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmP-mX-9t0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2509" y="1077"/>
+        </scene>
+        <!--레이블-->
+        <scene sceneID="RlN-SI-Tzo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G64-Iz-96I" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="레이블" image="tabbar_label" id="V2K-du-eyY"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0JC-2E-VC4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L5G-Dn-yR9" kind="relationship" relationship="rootViewController" id="acU-4l-Oyi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf8-dZ-Ceb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="-220"/>
+        </scene>
+        <!--마일스톤-->
+        <scene sceneID="nez-Kh-CG2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fZ0-Wk-D8O" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="마일스톤" image="milestone" id="heo-T5-BPK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gni-AW-QKT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="V2E-aM-c97" kind="relationship" relationship="rootViewController" id="Zwv-O5-ldy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qym-YO-Uup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="433"/>
+        </scene>
+        <!--내계정-->
+        <scene sceneID="36e-ea-izz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kuu-QK-xFM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="내계정" image="tabbar_account" id="ijr-bp-wGl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6fe-hm-m38">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m1h-eB-K2V" kind="relationship" relationship="rootViewController" id="YLB-oD-ltd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9mN-uv-JRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="1077"/>
         </scene>
     </scenes>
     <resources>
         <image name="Github" width="25" height="24"/>
         <image name="applelogo" catalog="system" width="103" height="128"/>
+        <image name="milestone" width="17" height="18"/>
+        <image name="tabbar_account" width="21" height="20"/>
+        <image name="tabbar_issue" width="18" height="18"/>
+        <image name="tabbar_label" width="19" height="18"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

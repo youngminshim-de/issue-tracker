@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class IssueViewController: UIViewController, UISearchBarDelegate {
     
@@ -13,13 +14,45 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var addIssueButton: UIButton!
     
     private var searchController: UISearchController?
-
+    private var issueList: [Issue]
+    private var networkManager: NetworkManager
+    private var requestable: Requestable
+    private var decoder: JSONDecoder
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.issueList = []
+        self.requestable = IssueListRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
+        self.decoder = JSONDecoder()
+        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.issueList = []
+        self.requestable = IssueListRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .get)
+        self.decoder = JSONDecoder()
+        self.networkManager = NetworkManager(with: AF, with: requestable, with: decoder)
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.addIssueButton.addTarget(self, action: #selector(addIssueButtonTouched(_:)), for: .touchUpInside)
         configureSearchController()
         configureNavigationItem()
+        fetchIssueList()
+    }
+    
+    private func fetchIssueList() {
+        networkManager.request(dataType: IssueList.self, completion: { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.issueList = data.issues
+                self.issueTableView.reloadData()
+            }
+        })
     }
     
     private func configureSearchController() {
@@ -43,7 +76,6 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: filterButton)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: selectButton)
-        
     }
     
     private func makeFooterView() -> UIView {
@@ -87,13 +119,18 @@ extension IssueViewController: UITableViewDataSource {
     // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return issueList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as? IssueCell else {
             return IssueCell()
         }
+        
+        let label = issueList[indexPath.row].labels ?? nil
+        cell.configureIssueCell(title: issueList[indexPath.row].title,
+                                milestone: issueList[indexPath.row].milestone?.title ?? "",
+                                label: label?.first?.title ?? "")
         return cell
     }
     
@@ -124,10 +161,21 @@ extension IssueViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let commentController = storyboard?.instantiateViewController(identifier: "Comment") as? CommentViewController else {
+        guard let commentViewController = storyboard?.instantiateViewController(identifier: "Comment") as? CommentViewController else {
             return
         }
-        let naviController = UINavigationController(rootViewController: commentController)
+        let request = IssueDetailRequest(baseURL: EndPoint.IssueDetailEndPoint.description, path: "\(indexPath.row+1)", httpMethod: .get)
+        let networkManager = NetworkManager(with: AF, with: request, with: JSONDecoder())
+        networkManager.request(dataType: IssueDetail.self, completion: { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                commentViewController.fetchIssueDetail(issueDetail: data)
+            }
+        })
+        
+        let naviController = UINavigationController(rootViewController: commentViewController)
         naviController.modalPresentationStyle = .fullScreen
         self.present(naviController, animated: true, completion: nil)
     }
