@@ -45,7 +45,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="milestone" translatesAutoresizingMaskIntoConstraints="NO" id="gei-Vc-6IV">
                                                     <rect key="frame" x="16" y="105.5" width="17" height="18"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-h9-94d">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-h9-94d" customClass="PaddingLabel" customModule="Issue_Trackker" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="105.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -136,6 +136,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="C6G-Uy-fc2" id="7d0-Z1-ZqM"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGF-YL-kmu">
                                         <rect key="frame" x="16" y="42" width="398" height="1"/>
@@ -150,6 +153,9 @@
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="C6G-Uy-fc2" id="pTn-92-i75"/>
+                                        </connections>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -170,24 +176,25 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xrN-xa-Wc1">
-                                <rect key="frame" x="16" y="585" width="398" height="277"/>
+                                <rect key="frame" x="0.0" y="585" width="414" height="277"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="scrollIndicatorInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdditionalInformationCell" id="BZn-eP-ZBw" customClass="AdditionalInformationCell" customModule="Issue_Trackker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="398" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BZn-eP-ZBw" id="SY3-ZK-Bvg">
-                                            <rect key="frame" x="0.0" y="0.0" width="398" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjy-3k-ewJ">
-                                                    <rect key="frame" x="0.0" y="11.5" width="42" height="21"/>
+                                                    <rect key="frame" x="16" y="11.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxn-fL-ctb">
-                                                    <rect key="frame" x="352" y="11" width="39.5" height="22"/>
+                                                    <rect key="frame" x="368" y="11" width="39.5" height="22"/>
                                                     <color key="tintColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.74901960784313726" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="chevron.right" catalog="system"/>
                                                 </button>
@@ -199,9 +206,12 @@
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="cxn-fL-ctb" firstAttribute="centerY" secondItem="BZn-eP-ZBw" secondAttribute="centerY" id="BKo-XZ-3rO"/>
-                                            <constraint firstItem="gjy-3k-ewJ" firstAttribute="leading" secondItem="BZn-eP-ZBw" secondAttribute="leading" id="Qzs-Gg-XYm"/>
+                                            <constraint firstItem="gjy-3k-ewJ" firstAttribute="leading" secondItem="BZn-eP-ZBw" secondAttribute="leading" constant="16" id="Qzs-Gg-XYm"/>
                                             <constraint firstItem="gjy-3k-ewJ" firstAttribute="centerY" secondItem="BZn-eP-ZBw" secondAttribute="centerY" id="Y4l-cn-7lw"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="additionalInformationLabel" destination="gjy-3k-ewJ" id="zEo-wO-dEu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -217,7 +227,7 @@
                             <constraint firstItem="xrN-xa-Wc1" firstAttribute="top" secondItem="3JQ-Mb-mfC" secondAttribute="bottom" id="H97-rn-LGR"/>
                             <constraint firstItem="0LE-Eg-XdH" firstAttribute="trailing" secondItem="3JQ-Mb-mfC" secondAttribute="trailing" id="O2U-57-3NF"/>
                             <constraint firstItem="0LE-Eg-XdH" firstAttribute="bottom" secondItem="xrN-xa-Wc1" secondAttribute="bottom" id="c3O-Ej-PEN"/>
-                            <constraint firstItem="xrN-xa-Wc1" firstAttribute="leading" secondItem="0LE-Eg-XdH" secondAttribute="leading" constant="16" id="fXa-wa-ain"/>
+                            <constraint firstItem="xrN-xa-Wc1" firstAttribute="leading" secondItem="0LE-Eg-XdH" secondAttribute="leading" id="fXa-wa-ain"/>
                             <constraint firstItem="3JQ-Mb-mfC" firstAttribute="top" secondItem="0LE-Eg-XdH" secondAttribute="top" id="g8y-lU-5yT"/>
                             <constraint firstItem="0LE-Eg-XdH" firstAttribute="trailing" secondItem="xrN-xa-Wc1" secondAttribute="trailing" id="vRc-cQ-8NK"/>
                         </constraints>
@@ -239,7 +249,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="additionalInformationTableView" destination="xrN-xa-Wc1" id="rzp-kh-6Jy"/>
+                        <outlet property="commentTextView" destination="Yan-k4-HEd" id="FFn-wD-XnD"/>
                         <outlet property="segmentControl" destination="4nH-3b-cyV" id="P7x-rd-16Y"/>
+                        <outlet property="titleTextField" destination="5pc-Mu-fYG" id="NmU-GD-YPK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDX-BW-zgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

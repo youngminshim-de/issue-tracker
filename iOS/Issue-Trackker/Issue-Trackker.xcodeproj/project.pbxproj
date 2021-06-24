@@ -56,6 +56,7 @@
 		D4F09F60268108D500240AA3 /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F5F268108D500240AA3 /* ImageView+Extension.swift */; };
 		D4F09F62268186A700240AA3 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F61268186A700240AA3 /* DateFormatter.swift */; };
 		D4F09F6426819B0800240AA3 /* CommentTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F6326819B0800240AA3 /* CommentTableHeaderView.swift */; };
+		D4F09F67268463CA00240AA3 /* AddingIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F66268463CA00240AA3 /* AddingIssue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		D4F09F5F268108D500240AA3 /* ImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
 		D4F09F61268186A700240AA3 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		D4F09F6326819B0800240AA3 /* CommentTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableHeaderView.swift; sourceTree = "<group>"; };
+		D4F09F66268463CA00240AA3 /* AddingIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingIssue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				D49B7882267622A500CF3FE4 /* Assignment.swift */,
 				D49B7884267622CF00CF3FE4 /* Label.swift */,
 				D49B7886267622D800CF3FE4 /* Milestone.swift */,
+				D4F09F66268463CA00240AA3 /* AddingIssue.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				D49B78672670A67400CF3FE4 /* IssueCell.swift in Sources */,
 				D49B789526771EAA00CF3FE4 /* IssueDetail.swift in Sources */,
 				D49B788D2676279500CF3FE4 /* NetworkManager.swift in Sources */,
+				D4F09F67268463CA00240AA3 /* AddingIssue.swift in Sources */,
 				D4F09F6426819B0800240AA3 /* CommentTableHeaderView.swift in Sources */,
 				D49B789326771EA200CF3FE4 /* IssueList.swift in Sources */,
 				D49B7853266F0D0200CF3FE4 /* SignInViewController.swift in Sources */,

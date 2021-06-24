@@ -38,7 +38,7 @@ class NetworkManager {
         }
     }
     
-    func post<T: Decodable> (dataType: T.Type, completion: @escaping (Result<T,AFError>) -> Void) {
+    func post(parameter: Parameters, completion: @escaping (Result<String,AFError>) -> Void) {
         
         guard let url = request.url() else {
             return
@@ -48,17 +48,16 @@ class NetworkManager {
             return
         }
         
-        let httpHeaders: HTTPHeaders = [HTTPHeader(name: "token" , value: user.token)]
+        let httpHeaders: HTTPHeaders = [
+            "Authorization": user.token,
+            "Accept": "application/json"
+        ]
         
-        manager.request(url, method: request.httpMethod, parameters: nil, encoding: URLEncoding.default, headers: httpHeaders, interceptor: nil, requestModifier: nil)
+        manager.request(url, method: request.httpMethod, parameters: parameter, encoding: JSONEncoding.default, headers: httpHeaders, interceptor: nil, requestModifier: nil)
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: T.self, decoder: decoder) { response in
-                switch response.result {
-                case .failure(let error):
-                    completion(.failure(error))
-                case .success(let data):
-                    completion(.success((data)))
-                }
-        }
+            .responseString(completionHandler: { result in
+                completion(.success(result.description))
+            })
+
     }
 }
