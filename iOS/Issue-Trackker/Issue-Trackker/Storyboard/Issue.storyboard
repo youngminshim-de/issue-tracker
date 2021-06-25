@@ -155,6 +155,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <connections>
                                             <outlet property="delegate" destination="C6G-Uy-fc2" id="pTn-92-i75"/>
+                                            <outlet property="pasteDelegate" destination="C6G-Uy-fc2" id="LYV-Rq-eQG"/>
                                         </connections>
                                     </textView>
                                 </subviews>
@@ -250,6 +251,7 @@
                     <connections>
                         <outlet property="additionalInformationTableView" destination="xrN-xa-Wc1" id="rzp-kh-6Jy"/>
                         <outlet property="commentTextView" destination="Yan-k4-HEd" id="FFn-wD-XnD"/>
+                        <outlet property="commentView" destination="3JQ-Mb-mfC" id="TZ9-mM-6Sb"/>
                         <outlet property="segmentControl" destination="4nH-3b-cyV" id="P7x-rd-16Y"/>
                         <outlet property="titleTextField" destination="5pc-Mu-fYG" id="NmU-GD-YPK"/>
                     </connections>

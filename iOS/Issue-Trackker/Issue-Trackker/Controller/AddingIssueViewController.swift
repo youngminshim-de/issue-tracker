@@ -7,14 +7,17 @@
 
 import UIKit
 import Alamofire
+import MarkdownView
 
 class AddingIssueViewController: UIViewController {
 
     @IBOutlet weak var additionalInformationTableView: UITableView!
+    @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
+    private var markdownView: MarkdownView
     private var issue: AddingIssue
     private var networkManager: NetworkManager
     private var requestable: Requestable
@@ -24,9 +27,11 @@ class AddingIssueViewController: UIViewController {
         super.viewDidLoad()
         additionalInformationTableView.tableHeaderView = makeTableHeaderView()
         configureNavigationItem()
+        configureMarkDownView()
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.markdownView = MarkdownView()
         self.issue = AddingIssue.empty
         self.requestable = IssueListRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .post)
         self.decoder = JSONDecoder()
@@ -35,6 +40,7 @@ class AddingIssueViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
+        self.markdownView = MarkdownView()
         self.issue = AddingIssue.empty
         self.requestable = IssueListRequest(baseURL: EndPoint.IssueListEndPoint.description, path: "", httpMethod: .post)
         self.decoder = JSONDecoder()
@@ -51,6 +57,18 @@ class AddingIssueViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             }
         })
+    }
+    
+    private func configureMarkDownView() {
+        commentView.addSubview(markdownView)
+        commentTextView.translatesAutoresizingMaskIntoConstraints = false
+        markdownView.translatesAutoresizingMaskIntoConstraints = false
+        markdownView.topAnchor.constraint(equalTo: commentTextView.topAnchor).isActive = true
+        markdownView.leadingAnchor.constraint(equalTo: commentTextView.leadingAnchor).isActive = true
+        markdownView.bottomAnchor.constraint(equalTo: commentTextView.bottomAnchor).isActive = true
+        markdownView.trailingAnchor.constraint(equalTo: commentTextView.trailingAnchor).isActive = true
+        markdownView.backgroundColor = .white
+        commentView.insertSubview(markdownView, belowSubview: commentTextView)
     }
     
     private func configureNavigationItem() {
@@ -100,6 +118,21 @@ class AddingIssueViewController: UIViewController {
     }
     
     @IBAction func segmentControlTouched(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            commentTextView.resignFirstResponder()
+            configureMarkDownView()
+            commentView.insertSubview(markdownView, belowSubview: commentView)
+            markdownView.removeFromSuperview()
+        case 1:
+            commentTextView.resignFirstResponder()
+            configureMarkDownView()
+            commentView.insertSubview(commentTextView, belowSubview: markdownView)
+        default:
+            break
+        }
+
     }
 }
 
@@ -119,16 +152,22 @@ extension AddingIssueViewController: UITableViewDataSource {
 }
 
 extension AddingIssueViewController: UITextFieldDelegate {
-   
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.issue.title = textField.text ?? ""
     }
 }
 
 extension AddingIssueViewController: UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         self.issue.text = textView.text
+        markdownView.load(markdown: textView.text)
+        return true
     }
+//    func textViewDidChange(_ textView: UITextView) {
+//        self.issue.text = textView.text
+//        markdownView.load(markdown: textView.text)
+//    }
 }
 
 enum AdditionalInformation: CustomStringConvertible, CaseIterable {
