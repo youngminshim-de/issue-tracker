@@ -8,6 +8,9 @@
 import UIKit
 
 class AdditionalInformationCell: UITableViewCell {
-
-
+    @IBOutlet weak var additionalInformationLabel: UILabel!
+    
+    func configureAdditionalInformationCell(information: String) {
+        self.additionalInformationLabel.text = information
+    }
 }

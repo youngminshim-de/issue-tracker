@@ -15,7 +15,7 @@ struct User: Codable {
 class StorageManager {
     
     static let shared = StorageManager()
-    private let account = "Issue-Trackker"
+    private let account = "issue-trackker"
     private let service = "github"
     
     private init() {}

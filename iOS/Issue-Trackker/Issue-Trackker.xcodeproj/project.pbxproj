@@ -34,6 +34,7 @@
 		D49B789726771EC100CF3FE4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789626771EC100CF3FE4 /* Comment.swift */; };
 		D49B789926772F8C00CF3FE4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789826772F8C00CF3FE4 /* CommentCell.swift */; };
 		D49B789B26772FA400CF3FE4 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B789A26772FA400CF3FE4 /* CommentViewController.swift */; };
+		D4AE63F62684BEDE00A96D97 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = D4AE63F52684BEDE00A96D97 /* MarkdownView */; };
 		D4F09F2626788C1300240AA3 /* Issue_TrackkerNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F2526788C1300240AA3 /* Issue_TrackkerNetworkTests.swift */; };
 		D4F09F2E26788CDF00240AA3 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788E267627BC00CF3FE4 /* Requestable.swift */; };
 		D4F09F2F2679BA5900240AA3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B788C2676279500CF3FE4 /* NetworkManager.swift */; };
@@ -56,6 +57,7 @@
 		D4F09F60268108D500240AA3 /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F5F268108D500240AA3 /* ImageView+Extension.swift */; };
 		D4F09F62268186A700240AA3 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F61268186A700240AA3 /* DateFormatter.swift */; };
 		D4F09F6426819B0800240AA3 /* CommentTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F6326819B0800240AA3 /* CommentTableHeaderView.swift */; };
+		D4F09F67268463CA00240AA3 /* AddingIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F09F66268463CA00240AA3 /* AddingIssue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,7 @@
 		D4F09F5F268108D500240AA3 /* ImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
 		D4F09F61268186A700240AA3 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		D4F09F6326819B0800240AA3 /* CommentTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableHeaderView.swift; sourceTree = "<group>"; };
+		D4F09F66268463CA00240AA3 /* AddingIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingIssue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 			files = (
 				D4F09F5E268108C600240AA3 /* Kingfisher in Frameworks */,
 				D49B788B2676278800CF3FE4 /* Alamofire in Frameworks */,
+				D4AE63F62684BEDE00A96D97 /* MarkdownView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +252,7 @@
 				D49B7882267622A500CF3FE4 /* Assignment.swift */,
 				D49B7884267622CF00CF3FE4 /* Label.swift */,
 				D49B7886267622D800CF3FE4 /* Milestone.swift */,
+				D4F09F66268463CA00240AA3 /* AddingIssue.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 			packageProductDependencies = (
 				D49B788A2676278800CF3FE4 /* Alamofire */,
 				D4F09F5D268108C600240AA3 /* Kingfisher */,
+				D4AE63F52684BEDE00A96D97 /* MarkdownView */,
 			);
 			productName = "Issue-Trackker";
 			productReference = D49B784B266F0D0200CF3FE4 /* Issue-Trackker.app */;
@@ -355,6 +361,7 @@
 			packageReferences = (
 				D49B78892676278800CF3FE4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D4F09F5C268108C600240AA3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D4AE63F42684BEDE00A96D97 /* XCRemoteSwiftPackageReference "MarkdownView" */,
 			);
 			productRefGroup = D49B784C266F0D0200CF3FE4 /* Products */;
 			projectDirPath = "";
@@ -402,6 +409,7 @@
 				D49B78672670A67400CF3FE4 /* IssueCell.swift in Sources */,
 				D49B789526771EAA00CF3FE4 /* IssueDetail.swift in Sources */,
 				D49B788D2676279500CF3FE4 /* NetworkManager.swift in Sources */,
+				D4F09F67268463CA00240AA3 /* AddingIssue.swift in Sources */,
 				D4F09F6426819B0800240AA3 /* CommentTableHeaderView.swift in Sources */,
 				D49B789326771EA200CF3FE4 /* IssueList.swift in Sources */,
 				D49B7853266F0D0200CF3FE4 /* SignInViewController.swift in Sources */,
@@ -710,6 +718,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		D4AE63F42684BEDE00A96D97 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
 		D4F09F5C268108C600240AA3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -725,6 +741,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D49B78892676278800CF3FE4 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D4AE63F52684BEDE00A96D97 /* MarkdownView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4AE63F42684BEDE00A96D97 /* XCRemoteSwiftPackageReference "MarkdownView" */;
+			productName = MarkdownView;
 		};
 		D4F09F5D268108C600240AA3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

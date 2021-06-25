@@ -43,6 +43,11 @@ class IssueViewController: UIViewController, UISearchBarDelegate {
         fetchIssueList()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fetchIssueList()
+    }
+    
     private func fetchIssueList() {
         networkManager.request(dataType: IssueList.self, completion: { result in
             switch result {
@@ -149,6 +154,8 @@ extension IssueViewController: UITableViewDataSource {
                                               handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                                                     success(true)
                                               })
+        
+        closeAction.image = UIImage(named: "close.png")
         
         return UISwipeActionsConfiguration(actions: [closeAction, deleteAction])
     }

@@ -33,9 +33,7 @@ class SignInViewController: UIViewController {
         oauthManager.excuteOAuth() { result in
             switch result {
             case .success(_):
-                DispatchQueue.main.async {
-                    self.moveNetxViewController()
-                }
+                self.moveNetxViewController()
             case .failure(_):
                 break
             }
