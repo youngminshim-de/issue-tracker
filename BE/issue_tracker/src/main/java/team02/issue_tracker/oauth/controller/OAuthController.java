@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team02.issue_tracker.annotation.LogExecutionTime;
 import team02.issue_tracker.dto.ApiResult;
+import team02.issue_tracker.oauth.annotation.LoginRequired;
+import team02.issue_tracker.oauth.annotation.UserId;
 import team02.issue_tracker.oauth.dto.JwtResponse;
 import team02.issue_tracker.oauth.dto.SocialLogin;
 import team02.issue_tracker.oauth.service.LoginService;
@@ -57,5 +59,12 @@ public class OAuthController {
     @GetMapping("/login/naver")
     public ApiResult<JwtResponse> loginNaver(@RequestParam("code") String code) {
         return ApiResult.success(loginService.login(code, SocialLogin.NAVER));
+    }
+
+    @LoginRequired
+    @GetMapping("/jwt")
+    public String checkJwt(@UserId Long userId) {
+        log.info("user id : {}", userId);
+        return userId.toString();
     }
 }

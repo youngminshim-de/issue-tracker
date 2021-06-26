@@ -62,7 +62,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedMethods("*")
-                .allowedOrigins("http://localhost:3000");
+                .allowedOrigins("http://localhost:3000", "http://ec2-3-35-174-197.ap-northeast-2.compute.amazonaws.com");
     }
 
     @Bean
