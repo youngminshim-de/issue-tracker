@@ -17,7 +17,7 @@ import team02.issue_tracker.oauth.exception.InvalidUserRequestException;
 @Service
 public class GithubLoginService {
 
-    private final String GITHUB_WEB_REDIRECT_URI = "http://3.35.174.197/login/github";
+    private final String GITHUB_WEB_REDIRECT_URI = "http://3.37.234.113/login/github";
     private final String GITHUB_IOS_REDIRECT_URI = "issueTracker://login";
     private final String GITHUB_ACCESS_TOKEN_URI = "https://github.com/login/oauth/access_token";
     private final String GITHUB_USER_INFO_URI = "https://api.github.com/user";
