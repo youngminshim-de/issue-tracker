@@ -1,3 +1,3 @@
-const URL = 'http://3.35.174.197/api';
+const URL = 'http://3.37.234.113/api';
 
 export default URL;
