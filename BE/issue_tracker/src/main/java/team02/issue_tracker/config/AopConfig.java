@@ -20,14 +20,24 @@ import team02.issue_tracker.oauth.dto.JwtResponse;
 @Component
 public class AopConfig {
 
-    private final StopWatch stopWatch;
-
-    public AopConfig(StopWatch stopWatch) {
-        this.stopWatch = stopWatch;
-    }
+//    private final StopWatch stopWatch;
+//
+//    public AopConfig(StopWatch stopWatch) {
+//        this.stopWatch = stopWatch;
+//    }
+    private static int count = 0;
 
     @Pointcut("execution(* team02.issue_tracker.oauth.controller.OAuthController.*login*(..))")
     private void login() {}
+
+    @Pointcut("execution(* team02.issue_tracker.controller..*.*(..))")
+    private void all() {}
+
+    @Before("all()")
+    public void methodNameLog(JoinPoint joinPoint) {
+        count++;
+        log.info(count + " request name : " + joinPoint.getSignature().getName());
+    }
 
     /**
      * 깃헙으로부터 받아온 인증코드를 출력한다.
@@ -44,18 +54,18 @@ public class AopConfig {
      * @return Object
      * @throws Throwable
      */
-    @Around("@annotation(team02.issue_tracker.annotation.LogExecutionTime)")
-    public Object jwtIssueTimeLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
-        stopWatch.start(proceedingJoinPoint.getSignature().getName());
-
-        Object result = proceedingJoinPoint.proceed();
-
-        stopWatch.stop();
-
-        log.info(stopWatch.prettyPrint());
-
-        return result;
-    }
+//    @Around("@annotation(team02.issue_tracker.annotation.LogExecutionTime)")
+//    public Object jwtIssueTimeLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+//        stopWatch.start(proceedingJoinPoint.getSignature().getName());
+//
+//        Object result = proceedingJoinPoint.proceed();
+//
+//        stopWatch.stop();
+//
+//        log.info(stopWatch.prettyPrint());
+//
+//        return result;
+//    }
 
     /**
      * 발행한 jwt를 출력한다.
