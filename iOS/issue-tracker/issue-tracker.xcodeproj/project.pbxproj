@@ -36,6 +36,8 @@
 		BD1F87022684D33F005A6FA8 /* MilestoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD1F87002684D33F005A6FA8 /* MilestoneTableViewCell.xib */; };
 		BD6AF8C7266F64D200ADBCDE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD6AF8C6266F64D200ADBCDE /* .swiftlint.yml */; };
 		BD920F122672583600EDD555 /* IssueSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD920F112672583600EDD555 /* IssueSelectionViewController.swift */; };
+		BD984174269461C7008491F4 /* AdditionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD984173269461C7008491F4 /* AdditionUseCase.swift */; };
+		BD98417626946434008491F4 /* NewLabelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98417526946434008491F4 /* NewLabelDTO.swift */; };
 		BDCEAF62267315C9005EE147 /* IssueAdditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCEAF61267315C9005EE147 /* IssueAdditionViewController.swift */; };
 		BDCEAF6426733EEC005EE147 /* LabelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCEAF6326733EEC005EE147 /* LabelListViewController.swift */; };
 		BDCEAF6726733F8F005EE147 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCEAF6526733F8F005EE147 /* LabelTableViewCell.swift */; };
@@ -146,6 +148,8 @@
 		BD1F87002684D33F005A6FA8 /* MilestoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MilestoneTableViewCell.xib; sourceTree = "<group>"; };
 		BD6AF8C6266F64D200ADBCDE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BD920F112672583600EDD555 /* IssueSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectionViewController.swift; sourceTree = "<group>"; };
+		BD984173269461C7008491F4 /* AdditionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionUseCase.swift; sourceTree = "<group>"; };
+		BD98417526946434008491F4 /* NewLabelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLabelDTO.swift; sourceTree = "<group>"; };
 		BDCEAF61267315C9005EE147 /* IssueAdditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAdditionViewController.swift; sourceTree = "<group>"; };
 		BDCEAF6326733EEC005EE147 /* LabelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListViewController.swift; sourceTree = "<group>"; };
 		BDCEAF6526733F8F005EE147 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -395,6 +399,7 @@
 				CE6DEF8326834F7A00D6121C /* RequestBodyDTO.swift */,
 				BD1F86F52684C424005A6FA8 /* LabelListResponseDTO.swift */,
 				CEB0B4142685A33D00554D32 /* MilestoneListResponseDTO.swift */,
+				BD98417526946434008491F4 /* NewLabelDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */,
 				BD1F86F72684C56E005A6FA8 /* LabelListUseCase.swift */,
 				CEB0B4122685A2AD00554D32 /* MilestoneListUseCase.swift */,
+				BD984173269461C7008491F4 /* AdditionUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE71835C2671E63C008B287F /* IssueListFilterViewController.swift in Sources */,
+				BD98417626946434008491F4 /* NewLabelDTO.swift in Sources */,
 				BDCEAF6426733EEC005EE147 /* LabelListViewController.swift in Sources */,
 				BD1F87012684D33F005A6FA8 /* MilestoneTableViewCell.swift in Sources */,
 				BD1F86F62684C424005A6FA8 /* LabelListResponseDTO.swift in Sources */,
@@ -682,6 +689,7 @@
 				CEBF140F267883500009BB75 /* JWTManager.swift in Sources */,
 				CEA84DFB267B778A0006CC2E /* DefaultUserInfoUseCase.swift in Sources */,
 				CE6B9D692692E11500973FFE /* AdditionViewController.swift in Sources */,
+				BD984174269461C7008491F4 /* AdditionUseCase.swift in Sources */,
 				CE6DEF8426834F7A00D6121C /* RequestBodyDTO.swift in Sources */,
 				CEBF140D26787CF00009BB75 /* LoginHelper.swift in Sources */,
 				CE81A5E0268242D100D71888 /* IssueListViewModel.swift in Sources */,

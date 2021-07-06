@@ -6,8 +6,8 @@ class AdditionViewController: UIViewController {
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var attributeTitle: UILabel!
-    @IBOutlet weak var attributeTextField: UITextField!
+    @IBOutlet weak var backgroundColorLabel: UILabel!
+    @IBOutlet weak var backgroundColorTextField: UITextField!
     @IBOutlet weak var randomColorButton: UIButton!
     @IBOutlet weak var labelPreview: UIView!
     @IBOutlet weak var labelBackgroundView: UIView!
@@ -20,7 +20,6 @@ class AdditionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureTextField()
         bind()
     }
     
@@ -34,50 +33,48 @@ class AdditionViewController: UIViewController {
             .sink { [weak self] result in
                 switch result {
                 case true:
-                    self?.attributeTextField.textColor = .black
+                    self?.backgroundColorTextField.textColor = .black
                 case false:
-                    self?.attributeTextField.textColor = .red
+                    self?.backgroundColorTextField.textColor = .red
                 }
             }.store(in: &subscriptions)
+        
+        additionLabelViewModel.didUpdateBackgroundColor()
+            .sink { [weak self] color in
+                if self?.additionLabelViewModel.isColorDark() == true {
+                    self?.labelText.textColor = .white
+                } else {
+                    self?.labelText.textColor = .black
+                }
+                self?.labelBackgroundView.backgroundColor = UIColor(hex: color)
+            }.store(in: &subscriptions)
     }
-
-    private func configureTextField() {
-        self.titleTextField.delegate = self
-        self.descriptionTextField.delegate = self
-        self.attributeTextField.delegate = self
+    
+    @IBAction func textFieldChanged(_ sender: UITextField) {
+        guard let text = sender.text else {
+            return
+        }
+        
+        switch sender {
+        case titleTextField:
+            self.additionLabelViewModel.configureTitle(text)
+        case descriptionTextField:
+            self.additionLabelViewModel.configureDescription(text)
+        case backgroundColorTextField:
+            self.additionLabelViewModel.configureBackgroundColor(text)
+        default:
+            break
+        }
     }
     
     @IBAction func pressedRandomButton(_ sender: Any) {
         let randomColor = self.additionLabelViewModel.makeRandomColor()
-        self.attributeTextField.text = randomColor
-        if self.additionLabelViewModel.isColorDark() {
-            self.labelText.textColor = .white
-        } else {
-            self.labelText.textColor = .black
-        }
-        self.labelBackgroundView.backgroundColor = UIColor(hex: randomColor)
+        self.backgroundColorTextField.text = randomColor
     }
     
-}
-
-extension AdditionViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (textField.text ?? "") as NSString
-        let newText = text.replacingCharacters(in: range, with: string)
-
-        switch textField {
-        case self.titleTextField:
-            self.additionLabelViewModel.configureTitle(newText)
-        case self.descriptionTextField:
-            self.additionLabelViewModel.configureDescription(newText)
-        case self.attributeTextField:
-            self.additionLabelViewModel.configureBackgroundColor(newText)
-        default:
-            break
-        }
-        
-        return true
+    @IBAction func pressedSaveButton(_ sender: Any) {
+        self.additionLabelViewModel.addNewLabel()
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

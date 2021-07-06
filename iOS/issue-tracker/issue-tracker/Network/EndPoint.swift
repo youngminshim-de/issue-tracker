@@ -8,7 +8,7 @@ enum Scheme: String {
 
 enum Host: String {
     
-    case base = "3.37.234.113"
+    case base = "ec2-3-37-234-113.ap-northeast-2.compute.amazonaws.com"
     
 }
 

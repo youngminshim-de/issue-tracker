@@ -1,22 +1,35 @@
 import Foundation
 import Combine
 
-// 내일 버튼 바인드 하기
-
 class AdditionLabelViewModel {
 
     @Published private var isCorrectColor: Bool
     @Published private var isEnableSaveButton: Bool
+    @Published private var backgroundColor: String
+    @Published private var resultMessage: String?
     private var title: String
     private var description: String?
-    private var backgroundColor: String
+    private let additionUseCase: AdditionUseCase
     
     init() {
+        self.isCorrectColor = true
+        self.isEnableSaveButton = false
+        self.backgroundColor = "#FFFFFF"
+        self.resultMessage = nil
         self.title = ""
         self.description = nil
-        self.backgroundColor = "#FFFFFF"
-        self.isEnableSaveButton = false
-        self.isCorrectColor = true
+        self.additionUseCase = AdditionUseCase()
+    }
+    
+    func addNewLabel() {
+        additionUseCase.executeAddingLabel(makeNewLabelDTO()) { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let resultMessage):
+                self.resultMessage = resultMessage
+            }
+        }
     }
     
     func configureTitle(_ title: String) {
@@ -29,8 +42,10 @@ class AdditionLabelViewModel {
     }
     
     func configureBackgroundColor(_ color: String) {
-        self.backgroundColor = color.uppercased()
         self.isCorrectColor = isCorrect(color: color)
+        if isCorrectColor {
+            self.backgroundColor = color.uppercased()
+        }
         self.isEnableSaveButton = self.isCorrectColor && isNotEmptyTitle()
     }
     
@@ -42,6 +57,12 @@ class AdditionLabelViewModel {
     
     func didUpdateSaveButton() -> AnyPublisher<Bool, Never> {
         return $isEnableSaveButton
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func didUpdateBackgroundColor() -> AnyPublisher<String, Never> {
+        return $backgroundColor
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
@@ -82,9 +103,12 @@ class AdditionLabelViewModel {
         let hexArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                         "A", "B", "C", "D", "E", "F"]
         var randomColor = "#"
+        
         for _ in 0...5 {
             randomColor += hexArray.randomElement() ?? "F"
         }
+        
+        self.isCorrectColor = true
         self.backgroundColor = randomColor
         return randomColor
     }
@@ -92,6 +116,7 @@ class AdditionLabelViewModel {
     func isColorDark() -> Bool {
         let hexColor = self.backgroundColor.dropFirst()
         var rgbArray: [Float] = []
+        
         for index in 0...2 {
             let first = hexColor.index(hexColor.startIndex, offsetBy: index * 2)
             let last = hexColor.index(hexColor.startIndex, offsetBy: index * 2 + 1)
@@ -100,7 +125,12 @@ class AdditionLabelViewModel {
                 rgbArray.append(Float(decimal))
             }
         }
-        print(rgbArray[0] * 0.299 + rgbArray[1] * 0.587 + rgbArray[2] * 0.114)
+        
         return (rgbArray[0] * 0.299 + rgbArray[1] * 0.587 + rgbArray[2] * 0.114) <= 186
     }
+    
+    func makeNewLabelDTO() -> NewLabelDTO {
+        return NewLabelDTO.init(title: self.title, content: self.description, color: self.backgroundColor)
+    }
+    
 }

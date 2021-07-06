@@ -15,6 +15,14 @@ class LabelListViewController: UIViewController {
         bind()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        bind()
+//    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        bind()
+    }
+    
     private func bind() {
         labelListViewModel.didUpdateLabelList()
             .sink { [weak self] _ in
