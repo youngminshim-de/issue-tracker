@@ -17,7 +17,7 @@ import team02.issue_tracker.oauth.exception.InvalidUserRequestException;
 public class NaverLoginService {
 
     private final String USER_INFO_URI = "https://openapi.naver.com/v1/nid/me";
-    private final String REDIRECT_URI = "http://3.37.234.113/login/naver";
+    private final String REDIRECT_URI = "http://ec2-3-37-234-113.ap-northeast-2.compute.amazonaws.com/login/naver";
     private final String GRANT_TYPE = "authorization_code";
 
     @Value("${oauth.naver.web.client_id}")
