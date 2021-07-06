@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class AdditionViewController: UIViewController {
 
@@ -14,11 +15,30 @@ class AdditionViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     private var additionLabelViewModel = AdditionLabelViewModel()
+    private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTextField()
+        bind()
+    }
+    
+    private func bind() {
+        additionLabelViewModel.didUpdateSaveButton()
+            .sink { [weak self] result in
+                self?.saveButton.isEnabled = result
+            }.store(in: &subscriptions)
+        
+        additionLabelViewModel.didUpdateCorrectColor()
+            .sink { [weak self] result in
+                switch result {
+                case true:
+                    self?.attributeTextField.textColor = .black
+                case false:
+                    self?.attributeTextField.textColor = .red
+                }
+            }.store(in: &subscriptions)
     }
 
     private func configureTextField() {
@@ -27,31 +47,37 @@ class AdditionViewController: UIViewController {
         self.attributeTextField.delegate = self
     }
     
-    private func correctButton() {
-        if titleTextField.text == "" || !additionLabelViewModel.isCorrect(color: attributeTextField.text!) {
-            self.saveButton.isEnabled = false
+    @IBAction func pressedRandomButton(_ sender: Any) {
+        let randomColor = self.additionLabelViewModel.makeRandomColor()
+        self.attributeTextField.text = randomColor
+        if self.additionLabelViewModel.isColorDark() {
+            self.labelText.textColor = .white
         } else {
-            self.saveButton.isEnabled = true
+            self.labelText.textColor = .black
         }
+        self.labelBackgroundView.backgroundColor = UIColor(hex: randomColor)
     }
     
 }
 
 extension AdditionViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text ?? "") as NSString
+        let newText = text.replacingCharacters(in: range, with: string)
+
         switch textField {
         case self.titleTextField:
-            print(textField.text)
+            self.additionLabelViewModel.configureTitle(newText)
         case self.descriptionTextField:
-            print(textField.text)
+            self.additionLabelViewModel.configureDescription(newText)
         case self.attributeTextField:
-            guard let text = textField.text else {
-                return
-            }
-            print(additionLabelViewModel.isCorrect(color: text))
+            self.additionLabelViewModel.configureBackgroundColor(newText)
         default:
             break
         }
-        correctButton()
+        
+        return true
     }
+    
 }

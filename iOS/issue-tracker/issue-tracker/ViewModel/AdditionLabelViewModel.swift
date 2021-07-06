@@ -14,9 +14,9 @@ class AdditionLabelViewModel {
     init() {
         self.title = ""
         self.description = nil
-        self.backgroundColor = ""
+        self.backgroundColor = "#FFFFFF"
         self.isEnableSaveButton = false
-        self.isCorrectColor = false
+        self.isCorrectColor = true
     }
     
     func configureTitle(_ title: String) {
@@ -29,7 +29,7 @@ class AdditionLabelViewModel {
     }
     
     func configureBackgroundColor(_ color: String) {
-        self.backgroundColor = color
+        self.backgroundColor = color.uppercased()
         self.isCorrectColor = isCorrect(color: color)
         self.isEnableSaveButton = self.isCorrectColor && isNotEmptyTitle()
     }
@@ -78,4 +78,29 @@ class AdditionLabelViewModel {
         return true
     }
     
+    func makeRandomColor() -> String {
+        let hexArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                        "A", "B", "C", "D", "E", "F"]
+        var randomColor = "#"
+        for _ in 0...5 {
+            randomColor += hexArray.randomElement() ?? "F"
+        }
+        self.backgroundColor = randomColor
+        return randomColor
+    }
+    
+    func isColorDark() -> Bool {
+        let hexColor = self.backgroundColor.dropFirst()
+        var rgbArray: [Float] = []
+        for index in 0...2 {
+            let first = hexColor.index(hexColor.startIndex, offsetBy: index * 2)
+            let last = hexColor.index(hexColor.startIndex, offsetBy: index * 2 + 1)
+            let subString = hexColor[first...last]
+            if let decimal = Int(subString, radix: 16) {
+                rgbArray.append(Float(decimal))
+            }
+        }
+        print(rgbArray[0] * 0.299 + rgbArray[1] * 0.587 + rgbArray[2] * 0.114)
+        return (rgbArray[0] * 0.299 + rgbArray[1] * 0.587 + rgbArray[2] * 0.114) <= 186
+    }
 }
