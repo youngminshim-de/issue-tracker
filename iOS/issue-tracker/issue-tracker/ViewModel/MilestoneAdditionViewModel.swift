@@ -42,8 +42,8 @@ class MilestoneAdditionViewModel {
     }
     
     func configureDueDate(_ dueDate: String) {
-        if self.isCorrectFormat(dueDate) || dueDate == "" {
-            self.isCorrectDueDate = true
+        self.isCorrectDueDate = self.isCorrectFormat(dueDate)
+        if self.isCorrectDueDate {
             self.dueDate = dueDate
         }
         self.isEnableSaveButton = self.isCorrectDueDate && isNotEmptyTitle()
@@ -66,8 +66,12 @@ class MilestoneAdditionViewModel {
     }
     
     private func isCorrectFormat(_ dueDate: String) -> Bool {
+        if dueDate == "" {
+            return true
+        }
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: dueDate) != nil
     }
     
