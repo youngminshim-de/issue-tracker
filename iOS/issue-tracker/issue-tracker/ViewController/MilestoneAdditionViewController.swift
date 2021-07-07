@@ -5,10 +5,31 @@ class MilestoneAdditionViewController: UIViewController {
 
     @IBOutlet weak var additionView: AdditionView!
     
+    private var milestoneAdditionViewModel = MilestoneAdditionViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMilestoneView()
         configureAddTarget()
+        bind()
+    }
+    
+    private func bind() {
+        milestoneAdditionViewModel.didUpdateSaveButton()
+            .sink { [weak self] result in
+                self?.additionView.saveButton.isEnabled = result
+            }.store(in: &subscriptions)
+        
+        milestoneAdditionViewModel.didUpdateCorrectDueDate()
+            .sink { [weak self] result in
+                switch result {
+                case true:
+                    self?.additionView.attributeTextField.textColor = .black
+                case false:
+                    self?.additionView.attributeTextField.textColor = .red
+                }
+            }.store(in: &subscriptions)
     }
     
     func configureMilestoneView() {
@@ -21,7 +42,33 @@ class MilestoneAdditionViewController: UIViewController {
     }
     
     func configureAddTarget() {
+        self.additionView.titleTextField.addTarget(self, action: #selector(textFieldAction), for: .editingChanged)
+        self.additionView.descriptionTextField.addTarget(self, action: #selector(textFieldAction), for: .editingChanged)
+        self.additionView.attributeTextField.addTarget(self, action: #selector(textFieldAction), for: .editingChanged)
+        self.additionView.saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
         self.additionView.cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func textFieldAction(_ sender: UITextField) {
+        guard let text = sender.text else {
+            return
+        }
+        
+        switch sender {
+        case additionView.titleTextField:
+            self.milestoneAdditionViewModel.configureTitle(text)
+        case additionView.descriptionTextField:
+            self.milestoneAdditionViewModel.configureDescription(text)
+        case additionView.attributeTextField:
+            self.milestoneAdditionViewModel.configureDueDate(text)
+        default:
+            break
+        }
+    }
+    
+    @objc func saveButtonAction() {
+        self.milestoneAdditionViewModel.addNewMildestone()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func cancelButtonAction() {

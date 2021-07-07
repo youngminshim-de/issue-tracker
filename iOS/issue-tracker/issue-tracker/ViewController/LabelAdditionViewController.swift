@@ -5,7 +5,7 @@ class LabelAdditionViewController: UIViewController {
 
     @IBOutlet weak var additionView: AdditionView!
     
-    private var additionLabelViewModel = LabelAdditionViewModel()
+    private var labelAdditionViewModel = LabelAdditionViewModel()
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -15,12 +15,12 @@ class LabelAdditionViewController: UIViewController {
     }
     
     private func bind() {
-        additionLabelViewModel.didUpdateSaveButton()
+        labelAdditionViewModel.didUpdateSaveButton()
             .sink { [weak self] result in
                 self?.additionView.saveButton.isEnabled = result
             }.store(in: &subscriptions)
         
-        additionLabelViewModel.didUpdateCorrectColor()
+        labelAdditionViewModel.didUpdateCorrectColor()
             .sink { [weak self] result in
                 switch result {
                 case true:
@@ -30,9 +30,9 @@ class LabelAdditionViewController: UIViewController {
                 }
             }.store(in: &subscriptions)
         
-        additionLabelViewModel.didUpdateBackgroundColor()
+        labelAdditionViewModel.didUpdateBackgroundColor()
             .sink { [weak self] color in
-                if self?.additionLabelViewModel.isColorDark() == true {
+                if self?.labelAdditionViewModel.isColorDark() == true {
                     self?.additionView.labelText.textColor = .white
                 } else {
                     self?.additionView.labelText.textColor = .black
@@ -57,23 +57,23 @@ class LabelAdditionViewController: UIViewController {
         
         switch sender {
         case additionView.titleTextField:
-            self.additionLabelViewModel.configureTitle(text)
+            self.labelAdditionViewModel.configureTitle(text)
         case additionView.descriptionTextField:
-            self.additionLabelViewModel.configureDescription(text)
+            self.labelAdditionViewModel.configureDescription(text)
         case additionView.attributeTextField:
-            self.additionLabelViewModel.configureBackgroundColor(text)
+            self.labelAdditionViewModel.configureBackgroundColor(text)
         default:
             break
         }
     }
     
     @objc func randomButtonAction() {
-        let randomColor = self.additionLabelViewModel.makeRandomColor()
+        let randomColor = self.labelAdditionViewModel.makeRandomColor()
         self.additionView.attributeTextField.text = randomColor
     }
     
     @objc func saveButtonAction() {
-        self.additionLabelViewModel.addNewLabel()
+        self.labelAdditionViewModel.addNewLabel()
         self.dismiss(animated: true, completion: nil)
     }
     
