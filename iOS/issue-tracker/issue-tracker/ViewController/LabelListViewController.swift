@@ -49,8 +49,10 @@ class LabelListViewController: UIViewController {
     }
     
     @objc func showNewLabelView() {
-        let vc = AdditionViewController(nibName: "AdditionViewController", bundle: nil)
-        self.present(vc, animated: true, completion: nil)
+        guard let AdditionLabelViewController = self.storyboard?.instantiateViewController(identifier: LabelAdditionViewController.identifier) as? LabelAdditionViewController else {
+            return
+        }
+        self.present(AdditionLabelViewController, animated: true, completion: nil)
     }
     
 }

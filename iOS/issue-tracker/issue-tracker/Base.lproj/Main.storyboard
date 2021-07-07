@@ -689,6 +689,66 @@
             </objects>
             <point key="canvasLocation" x="3097" y="798"/>
         </scene>
+        <!--Label Addition View Controller-->
+        <scene sceneID="KS4-zj-Ife">
+            <objects>
+                <viewController storyboardIdentifier="AdditionLabelViewController" id="zDL-oL-e2P" customClass="LabelAdditionViewController" customModule="issue_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Ij-PI-Vqb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28z-Ca-leI" customClass="AdditionView" customModule="issue_tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eYC-ay-Fqq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="28z-Ca-leI" secondAttribute="bottom" id="Rj5-E7-jiv"/>
+                            <constraint firstItem="eYC-ay-Fqq" firstAttribute="trailing" secondItem="28z-Ca-leI" secondAttribute="trailing" id="VIw-WT-iep"/>
+                            <constraint firstItem="28z-Ca-leI" firstAttribute="leading" secondItem="eYC-ay-Fqq" secondAttribute="leading" id="drI-nc-M1J"/>
+                            <constraint firstItem="28z-Ca-leI" firstAttribute="top" secondItem="3Ij-PI-Vqb" secondAttribute="top" id="mQa-JT-59A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="additionView" destination="28z-Ca-leI" id="Izs-6v-kDK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="36y-hG-bxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4312" y="1295"/>
+        </scene>
+        <!--Milestone Addition View Controller-->
+        <scene sceneID="GuJ-Ks-FzG">
+            <objects>
+                <viewController storyboardIdentifier="AdditionMilestoneViewController" id="ccB-Oi-tET" customClass="MilestoneAdditionViewController" customModule="issue_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zu4-Y3-915">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWY-Qh-21m" customClass="AdditionView" customModule="issue_tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nvM-Oj-X5Z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iWY-Qh-21m" firstAttribute="leading" secondItem="nvM-Oj-X5Z" secondAttribute="leading" id="I8Z-P9-Ufe"/>
+                            <constraint firstItem="nvM-Oj-X5Z" firstAttribute="trailing" secondItem="iWY-Qh-21m" secondAttribute="trailing" id="aZX-IO-pIq"/>
+                            <constraint firstAttribute="bottom" secondItem="iWY-Qh-21m" secondAttribute="bottom" id="pAf-KR-wLC"/>
+                            <constraint firstItem="iWY-Qh-21m" firstAttribute="top" secondItem="Zu4-Y3-915" secondAttribute="top" id="pk2-r6-IFP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="additionView" destination="iWY-Qh-21m" id="Uyb-pF-hq4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b77-g0-yED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5222" y="1294"/>
+        </scene>
         <!--Tab Bar Root Controller-->
         <scene sceneID="J67-YZ-aC2">
             <objects>

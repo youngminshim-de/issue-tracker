@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class AdditionLabelViewModel {
+class LabelAdditionViewModel {
 
     @Published private var isCorrectColor: Bool
     @Published private var isEnableSaveButton: Bool
@@ -130,7 +130,7 @@ class AdditionLabelViewModel {
     }
     
     func makeNewLabelDTO() -> NewLabelDTO {
-        return NewLabelDTO.init(title: self.title, content: self.description, color: self.backgroundColor)
+        return NewLabelDTO(title: self.title, content: self.description, color: self.backgroundColor)
     }
     
 }

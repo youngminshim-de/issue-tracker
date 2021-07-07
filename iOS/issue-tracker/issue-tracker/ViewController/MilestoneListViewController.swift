@@ -41,7 +41,10 @@ class MilestoneListViewController: UIViewController {
     }
     
     @objc func showNewMilestoneView() {
-        // 마일스톤 추가 화면으로 전환하기
+        guard let AdditionMilestoneViewController = self.storyboard?.instantiateViewController(identifier: MilestoneAdditionViewController.identifier) as? MilestoneAdditionViewController else {
+            return
+        }
+        self.present(AdditionMilestoneViewController, animated: true, completion: nil)
     }
     
 }

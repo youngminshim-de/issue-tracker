@@ -1,6 +1,6 @@
 import Foundation
 
-struct NewLabelDTO: Codable {
+struct NewLabelDTO: Encodable {
     
     let title: String
     let content: String?
