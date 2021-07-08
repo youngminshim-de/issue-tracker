@@ -44,6 +44,7 @@ class IssueListViewController: UIViewController {
     private func bind() {
         issueListViewModel.didUpdateIssueList()
             .sink { [weak self] _ in
+                print("111111111111111111111111111111111")
                 self?.issueTableView.reloadData()
             }.store(in: &subscriptions)
         
@@ -53,8 +54,8 @@ class IssueListViewController: UIViewController {
             }.store(in: &subscriptions)
         
         issueListViewModel.didUpdateResultMessage()
-            .sink { _ in
-                // 알러트 띄우기
+            .sink { [weak self] _ in
+                self?.issueListViewModel.fetchIssueList()
             }.store(in: &subscriptions)
         
         issueListViewModel.fetchIssueList()
@@ -138,7 +139,6 @@ class IssueListViewController: UIViewController {
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, _) in
             self?.issueListViewModel.delete(indexPath: indexPath)
-            self?.issueListViewModel.fetchIssueList()
         })
         
         let trashCanImage = UIImage(systemName: "trash")
@@ -153,7 +153,6 @@ class IssueListViewController: UIViewController {
     private func closeAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "닫기", handler: { [weak self] (_, _, _) in
             self?.issueListViewModel.close(indexPath: indexPath)
-            self?.issueListViewModel.fetchIssueList()
         })
         
         let archiveBoxImage = UIImage(systemName: "archivebox")
@@ -170,7 +169,7 @@ class IssueListViewController: UIViewController {
 extension IssueListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issueListViewModel.getIssueCount(isFiltering: isFiltering)
+        return issueListViewModel.issueCount(isFiltering: isFiltering)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -178,7 +177,7 @@ extension IssueListViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()            
         }
         
-        cell.configure(issue: issueListViewModel.getIssue(indexPath: indexPath, isFiltering: isFiltering))
+        cell.configure(issue: issueListViewModel.issue(indexPath: indexPath, isFiltering: isFiltering))
         return cell
     }
     

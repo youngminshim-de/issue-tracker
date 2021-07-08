@@ -28,4 +28,26 @@ class LabelListUseCase {
             }.store(in: &subscriptions)
     }
     
+    func executeDeleteLabel(labelID: Int, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        let path = "/\(labelID)"
+        let url = endPoint.makeURL(with: path)
+        networkManager.sendRequest(with: url, method: .delete, type: ResponseBodyDTO.self)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { response in
+                if let error = response.error {
+                    completion(.success(error))
+                } else {
+                    if let data = response.data {
+                        completion(.success(data))
+                    }
+                }
+            }.store(in: &subscriptions)
+    }
+    
 }

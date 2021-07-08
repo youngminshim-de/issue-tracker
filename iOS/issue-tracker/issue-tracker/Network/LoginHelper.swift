@@ -6,11 +6,11 @@ class LoginHelper {
     private let callbackURLScheme = "issueTracker"
     private let gitHubLoginUrlString = "https://github.com/login/oauth/authorize?client_id=04fb3475fc652d5304a3"
     
-    func getCallbackURLscheme() -> String {
+    func callbackURLscheme() -> String {
         return callbackURLScheme
     }
     
-    func getGitHubLoginURL() -> URL? {
+    func gitHubLoginURL() -> URL? {
         return URL(string: gitHubLoginUrlString)
     }
     

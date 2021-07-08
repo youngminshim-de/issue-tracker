@@ -20,6 +20,12 @@ class MilestoneListViewController: UIViewController {
             .sink { [weak self] _ in
                 self?.milestoneTabelView.reloadData()
             }.store(in: &subscriptions)
+        
+        milestoneListViewModel.didUpdateResultMessage()
+            .sink { [weak self] _ in
+                self?.milestoneListViewModel.fetchMilestoneList()
+            }.store(in: &subscriptions)
+        
         milestoneListViewModel.fetchMilestoneList()
     }
     
@@ -40,6 +46,34 @@ class MilestoneListViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = selectButton
     }
     
+    private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, _) in
+            self?.milestoneListViewModel.delete(indexPath: indexPath)
+        })
+        
+        let trashCanImage = UIImage(systemName: "trash")
+        action.image = trashCanImage
+        
+        let customRed = UIColor(red: 1, green: 59/255, blue: 48/255, alpha: 1)
+        action.backgroundColor = customRed
+        
+        return action
+    }
+    
+    private func editAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "편집", handler: { [weak self] (_, _, _) in
+            
+        })
+        
+        let archiveBoxImage = UIImage(systemName: "square.and.pencil")
+        action.image = archiveBoxImage
+        
+        let customBlue = UIColor(red: 204/255, green: 212/255, blue: 1, alpha: 1)
+        action.backgroundColor = customBlue
+        
+        return action
+    }
+    
     @objc func showNewMilestoneView() {
         guard let AdditionMilestoneViewController = self.storyboard?.instantiateViewController(identifier: MilestoneAdditionViewController.identifier) as? MilestoneAdditionViewController else {
             return
@@ -52,15 +86,21 @@ class MilestoneListViewController: UIViewController {
 extension MilestoneListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return milestoneListViewModel.getDetailMilestoneCount()
+        return milestoneListViewModel.detailMilestoneCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MilestoneTableViewCell.identifier, for: indexPath) as? MilestoneTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(detailMilestone: milestoneListViewModel.getDetailMilestone(indexPath: indexPath))
+        cell.configure(detailMilestone: milestoneListViewModel.detailMilestone(indexPath: indexPath))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = deleteAction(at: indexPath)
+        let editAction = editAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
     
 }

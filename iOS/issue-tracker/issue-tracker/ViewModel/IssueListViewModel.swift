@@ -46,15 +46,15 @@ class IssueListViewModel {
             .eraseToAnyPublisher()
     }
     
-    func getIssueCount(isFiltering: Bool) -> Int {
+    func issueCount(isFiltering: Bool) -> Int {
         return isFiltering ? filteredIssueList.issues.count : issueList.issues.count
     }
     
-    func getIssue(indexPath: IndexPath, isFiltering: Bool) -> Issue {
+    func issue(indexPath: IndexPath, isFiltering: Bool) -> Issue {
         return isFiltering ? filteredIssueList.issues[indexPath.row] : issueList.issues[indexPath.row]
     }
     
-    func getFilteredIssue(indexPath: IndexPath) -> Issue {
+    func filteredIssue(indexPath: IndexPath) -> Issue {
         return filteredIssueList.issues[indexPath.row]
     }
     

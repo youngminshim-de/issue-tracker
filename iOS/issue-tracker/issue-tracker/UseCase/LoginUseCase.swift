@@ -16,11 +16,11 @@ class LoginUseCase {
     }
 
     func gitHubLoginURL() -> URL? {
-        return loginHelper.getGitHubLoginURL()
+        return loginHelper.gitHubLoginURL()
     }
     
     func callbackURLscheme() -> String {
-        return loginHelper.getCallbackURLscheme()
+        return loginHelper.callbackURLscheme()
     }
     
     func convertToGitHubLogInURL(from callbackURL: URL) -> URL? {

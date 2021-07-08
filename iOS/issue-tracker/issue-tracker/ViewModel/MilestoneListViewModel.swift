@@ -4,10 +4,12 @@ import Combine
 class MilestoneListViewModel {
     
     @Published private var milestoneList: MilestoneList
+    @Published private var resultMessage: String?
     private let milestoneListUseCase: MilestoneListUseCase
     
     init() {
         self.milestoneList = MilestoneList(Milestones: [])
+        self.resultMessage = nil
         self.milestoneListUseCase = MilestoneListUseCase()
     }
     
@@ -29,12 +31,31 @@ class MilestoneListViewModel {
             .eraseToAnyPublisher()
     }
     
-    func getDetailMilestoneCount() -> Int {
+    func didUpdateResultMessage() -> AnyPublisher<String?, Never> {
+        return $resultMessage
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func detailMilestoneCount() -> Int {
         return milestoneList.Milestones.count
     }
 
-    func getDetailMilestone(indexPath: IndexPath) -> DetailMilestone {
+    func detailMilestone(indexPath: IndexPath) -> DetailMilestone {
         return milestoneList.Milestones[indexPath.row]
+    }
+    
+    func delete(indexPath: IndexPath) {
+        let milestoneID = milestoneList.Milestones[indexPath.row].id
+        milestoneListUseCase.executeDeleteMilestone(milestoneID: milestoneID) { result in
+            switch result {
+            case .failure(let errorMessage):
+                break
+//                self.errorMessage = errorMessage
+            case .success(let resultMessage):
+                self.resultMessage = resultMessage
+            }
+        }
     }
     
 }

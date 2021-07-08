@@ -15,19 +15,17 @@ class LabelListViewController: UIViewController {
         bind()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        bind()
-//    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        bind()
-    }
-    
     private func bind() {
         labelListViewModel.didUpdateLabelList()
             .sink { [weak self] _ in
                 self?.labelTableView.reloadData()
             }.store(in: &subscriptions)
+        
+        labelListViewModel.didUpdateResultMessage()
+            .sink { [weak self] _ in
+                self?.labelListViewModel.fetchLabelList()
+            }.store(in: &subscriptions)
+        
         labelListViewModel.fetchLabelList()
     }
     
@@ -48,6 +46,35 @@ class LabelListViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = selectButton
     }
     
+    private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, _) in
+            self?.labelListViewModel.delete(indexPath: indexPath)
+            self?.labelListViewModel.fetchLabelList()
+        })
+        
+        let trashCanImage = UIImage(systemName: "trash")
+        action.image = trashCanImage
+        
+        let customRed = UIColor(red: 1, green: 59/255, blue: 48/255, alpha: 1)
+        action.backgroundColor = customRed
+        
+        return action
+    }
+    
+    private func editAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "편집", handler: { [weak self] (_, _, _) in
+            
+        })
+        
+        let archiveBoxImage = UIImage(systemName: "square.and.pencil")
+        action.image = archiveBoxImage
+        
+        let customBlue = UIColor(red: 204/255, green: 212/255, blue: 1, alpha: 1)
+        action.backgroundColor = customBlue
+        
+        return action
+    }
+    
     @objc func showNewLabelView() {
         guard let AdditionLabelViewController = self.storyboard?.instantiateViewController(identifier: LabelAdditionViewController.identifier) as? LabelAdditionViewController else {
             return
@@ -60,7 +87,7 @@ class LabelListViewController: UIViewController {
 extension LabelListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return labelListViewModel.getDetailLabelCount()
+        return labelListViewModel.detailLabelCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,8 +95,14 @@ extension LabelListViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.configure(detailLabel: labelListViewModel.getDetailLabel(indexPath: indexPath))
+        cell.configure(detailLabel: labelListViewModel.detailLabel(indexPath: indexPath))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = deleteAction(at: indexPath)
+        let editAction = editAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
     
 }
