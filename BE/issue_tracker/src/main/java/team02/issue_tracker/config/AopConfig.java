@@ -20,12 +20,13 @@ import team02.issue_tracker.oauth.dto.JwtResponse;
 @Component
 public class AopConfig {
 
-//    private final StopWatch stopWatch;
-//
-//    public AopConfig(StopWatch stopWatch) {
-//        this.stopWatch = stopWatch;
-//    }
+    private final StopWatch stopWatch;
+
     private static int count = 0;
+
+    public AopConfig(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
 
     @Pointcut("execution(* team02.issue_tracker.oauth.controller.OAuthController.*login*(..))")
     private void login() {}
@@ -54,18 +55,18 @@ public class AopConfig {
      * @return Object
      * @throws Throwable
      */
-//    @Around("@annotation(team02.issue_tracker.annotation.LogExecutionTime)")
-//    public Object jwtIssueTimeLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
-//        stopWatch.start(proceedingJoinPoint.getSignature().getName());
-//
-//        Object result = proceedingJoinPoint.proceed();
-//
-//        stopWatch.stop();
-//
-//        log.info(stopWatch.prettyPrint());
-//
-//        return result;
-//    }
+    @Around("@annotation(team02.issue_tracker.annotation.LogExecutionTime)")
+    public Object jwtIssueTimeLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+        stopWatch.start(proceedingJoinPoint.getSignature().getName());
+
+        Object result = proceedingJoinPoint.proceed();
+
+        stopWatch.stop();
+
+        log.info(stopWatch.prettyPrint());
+
+        return result;
+    }
 
     /**
      * 발행한 jwt를 출력한다.
