@@ -6,6 +6,7 @@ target 'issue-tracker' do
   use_frameworks!
 
 pod 'SwiftLint'
+pod "MarkdownView"
 
   # Pods for issue-tracker
 

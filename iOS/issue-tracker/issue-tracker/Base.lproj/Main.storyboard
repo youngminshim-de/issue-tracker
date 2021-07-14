@@ -218,7 +218,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="718-9Y-KjG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="sqk-8h-LsM" id="dXB-OF-bAX"/>
@@ -487,6 +487,9 @@
                                             <segment title="마크다운"/>
                                             <segment title="미리보기"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="pressedSegmentedControl:" destination="vwo-83-pmj" eventType="valueChanged" id="Dzn-3a-YDn"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -646,6 +649,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIC-4N-9Wh">
+                                        <rect key="frame" x="0.0" y="55" width="414" height="471"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -657,8 +663,12 @@
                                     <constraint firstItem="dPT-pi-Yhk" firstAttribute="leading" secondItem="BGB-eL-BUx" secondAttribute="leading" id="TQl-JM-uxG"/>
                                     <constraint firstItem="Jif-nG-ebZ" firstAttribute="top" secondItem="BGB-eL-BUx" secondAttribute="top" constant="11" id="XrA-uK-yDQ"/>
                                     <constraint firstItem="AJB-s3-i7K" firstAttribute="top" secondItem="BGB-eL-BUx" secondAttribute="top" id="Zy7-Da-YR0"/>
+                                    <constraint firstItem="JIC-4N-9Wh" firstAttribute="leading" secondItem="BGB-eL-BUx" secondAttribute="leading" id="dS8-VT-koE"/>
+                                    <constraint firstItem="JIC-4N-9Wh" firstAttribute="top" secondItem="dPT-pi-Yhk" secondAttribute="bottom" constant="10" id="dwK-JK-waX"/>
+                                    <constraint firstAttribute="bottom" secondItem="JIC-4N-9Wh" secondAttribute="bottom" constant="10" id="gi9-vB-LF9"/>
                                     <constraint firstAttribute="trailing" secondItem="dPT-pi-Yhk" secondAttribute="trailing" id="iLC-4i-E22"/>
                                     <constraint firstAttribute="trailing" secondItem="w5h-G4-Gal" secondAttribute="trailing" constant="16" id="jLm-Xp-FWf"/>
+                                    <constraint firstAttribute="trailing" secondItem="JIC-4N-9Wh" secondAttribute="trailing" id="of9-XV-mz5"/>
                                     <constraint firstItem="dPT-pi-Yhk" firstAttribute="top" secondItem="AJB-s3-i7K" secondAttribute="bottom" id="pCW-2Y-XNQ"/>
                                     <constraint firstItem="AJB-s3-i7K" firstAttribute="leading" secondItem="Jif-nG-ebZ" secondAttribute="trailing" constant="17" id="uor-62-DAr"/>
                                     <constraint firstItem="Jif-nG-ebZ" firstAttribute="leading" secondItem="BGB-eL-BUx" secondAttribute="leading" constant="16" id="xpm-qG-aOZ"/>
@@ -684,6 +694,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WYw-Dj-43e"/>
+                    <connections>
+                        <outlet property="markdownPreView" destination="JIC-4N-9Wh" id="T4A-7T-rrJ"/>
+                        <outlet property="markdownTextView" destination="w5h-G4-Gal" id="qnB-2H-RpV"/>
+                        <outlet property="saveButton" destination="IEg-BA-18e" id="GGj-gE-pbn"/>
+                        <outlet property="titleTextField" destination="AJB-s3-i7K" id="cyd-M5-gI7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhG-06-lC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -824,11 +840,10 @@
         <!--이슈-->
         <scene sceneID="qNZ-vJ-Ib2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OuB-5S-ofe" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="OuB-5S-ofe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="이슈" image="exclamationmark.circle" catalog="system" id="nVy-AD-MMB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y8d-A0-qnU">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -22,7 +22,7 @@ class LoginHelper {
     }
     
     func convertedToURL(with code: String) -> URL? {
-        let loginURLString = "http://ec2-3-37-234-113.ap-northeast-2.compute.amazonaws.com/api/login/github/ios?code=\(code)"
+        let loginURLString = "http://www.sionn.net/api/login/github/ios?code=\(code)"
         return URL(string: loginURLString)
     }
     
