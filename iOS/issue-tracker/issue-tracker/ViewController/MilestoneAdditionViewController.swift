@@ -13,6 +13,7 @@ class MilestoneAdditionViewController: UIViewController {
         configureMilestoneView()
         configureAddTarget()
         bind()
+        configureView()
     }
     
     private func bind() {
@@ -49,6 +50,17 @@ class MilestoneAdditionViewController: UIViewController {
         self.additionView.cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
     }
     
+    func setExistingMilestone(_ milestone: DetailMilestone) {
+        self.milestoneAdditionViewModel.configureExistingMilestone(milestone)
+    }
+    
+    func configureView() {
+        let milestone = self.milestoneAdditionViewModel.makeNewMilestoneDTO()
+        self.additionView.titleTextField.text = milestone.title
+        self.additionView.descriptionTextField.text = milestone.content
+        self.additionView.attributeTextField.text = milestone.dueDate
+    }
+    
     @objc func textFieldAction(_ sender: UITextField) {
         guard let text = sender.text else {
             return
@@ -67,7 +79,7 @@ class MilestoneAdditionViewController: UIViewController {
     }
     
     @objc func saveButtonAction() {
-        self.milestoneAdditionViewModel.addNewMildestone()
+        self.milestoneAdditionViewModel.updateMildestone()
         self.dismiss(animated: true, completion: nil)
     }
     

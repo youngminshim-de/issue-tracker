@@ -12,6 +12,7 @@ class LabelAdditionViewController: UIViewController {
         super.viewDidLoad()
         configureAddTarget()
         bind()
+        configureView()
     }
     
     private func bind() {
@@ -50,6 +51,17 @@ class LabelAdditionViewController: UIViewController {
         self.additionView.cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
     }
     
+    func setExistingLabel(_ label: DetailLabel) {
+        self.labelAdditionViewModel.configureExistingLabel(label)
+    }
+    
+    func configureView() {
+        let label = self.labelAdditionViewModel.makeNewLabelDTO()
+        self.additionView.titleTextField.text = label.title
+        self.additionView.descriptionTextField.text = label.content
+        self.additionView.attributeTextField.text = label.color
+    }
+    
     @objc func textFieldAction(_ sender: UITextField) {
         guard let text = sender.text else {
             return
@@ -73,7 +85,7 @@ class LabelAdditionViewController: UIViewController {
     }
     
     @objc func saveButtonAction() {
-        self.labelAdditionViewModel.addNewLabel()
+        self.labelAdditionViewModel.updateLabel()
         self.dismiss(animated: true, completion: nil)
     }
     

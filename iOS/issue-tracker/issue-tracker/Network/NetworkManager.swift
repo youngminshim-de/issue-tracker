@@ -21,7 +21,7 @@ struct NetworkManager {
         return session.dataTaskPublisher(for: urlRequest)
             .mapError { _ in
                 NetworkError.networkConnection
-            }.print()
+            }
             .flatMap { data, _ -> AnyPublisher<T, NetworkError> in
                 let decodeData = Just(data)
                     .decode(type: type.self, decoder: JSONDecoder())

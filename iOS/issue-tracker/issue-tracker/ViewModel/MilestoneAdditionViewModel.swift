@@ -6,6 +6,7 @@ class MilestoneAdditionViewModel {
     @Published private var isCorrectDueDate: Bool
     @Published private var isEnableSaveButton: Bool
     @Published private var resultMessage: String?
+    private var id: Int?
     private var title: String
     private var description: String?
     private var dueDate: String
@@ -15,19 +16,31 @@ class MilestoneAdditionViewModel {
         self.isCorrectDueDate = true
         self.isEnableSaveButton = false
         self.resultMessage = nil
+        self.id = nil
         self.title = ""
         self.description = nil
         self.dueDate = ""
         self.additionUseCase = AdditionUseCase()
     }
     
-    func addNewMildestone() {
-        additionUseCase.executeAddingMilestone(makeNewMilestoneDTO()) { result in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let resultMessage):
-                self.resultMessage = resultMessage
+    func updateMildestone() {
+        if let id = self.id {
+            additionUseCase.executeEditingMilestone(makeNewMilestoneDTO(), milestoneID: id) { result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let resultMessage):
+                    self.resultMessage = resultMessage
+                }
+            }
+        } else {
+            additionUseCase.executeAddingMilestone(makeNewMilestoneDTO()) { result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let resultMessage):
+                    self.resultMessage = resultMessage
+                }
             }
         }
     }
@@ -47,6 +60,13 @@ class MilestoneAdditionViewModel {
             self.dueDate = dueDate
         }
         self.isEnableSaveButton = self.isCorrectDueDate && isNotEmptyTitle()
+    }
+    
+    func configureExistingMilestone(_ milestone: DetailMilestone) {
+        self.id = milestone.id
+        self.title = milestone.title
+        self.description = milestone.content
+        self.dueDate = milestone.dueDate
     }
     
     func didUpdateCorrectDueDate() -> AnyPublisher<Bool, Never> {

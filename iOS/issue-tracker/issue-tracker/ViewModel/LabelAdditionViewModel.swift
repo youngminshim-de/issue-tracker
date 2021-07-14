@@ -7,6 +7,7 @@ class LabelAdditionViewModel {
     @Published private var isEnableSaveButton: Bool
     @Published private var backgroundColor: String
     @Published private var resultMessage: String?
+    private var id: Int?
     private var title: String
     private var description: String?
     private let additionUseCase: AdditionUseCase
@@ -16,18 +17,30 @@ class LabelAdditionViewModel {
         self.isEnableSaveButton = false
         self.backgroundColor = "#FFFFFF"
         self.resultMessage = nil
+        self.id = nil
         self.title = ""
         self.description = nil
         self.additionUseCase = AdditionUseCase()
     }
     
-    func addNewLabel() {
-        additionUseCase.executeAddingLabel(makeNewLabelDTO()) { result in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let resultMessage):
-                self.resultMessage = resultMessage
+    func updateLabel() {
+        if let id = self.id {
+            additionUseCase.executeEditingLabel(makeNewLabelDTO(), labelID: id) { result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let resultMessage):
+                    self.resultMessage = resultMessage
+                }
+            }
+        } else {
+            additionUseCase.executeAddingLabel(makeNewLabelDTO()) { result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let resultMessage):
+                    self.resultMessage = resultMessage
+                }
             }
         }
     }
@@ -47,6 +60,13 @@ class LabelAdditionViewModel {
             self.backgroundColor = color.uppercased()
         }
         self.isEnableSaveButton = self.isCorrectColor && isNotEmptyTitle()
+    }
+    
+    func configureExistingLabel(_ label: DetailLabel) {
+        self.id = label.id
+        self.title = label.title
+        self.description = label.content
+        self.backgroundColor = label.color
     }
     
     func didUpdateCorrectColor() -> AnyPublisher<Bool, Never> {

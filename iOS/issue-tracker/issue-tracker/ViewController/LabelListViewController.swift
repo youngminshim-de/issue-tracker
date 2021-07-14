@@ -47,9 +47,9 @@ class LabelListViewController: UIViewController {
     }
     
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, _) in
+        let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, success) in
             self?.labelListViewModel.delete(indexPath: indexPath)
-            self?.labelListViewModel.fetchLabelList()
+            success(true)
         })
         
         let trashCanImage = UIImage(systemName: "trash")
@@ -62,8 +62,15 @@ class LabelListViewController: UIViewController {
     }
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "편집", handler: { [weak self] (_, _, _) in
+        let action = UIContextualAction(style: .normal, title: "편집", handler: { [weak self] (_, _, success) in
+            guard let additionLabelViewController = self?.storyboard?.instantiateViewController(identifier: LabelAdditionViewController.identifier) as? LabelAdditionViewController,
+                let label = self?.labelListViewModel.detailLabel(indexPath: indexPath) else {
+                return
+            }
             
+            additionLabelViewController.setExistingLabel(label)
+            self?.present(additionLabelViewController, animated: true, completion: nil)
+            success(true)
         })
         
         let archiveBoxImage = UIImage(systemName: "square.and.pencil")
@@ -76,10 +83,10 @@ class LabelListViewController: UIViewController {
     }
     
     @objc func showNewLabelView() {
-        guard let AdditionLabelViewController = self.storyboard?.instantiateViewController(identifier: LabelAdditionViewController.identifier) as? LabelAdditionViewController else {
+        guard let additionLabelViewController = self.storyboard?.instantiateViewController(identifier: LabelAdditionViewController.identifier) as? LabelAdditionViewController else {
             return
         }
-        self.present(AdditionLabelViewController, animated: true, completion: nil)
+        self.present(additionLabelViewController, animated: true, completion: nil)
     }
     
 }

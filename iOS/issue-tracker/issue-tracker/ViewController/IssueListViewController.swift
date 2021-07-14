@@ -44,7 +44,6 @@ class IssueListViewController: UIViewController {
     private func bind() {
         issueListViewModel.didUpdateIssueList()
             .sink { [weak self] _ in
-                print("111111111111111111111111111111111")
                 self?.issueTableView.reloadData()
             }.store(in: &subscriptions)
         

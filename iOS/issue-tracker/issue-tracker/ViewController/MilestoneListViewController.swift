@@ -47,8 +47,9 @@ class MilestoneListViewController: UIViewController {
     }
     
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, _) in
+        let action = UIContextualAction(style: .normal, title: "삭제", handler: { [weak self] (_, _, success) in
             self?.milestoneListViewModel.delete(indexPath: indexPath)
+            success(true)
         })
         
         let trashCanImage = UIImage(systemName: "trash")
@@ -61,8 +62,15 @@ class MilestoneListViewController: UIViewController {
     }
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "편집", handler: { [weak self] (_, _, _) in
+        let action = UIContextualAction(style: .normal, title: "편집", handler: { [weak self] (_, _, success) in
+            guard let additionMilestoneViewController = self?.storyboard?.instantiateViewController(identifier: MilestoneAdditionViewController.identifier) as? MilestoneAdditionViewController,
+                let milestone = self?.milestoneListViewModel.detailMilestone(indexPath: indexPath) else {
+                return
+            }
             
+            additionMilestoneViewController.setExistingMilestone(milestone)
+            self?.present(additionMilestoneViewController, animated: true, completion: nil)
+            success(true)
         })
         
         let archiveBoxImage = UIImage(systemName: "square.and.pencil")
@@ -75,10 +83,10 @@ class MilestoneListViewController: UIViewController {
     }
     
     @objc func showNewMilestoneView() {
-        guard let AdditionMilestoneViewController = self.storyboard?.instantiateViewController(identifier: MilestoneAdditionViewController.identifier) as? MilestoneAdditionViewController else {
+        guard let additionMilestoneViewController = self.storyboard?.instantiateViewController(identifier: MilestoneAdditionViewController.identifier) as? MilestoneAdditionViewController else {
             return
         }
-        self.present(AdditionMilestoneViewController, animated: true, completion: nil)
+        self.present(additionMilestoneViewController, animated: true, completion: nil)
     }
     
 }
