@@ -2,8 +2,9 @@ import UIKit
 import Combine
 
 class AdditionalInfoViewController: UIViewController {
-
+    
     @IBOutlet weak var AddionalInfoTableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     private let additionalInfoViewModel = AdditionalInfoViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -11,6 +12,8 @@ class AdditionalInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        configureTitle()
+        configureAdditionalInfoTableView()
     }
     
     private func bind() {
@@ -18,6 +21,33 @@ class AdditionalInfoViewController: UIViewController {
             .sink { [weak self] _ in
                 self?.AddionalInfoTableView.reloadData()
             }.store(in: &subscriptions)
+        
+        self.additionalInfoViewModel.fetchAdditionalInfo()
+    }
+
+    private func configureAdditionalInfoTableView() {
+        let infoType = self.additionalInfoViewModel.additionalInfoType()
+        if infoType == .milestone {
+            self.AddionalInfoTableView.allowsMultipleSelection = false
+        } else {
+            self.AddionalInfoTableView.allowsMultipleSelection = true
+        }
+    }
+    
+    private func configureTitle() {
+        self.titleLabel.text = self.additionalInfoViewModel.additionalInfoType().rawValue
+    }
+    
+    func setAdditionalInfoType(of info: AdditionalInfoViewModel.IssueAdditionalInfo) {
+        self.additionalInfoViewModel.setInfoType(of: info)
+    }
+    
+    @IBAction func pressedCancelButton(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func pressedSaveButton(_ sender: UIButton) {
+        print(self.AddionalInfoTableView.indexPathsForSelectedRows)
     }
     
 }
@@ -37,9 +67,6 @@ extension AdditionalInfoViewController: UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
 }
+
 extension AdditionalInfoViewController: Identifying { }

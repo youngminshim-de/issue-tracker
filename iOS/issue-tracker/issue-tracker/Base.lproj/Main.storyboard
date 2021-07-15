@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ueh-6n-uNz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -561,6 +561,9 @@
                                         </constraints>
                                         <color key="tintColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="chevron.right" catalog="system"/>
+                                        <connections>
+                                            <action selector="pressedAdditionButton:" destination="vwo-83-pmj" eventType="touchUpInside" id="j61-nQ-vlC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-WX-UWa">
                                         <rect key="frame" x="368" y="107" width="30" height="30"/>
@@ -570,6 +573,9 @@
                                         </constraints>
                                         <color key="tintColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="chevron.right" catalog="system"/>
+                                        <connections>
+                                            <action selector="pressedAdditionButton:" destination="vwo-83-pmj" eventType="touchUpInside" id="s6S-gc-mEh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rf-TD-ORC">
                                         <rect key="frame" x="368" y="152" width="30" height="30"/>
@@ -579,6 +585,9 @@
                                         </constraints>
                                         <color key="tintColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="chevron.right" catalog="system"/>
+                                        <connections>
+                                            <action selector="pressedAdditionButton:" destination="vwo-83-pmj" eventType="touchUpInside" id="C4J-Lw-3Wg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -699,6 +708,9 @@
                         <outlet property="markdownTextView" destination="w5h-G4-Gal" id="qnB-2H-RpV"/>
                         <outlet property="saveButton" destination="IEg-BA-18e" id="GGj-gE-pbn"/>
                         <outlet property="titleTextField" destination="AJB-s3-i7K" id="cyd-M5-gI7"/>
+                        <outletCollection property="addtionButtons" destination="YMZ-6u-tco" collectionClass="NSMutableArray" id="U2U-wz-b5w"/>
+                        <outletCollection property="addtionButtons" destination="Ohz-WX-UWa" collectionClass="NSMutableArray" id="f3U-AR-5T1"/>
+                        <outletCollection property="addtionButtons" destination="7Rf-TD-ORC" collectionClass="NSMutableArray" id="0UN-My-O0s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhG-06-lC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -912,6 +924,7 @@
                                             <color key="titleColor" systemColor="linkColor"/>
                                         </state>
                                         <connections>
+                                            <action selector="pressedCancelButton:" destination="Ueh-6n-uNz" eventType="touchUpInside" id="Px4-JA-Ncp"/>
                                             <action selector="pressedCancelButton:" destination="q2y-Ti-QDY" eventType="touchUpInside" id="gUu-M1-ZOi"/>
                                         </connections>
                                     </button>
@@ -919,6 +932,9 @@
                                         <rect key="frame" x="368" y="21" width="30" height="33"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="저장"/>
+                                        <connections>
+                                            <action selector="pressedSaveButton:" destination="Ueh-6n-uNz" eventType="touchUpInside" id="8Ty-xi-qGI"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tf6-nB-esB">
                                         <rect key="frame" x="185" y="27" width="44.5" height="21"/>
@@ -1004,6 +1020,7 @@
                     </view>
                     <connections>
                         <outlet property="AddionalInfoTableView" destination="Wch-CI-7tO" id="JWZ-g6-xVU"/>
+                        <outlet property="titleLabel" destination="tf6-nB-esB" id="EMx-ez-0xp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33J-ng-Ieq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

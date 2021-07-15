@@ -3,15 +3,38 @@ import Combine
 
 class AdditionalInfoViewModel {
     
+    enum IssueAdditionalInfo: String {
+        case label = "레이블"
+        case milestone = "마일스톤"
+        case assignee = "담당자"
+    }
+    
     @Published private var additionalInfo: [AdditionalInfo]
     private let additionalInfoUseCase: AdditionalInfoUseCase
+    private var infoType: IssueAdditionalInfo
     
     init() {
         self.additionalInfo = []
         self.additionalInfoUseCase = AdditionalInfoUseCase()
+        self.infoType = .label
     }
     
-    func fetchLabelList() {
+    func setInfoType(of info: IssueAdditionalInfo) {
+        self.infoType = info
+    }
+    
+    func fetchAdditionalInfo() {
+        switch self.infoType {
+        case .label:
+            self.fetchLabelList()
+        case .milestone:
+            self.fetchMilestoneList()
+        case .assignee:
+            break
+        }
+    }
+    
+    private func fetchLabelList() {
         additionalInfoUseCase.executeFetchingLabelList { result in
             switch result {
             case .failure(let error):
@@ -24,7 +47,7 @@ class AdditionalInfoViewModel {
         }
     }
     
-    func fetchMilestoneList() {
+    private func fetchMilestoneList() {
         additionalInfoUseCase.executeFetchingMilestoneList { result in
             switch result {
             case .failure(let error):
@@ -43,6 +66,10 @@ class AdditionalInfoViewModel {
             .eraseToAnyPublisher()
     }
     
+    func additionalInfoType() -> IssueAdditionalInfo {
+        return self.infoType
+    }
+    
     func additionalInfoCount() -> Int {
         return self.additionalInfo.count
     }
@@ -50,4 +77,5 @@ class AdditionalInfoViewModel {
     func additionalInfo(indexPath: IndexPath) -> AdditionalInfo {
         return self.additionalInfo[indexPath.row]
     }
+    
 }

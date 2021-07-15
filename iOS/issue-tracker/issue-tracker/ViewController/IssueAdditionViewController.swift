@@ -7,6 +7,11 @@ class IssueAdditionViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var markdownTextView: UITextView!
     @IBOutlet weak var markdownPreView: UIView!
+    @IBOutlet var addtionButtons: [UIButton]!
+    
+    
+    
+    
     private var markdownView: MarkdownView?
     
     override func viewDidLoad() {
@@ -31,6 +36,13 @@ class IssueAdditionViewController: UIViewController {
         view.bottomAnchor.constraint(equalTo: markdownTextView.bottomAnchor).isActive = true
     }
     
+    private func makeAdditionalViewController() -> AdditionalInfoViewController {
+        guard let additionalInfoViewController = self.storyboard?.instantiateViewController(identifier: AdditionalInfoViewController.identifier) as? AdditionalInfoViewController else {
+            return AdditionalInfoViewController()
+        }
+        return additionalInfoViewController
+    }
+    
     @IBAction func pressedCancelButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
@@ -50,6 +62,25 @@ class IssueAdditionViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    @IBAction func pressedAdditionButton(_ sender: UIButton) {
+        guard let additionalInfoViewController = self.storyboard?.instantiateViewController(identifier: AdditionalInfoViewController.identifier) as? AdditionalInfoViewController else {
+            return
+        }
+
+        switch sender {
+        case self.addtionButtons[0]:
+            additionalInfoViewController.setAdditionalInfoType(of: .label)
+        case self.addtionButtons[1]:
+            additionalInfoViewController.setAdditionalInfoType(of: .milestone)
+        case self.addtionButtons[2]:
+            additionalInfoViewController.setAdditionalInfoType(of: .assignee)
+        default:
+            break
+        }
+        
+        self.present(additionalInfoViewController, animated: true, completion: nil)
     }
     
 }
