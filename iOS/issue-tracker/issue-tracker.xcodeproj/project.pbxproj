@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,10 @@
 		BD0814722681C85800C3D6D7 /* URLSessionStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0814712681C85800C3D6D7 /* URLSessionStub.swift */; };
 		BD0814742681C8B600C3D6D7 /* JWTManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0814732681C8B600C3D6D7 /* JWTManagerStub.swift */; };
 		BD0814762681C8DF00C3D6D7 /* TestDecodableDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0814752681C8DF00C3D6D7 /* TestDecodableDTO.swift */; };
+		BD11B4DE26A04A97004429A9 /* AdditionalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD11B4DD26A04A97004429A9 /* AdditionalInfoViewController.swift */; };
+		BD11B4E026A056A5004429A9 /* AdditionalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD11B4DF26A056A5004429A9 /* AdditionalInfoViewModel.swift */; };
+		BD11B4E226A0586B004429A9 /* AdditionalInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */; };
+		BD11B4E426A05AE4004429A9 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */; };
 		BD1D36F5266E428700B51184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D36F4266E428700B51184 /* AppDelegate.swift */; };
 		BD1D36F7266E428700B51184 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D36F6266E428700B51184 /* SceneDelegate.swift */; };
 		BD1D36F9266E428700B51184 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D36F8266E428700B51184 /* LoginViewController.swift */; };
@@ -127,6 +131,10 @@
 		BD0814712681C85800C3D6D7 /* URLSessionStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionStub.swift; sourceTree = "<group>"; };
 		BD0814732681C8B600C3D6D7 /* JWTManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTManagerStub.swift; sourceTree = "<group>"; };
 		BD0814752681C8DF00C3D6D7 /* TestDecodableDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodableDTO.swift; sourceTree = "<group>"; };
+		BD11B4DD26A04A97004429A9 /* AdditionalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewController.swift; sourceTree = "<group>"; };
+		BD11B4DF26A056A5004429A9 /* AdditionalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewModel.swift; sourceTree = "<group>"; };
+		BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoUseCase.swift; sourceTree = "<group>"; };
+		BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
 		BD1D36F1266E428700B51184 /* issue-tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "issue-tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1D36F4266E428700B51184 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD1D36F6266E428700B51184 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -352,6 +360,7 @@
 				BD1F86FD2684D20F005A6FA8 /* MilestoneListViewController.swift */,
 				BDE699CE26958E0000ADD4F2 /* LabelAdditionViewController.swift */,
 				BDE699D026959B4200ADD4F2 /* MilestoneAdditionViewController.swift */,
+				BD11B4DD26A04A97004429A9 /* AdditionalInfoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -395,6 +404,7 @@
 				CE976390268213A60025CEC3 /* IssueList.swift */,
 				BD1F86F92684C6D5005A6FA8 /* LabelList.swift */,
 				CEB0B4162685A3E600554D32 /* MilestoneList.swift */,
+				BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -424,6 +434,7 @@
 				BD1F86F72684C56E005A6FA8 /* LabelListUseCase.swift */,
 				CEB0B4122685A2AD00554D32 /* MilestoneListUseCase.swift */,
 				BD984173269461C7008491F4 /* AdditionUseCase.swift */,
+				BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -450,6 +461,7 @@
 				CEB0B4182685A4DB00554D32 /* MilestoneListViewModel.swift */,
 				CE6B9D6B2693132900973FFE /* LabelAdditionViewModel.swift */,
 				BDE699D22695CE9800ADD4F2 /* MilestoneAdditionViewModel.swift */,
+				BD11B4DF26A056A5004429A9 /* AdditionalInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -740,6 +752,7 @@
 				BD984174269461C7008491F4 /* AdditionUseCase.swift in Sources */,
 				CE6DEF8426834F7A00D6121C /* RequestBodyDTO.swift in Sources */,
 				CEBF140D26787CF00009BB75 /* LoginHelper.swift in Sources */,
+				BD11B4E226A0586B004429A9 /* AdditionalInfoUseCase.swift in Sources */,
 				CE81A5E0268242D100D71888 /* IssueListViewModel.swift in Sources */,
 				CE976391268213A60025CEC3 /* IssueList.swift in Sources */,
 				CEA520BD26831E8100EB6E0E /* RequestManager.swift in Sources */,
@@ -756,14 +769,17 @@
 				CEA84DF3267B0D350006CC2E /* EndPoint.swift in Sources */,
 				BDE699CF26958E0000ADD4F2 /* LabelAdditionViewController.swift in Sources */,
 				BD1D36F5266E428700B51184 /* AppDelegate.swift in Sources */,
+				BD11B4E026A056A5004429A9 /* AdditionalInfoViewModel.swift in Sources */,
 				CEB0B4192685A4DB00554D32 /* MilestoneListViewModel.swift in Sources */,
 				CEA84DF7267B760F0006CC2E /* TabBarRootController.swift in Sources */,
 				CE71835E2671EB78008B287F /* FilterTableViewCell.swift in Sources */,
 				CEB0B4152685A33D00554D32 /* MilestoneListResponseDTO.swift in Sources */,
 				CEA84DF1267B079C0006CC2E /* NetworkManager.swift in Sources */,
 				BD1D36F7266E428700B51184 /* SceneDelegate.swift in Sources */,
+				BD11B4DE26A04A97004429A9 /* AdditionalInfoViewController.swift in Sources */,
 				BD1F86F82684C56E005A6FA8 /* LabelListUseCase.swift in Sources */,
 				BD920F122672583600EDD555 /* IssueSelectionViewController.swift in Sources */,
+				BD11B4E426A05AE4004429A9 /* AdditionalInfo.swift in Sources */,
 				CEB0B4172685A3E600554D32 /* MilestoneList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
