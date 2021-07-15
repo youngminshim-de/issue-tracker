@@ -65,9 +65,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedOrigins("http://localhost:3000", "http://ec2-3-35-174-197.ap-northeast-2.compute.amazonaws.com");
     }
-
-    @Bean
-    public StopWatch stopWatch() {
-        return new StopWatch();
-    }
+//
+//    @Bean
+//    public StopWatch stopWatch() {
+//        return new StopWatch();
+//    }
 }

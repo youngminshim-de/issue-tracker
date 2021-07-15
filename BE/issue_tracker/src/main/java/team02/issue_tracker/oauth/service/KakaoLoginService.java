@@ -19,7 +19,7 @@ import team02.issue_tracker.oauth.exception.InvalidUserRequestException;
 @Service
 public class KakaoLoginService {
 
-    private final String REDIRECT_URI = "http://ec2-3-37-234-113.ap-northeast-2.compute.amazonaws.com/login/kakao";
+    private final String REDIRECT_URI = "http://www.sionn.net/login/kakao";
     private final String ACCESS_TOKEN_URI = "https://kauth.kakao.com/oauth/token";
     private final String USER_INFO_URI = "https://kapi.kakao.com/v2/user/me";
     private final String GRANT_TYPE = "authorization_code";
