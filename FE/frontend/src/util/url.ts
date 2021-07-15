@@ -1,3 +1,3 @@
-const URL = 'http://ec2-3-37-234-113.ap-northeast-2.compute.amazonaws.com/api';
+const URL = 'http://www.sionn.net/api';
 
 export default URL;
