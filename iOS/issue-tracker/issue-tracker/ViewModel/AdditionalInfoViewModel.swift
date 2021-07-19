@@ -80,6 +80,14 @@ class AdditionalInfoViewModel {
         return self.infoType
     }
     
+    func seletedAdditionalInfo() -> [AdditionalInfo] {
+        var result: [AdditionalInfo] = []
+        for index in seletedInfoIndex {
+            result.append(additionalInfo[index])
+        }
+        return result
+    }
+    
     func additionalInfoCount() -> Int {
         return self.additionalInfo.count
     }

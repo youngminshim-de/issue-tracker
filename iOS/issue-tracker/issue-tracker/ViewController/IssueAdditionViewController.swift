@@ -1,21 +1,44 @@
 import UIKit
+import Combine
 import MarkdownView
 
-class IssueAdditionViewController: UIViewController {
+class IssueAdditionViewController: UIViewController, AdditionalInfoViewControllerDelegate {
 
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var markdownTextView: UITextView!
     @IBOutlet weak var markdownPreView: UIView!
     @IBOutlet var addtionButtons: [UIButton]!
+    @IBOutlet var seletedLabels: [UILabel]!
+    
     private var markdownView: MarkdownView?
+    private let issueAdditionViewModel = IssueAdditionViewModel()
+    private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func bind() {
+        issueAdditionViewModel.didUpdateLabels()
+            .sink { [weak self] label in
+                self?.seletedLabels[0].text = label.first?.title
+            }.store(in: &subscriptions)
+        
+        issueAdditionViewModel.didUpdateMilestones()
+            .sink { [weak self] milestone in
+                self?.seletedLabels[1].text = milestone.first?.title
+            }.store(in: &subscriptions)
+        
+        issueAdditionViewModel.didUpdateAssignees()
+            .sink { [weak self] assignee in
+                self?.seletedLabels[2].text = assignee.first?.title
+            }.store(in: &subscriptions)
     }
     
     private func configureMarkdownView() {
@@ -37,6 +60,10 @@ class IssueAdditionViewController: UIViewController {
             return AdditionalInfoViewController()
         }
         return additionalInfoViewController
+    }
+    
+    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: AdditionalInfoViewModel.IssueAdditionalInfo) {
+        self.issueAdditionViewModel.setAdditionalInfo(additionalInfo, infoType: infoType)
     }
     
     @IBAction func pressedCancelButton(_ sender: Any) {
@@ -75,8 +102,9 @@ class IssueAdditionViewController: UIViewController {
         default:
             break
         }
-        
+        additionalInfoViewController.delegate = self
         self.present(additionalInfoViewController, animated: true, completion: nil)
+        
     }
     
 }

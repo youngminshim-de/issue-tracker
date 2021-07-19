@@ -106,9 +106,6 @@ class LabelAdditionViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    deinit {
-        print(#function)
-    }
 }
 
 extension LabelAdditionViewController: Identifying { }

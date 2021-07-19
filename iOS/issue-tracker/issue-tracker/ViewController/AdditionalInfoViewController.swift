@@ -1,6 +1,10 @@
 import UIKit
 import Combine
 
+protocol AdditionalInfoViewControllerDelegate: AnyObject {
+    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: AdditionalInfoViewModel.IssueAdditionalInfo)
+}
+
 class AdditionalInfoViewController: UIViewController {
     
     @IBOutlet weak var AddionalInfoTableView: UITableView!
@@ -9,6 +13,7 @@ class AdditionalInfoViewController: UIViewController {
     
     private let additionalInfoViewModel = AdditionalInfoViewModel()
     private var subscriptions = Set<AnyCancellable>()
+    weak var delegate: AdditionalInfoViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +65,8 @@ class AdditionalInfoViewController: UIViewController {
     }
     
     @IBAction func pressedSaveButton(_ sender: UIButton) {
-        print(self.AddionalInfoTableView.indexPathsForSelectedRows)
+        delegate?.AdditionalInfoViewControllerDidFinish(additionalInfo: additionalInfoViewModel.seletedAdditionalInfo(), infoType: additionalInfoViewModel.additionalInfoType())
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
