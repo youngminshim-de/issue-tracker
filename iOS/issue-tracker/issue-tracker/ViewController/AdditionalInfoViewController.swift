@@ -5,6 +5,7 @@ class AdditionalInfoViewController: UIViewController {
     
     @IBOutlet weak var AddionalInfoTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     private let additionalInfoViewModel = AdditionalInfoViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -22,7 +23,18 @@ class AdditionalInfoViewController: UIViewController {
                 self?.AddionalInfoTableView.reloadData()
             }.store(in: &subscriptions)
         
+        additionalInfoViewModel.didUpdateSelectedInfo()
+            .sink { [weak self] isEmpty in
+                self?.saveButton.isEnabled = !isEmpty
+            }.store(in: &subscriptions)
+        
         self.additionalInfoViewModel.fetchAdditionalInfo()
+    }
+    
+    private func configureTableViewFooterView() {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clear
+        AddionalInfoTableView.tableFooterView = footerView
     }
 
     private func configureAdditionalInfoTableView() {
@@ -32,6 +44,7 @@ class AdditionalInfoViewController: UIViewController {
         } else {
             self.AddionalInfoTableView.allowsMultipleSelection = true
         }
+        configureTableViewFooterView()
     }
     
     private func configureTitle() {
@@ -43,7 +56,7 @@ class AdditionalInfoViewController: UIViewController {
     }
     
     @IBAction func pressedCancelButton(_ sender: UIButton) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func pressedSaveButton(_ sender: UIButton) {
@@ -65,6 +78,14 @@ extension AdditionalInfoViewController: UITableViewDataSource, UITableViewDelega
         
         cell.title.text = additionalInfoViewModel.additionalInfo(indexPath: indexPath).title
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.additionalInfoViewModel.updateSeletedInfo(indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        self.additionalInfoViewModel.deleteSeletedInfo(indexPath: indexPath)
     }
     
 }

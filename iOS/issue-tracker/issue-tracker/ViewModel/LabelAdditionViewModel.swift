@@ -62,11 +62,19 @@ class LabelAdditionViewModel {
         self.isEnableSaveButton = self.isCorrectColor && isNotEmptyTitle()
     }
     
+    //MARK: 편집할 때는 바로 저장 버튼 활성화
     func configureExistingLabel(_ label: DetailLabel) {
         self.id = label.id
         self.title = label.title
         self.description = label.content
         self.backgroundColor = label.color
+        self.isEnableSaveButton = true
+    }
+    
+    func didUpdateResultMessage() -> AnyPublisher<String?, Never> {
+        return $resultMessage
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
     
     func didUpdateCorrectColor() -> AnyPublisher<Bool, Never> {

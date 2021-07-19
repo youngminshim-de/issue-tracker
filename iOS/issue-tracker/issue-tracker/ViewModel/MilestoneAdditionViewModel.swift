@@ -62,13 +62,21 @@ class MilestoneAdditionViewModel {
         self.isEnableSaveButton = self.isCorrectDueDate && isNotEmptyTitle()
     }
     
+    //MARK: 편집할 때는 바로 저장 버튼 활성화
     func configureExistingMilestone(_ milestone: DetailMilestone) {
         self.id = milestone.id
         self.title = milestone.title
         self.description = milestone.content
         self.dueDate = milestone.dueDate
+        self.isEnableSaveButton = true
     }
     
+    func didUpdateResultMessage() -> AnyPublisher<String?, Never> {
+        return $resultMessage
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+        
     func didUpdateCorrectDueDate() -> AnyPublisher<Bool, Never> {
         return $isCorrectDueDate
             .receive(on: DispatchQueue.main)

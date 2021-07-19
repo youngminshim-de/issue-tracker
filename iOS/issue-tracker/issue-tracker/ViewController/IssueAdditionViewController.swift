@@ -8,10 +8,6 @@ class IssueAdditionViewController: UIViewController {
     @IBOutlet weak var markdownTextView: UITextView!
     @IBOutlet weak var markdownPreView: UIView!
     @IBOutlet var addtionButtons: [UIButton]!
-    
-    
-    
-    
     private var markdownView: MarkdownView?
     
     override func viewDidLoad() {

@@ -9,12 +9,16 @@ class AdditionalInfoViewModel {
         case assignee = "담당자"
     }
     
+    @Published private var isEmptyInfoIndex: Bool
     @Published private var additionalInfo: [AdditionalInfo]
+    private var seletedInfoIndex: [Int]
     private let additionalInfoUseCase: AdditionalInfoUseCase
     private var infoType: IssueAdditionalInfo
     
     init() {
+        self.isEmptyInfoIndex = true
         self.additionalInfo = []
+        self.seletedInfoIndex = []
         self.additionalInfoUseCase = AdditionalInfoUseCase()
         self.infoType = .label
     }
@@ -66,6 +70,12 @@ class AdditionalInfoViewModel {
             .eraseToAnyPublisher()
     }
     
+    func didUpdateSelectedInfo() -> AnyPublisher<Bool, Never> {
+        return $isEmptyInfoIndex
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
     func additionalInfoType() -> IssueAdditionalInfo {
         return self.infoType
     }
@@ -76,6 +86,16 @@ class AdditionalInfoViewModel {
     
     func additionalInfo(indexPath: IndexPath) -> AdditionalInfo {
         return self.additionalInfo[indexPath.row]
+    }
+    
+    func updateSeletedInfo(indexPath: IndexPath) {
+        self.seletedInfoIndex.append(indexPath.row)
+        self.isEmptyInfoIndex = false
+    }
+    
+    func deleteSeletedInfo(indexPath: IndexPath) {
+        self.seletedInfoIndex.removeAll(where: { $0 == indexPath.row })
+        self.isEmptyInfoIndex = self.seletedInfoIndex.isEmpty
     }
     
 }

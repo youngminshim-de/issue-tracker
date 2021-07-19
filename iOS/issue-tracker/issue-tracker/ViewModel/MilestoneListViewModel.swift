@@ -26,7 +26,6 @@ class MilestoneListViewModel {
     
     func didUpdateMilestoneList() -> AnyPublisher<MilestoneList, Never> {
         return $milestoneList
-            .print()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
