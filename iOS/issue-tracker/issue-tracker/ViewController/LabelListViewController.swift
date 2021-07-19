@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class LabelListViewController: UIViewController {
+class LabelListViewController: UIViewController, AdditionViewControllerDelegate {
 
     @IBOutlet weak var labelTableView: UITableView!
     private let labelListViewModel = LabelListViewModel()
@@ -9,6 +9,7 @@ class LabelListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableViewFooterView()
         configureNavigationTitle()
         configureAddButton()
         labelTableView.register(LabelTableViewCell.nib, forCellReuseIdentifier: LabelTableViewCell.identifier)
@@ -27,6 +28,12 @@ class LabelListViewController: UIViewController {
             }.store(in: &subscriptions)
         
         labelListViewModel.fetchLabelList()
+    }
+    
+    private func configureTableViewFooterView() {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clear
+        labelTableView.tableFooterView = footerView
     }
     
     private func configureNavigationTitle() {
@@ -69,6 +76,7 @@ class LabelListViewController: UIViewController {
             }
             
             additionLabelViewController.setExistingLabel(label)
+            additionLabelViewController.delegate = self
             self?.present(additionLabelViewController, animated: true, completion: nil)
             success(true)
         })
@@ -82,10 +90,15 @@ class LabelListViewController: UIViewController {
         return action
     }
     
+    func additionViewControllerDidFinish() {
+        self.labelListViewModel.fetchLabelList()
+    }
+    
     @objc func showNewLabelView() {
         guard let additionLabelViewController = self.storyboard?.instantiateViewController(identifier: LabelAdditionViewController.identifier) as? LabelAdditionViewController else {
             return
         }
+        additionLabelViewController.delegate = self
         self.present(additionLabelViewController, animated: true, completion: nil)
     }
     

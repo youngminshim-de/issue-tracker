@@ -5,6 +5,8 @@ class MilestoneAdditionViewController: UIViewController {
 
     @IBOutlet weak var additionView: AdditionView!
     
+    weak var delegate: AdditionViewControllerDelegate?
+    
     private var milestoneAdditionViewModel = MilestoneAdditionViewModel()
     private var subscriptions = Set<AnyCancellable>()
     
@@ -17,6 +19,13 @@ class MilestoneAdditionViewController: UIViewController {
     }
     
     private func bind() {
+        milestoneAdditionViewModel.didUpdateResultMessage()
+            .sink { [weak self] result in
+                if result != nil {
+                    self?.delegate?.additionViewControllerDidFinish()
+                }
+            }.store(in: &subscriptions)
+        
         milestoneAdditionViewModel.didUpdateSaveButton()
             .sink { [weak self] result in
                 self?.additionView.saveButton.isEnabled = result

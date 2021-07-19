@@ -1,9 +1,15 @@
 import UIKit
 import Combine
 
+protocol AdditionViewControllerDelegate: AnyObject {
+    func additionViewControllerDidFinish()
+}
+
 class LabelAdditionViewController: UIViewController {
 
     @IBOutlet weak var additionView: AdditionView!
+    
+    weak var delegate: AdditionViewControllerDelegate?
     
     private var labelAdditionViewModel = LabelAdditionViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -16,6 +22,13 @@ class LabelAdditionViewController: UIViewController {
     }
     
     private func bind() {
+        labelAdditionViewModel.didUpdateResultMessage()
+            .sink { [weak self] result in
+                if result != nil {
+                    self?.delegate?.additionViewControllerDidFinish()
+                }
+            }.store(in: &subscriptions)
+        
         labelAdditionViewModel.didUpdateSaveButton()
             .sink { [weak self] result in
                 self?.additionView.saveButton.isEnabled = result
@@ -93,6 +106,9 @@ class LabelAdditionViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    deinit {
+        print(#function)
+    }
 }
 
 extension LabelAdditionViewController: Identifying { }

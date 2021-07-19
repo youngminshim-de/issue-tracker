@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class MilestoneListViewController: UIViewController {
+class MilestoneListViewController: UIViewController, AdditionViewControllerDelegate {
 
     @IBOutlet weak var milestoneTabelView: UITableView!
     private let milestoneListViewModel = MilestoneListViewModel()
@@ -9,6 +9,7 @@ class MilestoneListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableViewFooterView()
         configureNavigationTitle()
         configureAddButton()
         milestoneTabelView.register(MilestoneTableViewCell.nib, forCellReuseIdentifier: MilestoneTableViewCell.identifier)
@@ -27,6 +28,12 @@ class MilestoneListViewController: UIViewController {
             }.store(in: &subscriptions)
         
         milestoneListViewModel.fetchMilestoneList()
+    }
+    
+    private func configureTableViewFooterView() {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clear
+        milestoneTabelView.tableFooterView = footerView
     }
     
     private func configureNavigationTitle() {
@@ -69,6 +76,7 @@ class MilestoneListViewController: UIViewController {
             }
             
             additionMilestoneViewController.setExistingMilestone(milestone)
+            additionMilestoneViewController.delegate = self
             self?.present(additionMilestoneViewController, animated: true, completion: nil)
             success(true)
         })
@@ -82,10 +90,15 @@ class MilestoneListViewController: UIViewController {
         return action
     }
     
+    func additionViewControllerDidFinish() {
+        self.milestoneListViewModel.fetchMilestoneList()
+    }
+    
     @objc func showNewMilestoneView() {
         guard let additionMilestoneViewController = self.storyboard?.instantiateViewController(identifier: MilestoneAdditionViewController.identifier) as? MilestoneAdditionViewController else {
             return
         }
+        additionMilestoneViewController.delegate = self
         self.present(additionMilestoneViewController, animated: true, completion: nil)
     }
     
