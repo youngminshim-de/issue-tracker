@@ -22,6 +22,8 @@
 		BD11B4E226A0586B004429A9 /* AdditionalInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */; };
 		BD11B4E426A05AE4004429A9 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */; };
 		BD1B183B26A5927D006188C5 /* IssueAdditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1B183A26A5927D006188C5 /* IssueAdditionViewModel.swift */; };
+		BD1B183D26A5B28C006188C5 /* IssueAdditionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1B183C26A5B28C006188C5 /* IssueAdditionUseCase.swift */; };
+		BD1B183F26A5B327006188C5 /* IssueAdditionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1B183E26A5B327006188C5 /* IssueAdditionDTO.swift */; };
 		BD1D36F5266E428700B51184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D36F4266E428700B51184 /* AppDelegate.swift */; };
 		BD1D36F7266E428700B51184 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D36F6266E428700B51184 /* SceneDelegate.swift */; };
 		BD1D36F9266E428700B51184 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D36F8266E428700B51184 /* LoginViewController.swift */; };
@@ -137,6 +139,8 @@
 		BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoUseCase.swift; sourceTree = "<group>"; };
 		BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
 		BD1B183A26A5927D006188C5 /* IssueAdditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAdditionViewModel.swift; sourceTree = "<group>"; };
+		BD1B183C26A5B28C006188C5 /* IssueAdditionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAdditionUseCase.swift; sourceTree = "<group>"; };
+		BD1B183E26A5B327006188C5 /* IssueAdditionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAdditionDTO.swift; sourceTree = "<group>"; };
 		BD1D36F1266E428700B51184 /* issue-tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "issue-tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1D36F4266E428700B51184 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD1D36F6266E428700B51184 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,6 +427,7 @@
 				CEB0B4142685A33D00554D32 /* MilestoneListResponseDTO.swift */,
 				BD98417526946434008491F4 /* NewLabelDTO.swift */,
 				BDE699D42695D0FD00ADD4F2 /* NewMilestoneDTO.swift */,
+				BD1B183E26A5B327006188C5 /* IssueAdditionDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				CEB0B4122685A2AD00554D32 /* MilestoneListUseCase.swift */,
 				BD984173269461C7008491F4 /* AdditionUseCase.swift */,
 				BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */,
+				BD1B183C26A5B28C006188C5 /* IssueAdditionUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -740,6 +746,7 @@
 				CEB0B4132685A2AD00554D32 /* MilestoneListUseCase.swift in Sources */,
 				CEA84DF5267B2E1B0006CC2E /* LoginUseCase.swift in Sources */,
 				CE81A5E326824A8700D71888 /* UIColor.swift in Sources */,
+				BD1B183F26A5B327006188C5 /* IssueAdditionDTO.swift in Sources */,
 				BD1F86FE2684D20F005A6FA8 /* MilestoneListViewController.swift in Sources */,
 				CE97638A268208760025CEC3 /* IssueListResponseDTO.swift in Sources */,
 				CE6DEF82268345BC00D6121C /* ResponseBodyDTO.swift in Sources */,
@@ -757,6 +764,7 @@
 				CE6DEF8426834F7A00D6121C /* RequestBodyDTO.swift in Sources */,
 				CEBF140D26787CF00009BB75 /* LoginHelper.swift in Sources */,
 				BD11B4E226A0586B004429A9 /* AdditionalInfoUseCase.swift in Sources */,
+				BD1B183D26A5B28C006188C5 /* IssueAdditionUseCase.swift in Sources */,
 				CE81A5E0268242D100D71888 /* IssueListViewModel.swift in Sources */,
 				CE976391268213A60025CEC3 /* IssueList.swift in Sources */,
 				CEA520BD26831E8100EB6E0E /* RequestManager.swift in Sources */,

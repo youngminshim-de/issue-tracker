@@ -18,6 +18,7 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        configureSaveButtonColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +26,11 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
     }
     
     private func bind() {
+        issueAdditionViewModel.didUpdateSaveButton()
+            .sink { [weak self] isEnable in
+                self?.saveButton.isEnabled = isEnable
+            }.store(in: &subscriptions)
+        
         issueAdditionViewModel.didUpdateLabels()
             .sink { [weak self] label in
                 self?.seletedLabels[0].text = label.first?.title
@@ -39,6 +45,10 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
             .sink { [weak self] assignee in
                 self?.seletedLabels[2].text = assignee.first?.title
             }.store(in: &subscriptions)
+    }
+    
+    private func configureSaveButtonColor() {
+        self.saveButton.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.5), for: .disabled)
     }
     
     private func configureMarkdownView() {
@@ -107,4 +117,21 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         
     }
     
+    @IBAction func editTitle(_ sender: UITextField) {
+        guard let text = sender.text else {
+            return
+        }
+        
+        self.issueAdditionViewModel.configureTitle(text)
+    }
+    
+}
+
+extension IssueAdditionViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        guard let text = textView.text else {
+            return
+        }
+        self.issueAdditionViewModel.configureComment(text)
+    }
 }
