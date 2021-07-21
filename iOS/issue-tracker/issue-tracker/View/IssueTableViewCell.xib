@@ -91,6 +91,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkImage" destination="E9A-TQ-zbz" id="D0H-Co-yoQ"/>
                 <outlet property="content" destination="5gT-3I-aPM" id="eDy-tP-p13"/>
                 <outlet property="label" destination="GeO-05-zJU" id="NgY-xt-YXb"/>
                 <outlet property="milestone" destination="GIi-ua-HME" id="NCq-8I-ru0"/>

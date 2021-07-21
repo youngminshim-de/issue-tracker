@@ -2,22 +2,39 @@ import Foundation
 import Combine
 
 class IssueAdditionViewModel {
-    private var title: String
-    private var comment: String
-    private var file: String?
+
     @Published private var isEnableSaveButton: Bool
+    @Published private var resultMessage: String?
     @Published private var labels: [AdditionalInfo]
     @Published private var milestones: [AdditionalInfo]
     @Published private var assignees: [AdditionalInfo]
+    private var title: String
+    private var comment: String
+    private var file: String?
+    private let issueAdditionUseCase: IssueAdditionUseCase
     
     init() {
-        self.title = ""
-        self.comment = ""
-        self.file = nil
         self.isEnableSaveButton = false
         self.labels = []
         self.milestones = []
         self.assignees = []
+        self.resultMessage = nil
+        self.title = ""
+        self.comment = ""
+        self.file = nil
+        self.issueAdditionUseCase = IssueAdditionUseCase()
+    }
+    
+    func AddNewIssue() {
+        let newIssue = self.makeIssueAddition()
+        self.issueAdditionUseCase.executeAddingIssue(newIssue) { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let resultMessage):
+                self.resultMessage = resultMessage
+            }
+        }
     }
     
     func setAdditionalInfo(_ additionalInfo: [AdditionalInfo], infoType: AdditionalInfoViewModel.IssueAdditionalInfo) {
@@ -69,6 +86,12 @@ class IssueAdditionViewModel {
     
     func didUpdateAssignees() -> AnyPublisher<[AdditionalInfo], Never> {
         return $assignees
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func didUpdateResultMessage() -> AnyPublisher<String?, Never> {
+        return $resultMessage
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

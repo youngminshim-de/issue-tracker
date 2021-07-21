@@ -50,6 +50,10 @@ class IssueListViewModel {
         return isFiltering ? filteredIssueList.issues.count : issueList.issues.count
     }
     
+    func issues() -> IssueList {
+        return self.issueList
+    }
+    
     func issue(indexPath: IndexPath, isFiltering: Bool) -> Issue {
         return isFiltering ? filteredIssueList.issues[indexPath.row] : issueList.issues[indexPath.row]
     }

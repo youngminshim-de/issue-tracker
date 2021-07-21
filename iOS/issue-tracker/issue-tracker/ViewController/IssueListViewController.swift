@@ -30,15 +30,12 @@ class IssueListViewController: UIViewController {
         configureTableView()
     }
     
-    private func configureViewModel() {
-        issueListViewModel = IssueListViewModel(issueListUseCase: DefaultIssueListUseCase())
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         configureFilterButton()
         configureSelectButton()
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
+        self.issueListViewModel.fetchIssueList()
     }
     
     private func bind() {
@@ -58,6 +55,10 @@ class IssueListViewController: UIViewController {
             }.store(in: &subscriptions)
         
         issueListViewModel.fetchIssueList()
+    }
+    
+    private func configureViewModel() {
+        issueListViewModel = IssueListViewModel(issueListUseCase: DefaultIssueListUseCase())
     }
     
     private func configureTableViewFooterView() {
@@ -82,10 +83,6 @@ class IssueListViewController: UIViewController {
         issueTableView.estimatedRowHeight = 200
         issueTableView.rowHeight = UITableView.automaticDimension
         configureTableViewFooterView()
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.issueTableView.tableFooterView = nil
     }
 
     private func configureNavigationItem() {
@@ -119,6 +116,10 @@ class IssueListViewController: UIViewController {
         let selectButton = UIBarButtonItem(customView: button)
         self.navigationItem.rightBarButtonItem = selectButton
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.issueTableView.tableFooterView = nil
+    }
  
     @objc func showIssueListFilterView(sender: UIBarButtonItem) {
         guard let filterViewController = self.storyboard?.instantiateViewController(identifier: IssueListFilterViewController.identifier) as? IssueListFilterViewController else {
@@ -131,6 +132,8 @@ class IssueListViewController: UIViewController {
         guard let issueSelectionViewController = self.storyboard?.instantiateViewController(identifier: IssueSelectionViewController.identifier) as? IssueSelectionViewController else {
             return
         }
+        
+        issueSelectionViewController.setExistingIssues(self.issueListViewModel.issues())
         self.navigationController?.pushViewController(issueSelectionViewController, animated: false)
     }
     

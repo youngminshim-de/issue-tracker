@@ -6,9 +6,17 @@ class IssueTableViewCell: UITableViewCell, Identifying {
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var milestone: UILabel!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var checkImage: UIImageView!
     
     static var nib: UINib {
         return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        let ivoryColor = UIColor(hex: "#FFFEFC")
+        contentView.backgroundColor = selected ? ivoryColor : .white
+        self.checkImage.isHidden = !selected
     }
     
     func configure(issue: Issue) {

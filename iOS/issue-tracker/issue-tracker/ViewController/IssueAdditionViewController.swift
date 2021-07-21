@@ -45,6 +45,13 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
             .sink { [weak self] assignee in
                 self?.seletedLabels[2].text = assignee.first?.title
             }.store(in: &subscriptions)
+        
+        issueAdditionViewModel.didUpdateResultMessage()
+            .sink { [weak self] result in
+                if result != nil {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }.store(in: &subscriptions)
     }
     
     private func configureSaveButtonColor() {
@@ -95,6 +102,10 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         default:
             break
         }
+    }
+    
+    @IBAction func pressedSaveButton(_ sender: UIButton) {
+        issueAdditionViewModel.AddNewIssue()
     }
     
     @IBAction func pressedAdditionButton(_ sender: UIButton) {

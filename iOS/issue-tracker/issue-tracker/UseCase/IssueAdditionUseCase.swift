@@ -13,9 +13,9 @@ class IssueAdditionUseCase {
         self.subscriptions = Set<AnyCancellable>()
     }
     
-    func executeAddingIssue(_ newLabel: NewLabelDTO, completion: @escaping (Result<String, NetworkError>) -> Void) {
-        let url = endPoint.makeURL(with: Path.label.rawValue)
-        networkManager.sendRequest(with: url, method: .post, type: ResponseBodyDTO.self, body: newLabel)
+    func executeAddingIssue(_ newIssue: IssueAdditionDTO, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        let url = endPoint.makeURL()
+        networkManager.sendRequest(with: url, method: .post, type: ResponseBodyDTO.self, body: newIssue)
             .sink { result in
                 switch result {
                 case .failure(let error):
