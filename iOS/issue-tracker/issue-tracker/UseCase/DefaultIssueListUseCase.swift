@@ -3,7 +3,7 @@ import Combine
 
 protocol IssueListUseCase {
     
-    func executeFetchingIssueList(completion: @escaping (Result<IssueList, NetworkError>) -> Void)
+    func executeFetchingIssueList(filterCondition: FilterCondition, completion: @escaping (Result<IssueList, NetworkError>) -> Void)
     func executeDeleteIssue(issueID: Int, completion: @escaping (Result<String, NetworkError>) -> Void)
     func executeCloseIssue(issueIDs: [Int], completion: @escaping (Result<String, NetworkError>) -> Void)
     
@@ -21,8 +21,8 @@ class DefaultIssueListUseCase: IssueListUseCase {
         self.subscriptions = Set<AnyCancellable>()
     }
     
-    func executeFetchingIssueList(completion: @escaping (Result<IssueList, NetworkError>) -> Void) {
-        let url = endPoint.makeURL()
+    func executeFetchingIssueList(filterCondition: FilterCondition, completion: @escaping (Result<IssueList, NetworkError>) -> Void) {
+        let url = endPoint.makeFilterURL(filterCondition: filterCondition)
         networkManager.sendRequest(with: url, method: .get, type: IssueListResponseDTO.self)
             .sink { result in
                 switch result {

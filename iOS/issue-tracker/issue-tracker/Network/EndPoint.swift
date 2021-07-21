@@ -23,6 +23,14 @@ enum Path: String {
     
 }
 
+enum FilterState: String {
+    
+    case myIssue = "my_issue"
+    case myComment = "my_comment"
+    case myAssign = "my_assign"
+    
+}
+
 struct EndPoint {
 
     private var scheme: String
@@ -40,6 +48,23 @@ struct EndPoint {
         component.scheme = scheme
         component.host = host
         component.path = self.path + path
+        return component.url
+    }
+    
+    func makeFilterURL(filterCondition: FilterCondition) -> URL? {
+        var component = URLComponents()
+        component.scheme = scheme
+        component.host = host
+        component.path = self.path
+        
+        let isOpen = URLQueryItem(name: "is_open", value: filterCondition.isOpenToString())
+        let state = URLQueryItem(name: "filter", value: filterCondition.filterToString())
+        let assignee = URLQueryItem(name: "assignee", value: filterCondition.assigneeToString())
+        let label = URLQueryItem(name: "label", value: filterCondition.labelToString())
+        let milestone = URLQueryItem(name: "milestone", value: filterCondition.milestoneToString())
+        let writer = URLQueryItem(name: "writer", value: filterCondition.writerToString())
+        
+        component.queryItems = [isOpen, state, assignee, label, milestone, writer]
         return component.url
     }
     

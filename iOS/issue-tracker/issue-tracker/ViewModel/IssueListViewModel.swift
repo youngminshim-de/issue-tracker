@@ -7,6 +7,7 @@ class IssueListViewModel {
     @Published private var errorMessage: NetworkError?
     @Published private var resultMessage: String?
     private var filteredIssueList: IssueList
+    private var filterCondition: FilterCondition
     private let defaultIssueListUseCase: IssueListUseCase
 
     init(issueListUseCase: IssueListUseCase) {
@@ -14,11 +15,12 @@ class IssueListViewModel {
         self.errorMessage = nil
         self.resultMessage = nil
         self.filteredIssueList = IssueList(issues: [])
+        self.filterCondition = FilterCondition(isOpen: true)
         self.defaultIssueListUseCase = issueListUseCase
     }
     
     func fetchIssueList() {
-        defaultIssueListUseCase.executeFetchingIssueList { result in
+        defaultIssueListUseCase.executeFetchingIssueList(filterCondition: self.filterCondition) { result in
             switch result {
             case .failure(let error):
                 self.errorMessage = error

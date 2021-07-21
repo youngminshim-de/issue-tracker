@@ -101,6 +101,7 @@
 		CEBF140F267883500009BB75 /* JWTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF140E267883500009BB75 /* JWTManager.swift */; };
 		CEBF1412267887550009BB75 /* JWTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF140E267883500009BB75 /* JWTManager.swift */; };
 		CEBF141426788D910009BB75 /* JWTManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF141326788D910009BB75 /* JWTManagerTest.swift */; };
+		CEDBD77826A84C9300F0131D /* FilterCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBD77726A84C9300F0131D /* FilterCondition.swift */; };
 		D1A7BE791A93D93FFEAD56C9 /* Pods_issue_tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9D20682EEABD0253D986DA /* Pods_issue_tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +215,7 @@
 		CEBF140C26787CF00009BB75 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		CEBF140E267883500009BB75 /* JWTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTManager.swift; sourceTree = "<group>"; };
 		CEBF141326788D910009BB75 /* JWTManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTManagerTest.swift; sourceTree = "<group>"; };
+		CEDBD77726A84C9300F0131D /* FilterCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCondition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +415,7 @@
 				BD1F86F92684C6D5005A6FA8 /* LabelList.swift */,
 				CEB0B4162685A3E600554D32 /* MilestoneList.swift */,
 				BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */,
+				CEDBD77726A84C9300F0131D /* FilterCondition.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				BDE699CF26958E0000ADD4F2 /* LabelAdditionViewController.swift in Sources */,
 				BD1D36F5266E428700B51184 /* AppDelegate.swift in Sources */,
 				BD11B4E026A056A5004429A9 /* AdditionalInfoViewModel.swift in Sources */,
+				CEDBD77826A84C9300F0131D /* FilterCondition.swift in Sources */,
 				CEB0B4192685A4DB00554D32 /* MilestoneListViewModel.swift in Sources */,
 				CEA84DF7267B760F0006CC2E /* TabBarRootController.swift in Sources */,
 				CE71835E2671EB78008B287F /* FilterTableViewCell.swift in Sources */,
