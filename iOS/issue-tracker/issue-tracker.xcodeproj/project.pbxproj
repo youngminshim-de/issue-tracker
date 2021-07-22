@@ -55,6 +55,9 @@
 		BDE699D126959B4200ADD4F2 /* MilestoneAdditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE699D026959B4200ADD4F2 /* MilestoneAdditionViewController.swift */; };
 		BDE699D32695CE9800ADD4F2 /* MilestoneAdditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE699D22695CE9800ADD4F2 /* MilestoneAdditionViewModel.swift */; };
 		BDE699D52695D0FD00ADD4F2 /* NewMilestoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE699D42695D0FD00ADD4F2 /* NewMilestoneDTO.swift */; };
+		CE28F2A526A86D020070D5D5 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28F2A326A86D020070D5D5 /* CommentTableViewCell.swift */; };
+		CE28F2A626A86D020070D5D5 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE28F2A426A86D020070D5D5 /* CommentTableViewCell.xib */; };
+		CE28F2A826A86FCC0070D5D5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28F2A726A86FCC0070D5D5 /* IssueDetailViewController.swift */; };
 		CE3014D926A69749009D520F /* IssueSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3014D826A69749009D520F /* IssueSelectionViewModel.swift */; };
 		CE5910C12681B8E100AA7691 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5910C02681B8E100AA7691 /* NetworkManagerTest.swift */; };
 		CE5910C22681B95700AA7691 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DF0267B079C0006CC2E /* NetworkManager.swift */; };
@@ -182,6 +185,9 @@
 		BDE699D42695D0FD00ADD4F2 /* NewMilestoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMilestoneDTO.swift; sourceTree = "<group>"; };
 		BE8239AFCA4C0E7723B72656 /* Pods-issue-tracker-issue-trackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-issue-tracker-issue-trackerUITests.debug.xcconfig"; path = "Target Support Files/Pods-issue-tracker-issue-trackerUITests/Pods-issue-tracker-issue-trackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C98CDF1DA60B74180A2F7B96 /* Pods-issue-tracker-issue-trackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-issue-tracker-issue-trackerUITests.release.xcconfig"; path = "Target Support Files/Pods-issue-tracker-issue-trackerUITests/Pods-issue-tracker-issue-trackerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CE28F2A326A86D020070D5D5 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		CE28F2A426A86D020070D5D5 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		CE28F2A726A86FCC0070D5D5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		CE3014D826A69749009D520F /* IssueSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectionViewModel.swift; sourceTree = "<group>"; };
 		CE5910C02681B8E100AA7691 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		CE6B9D6B2693132900973FFE /* LabelAdditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAdditionViewModel.swift; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 				BDE699CE26958E0000ADD4F2 /* LabelAdditionViewController.swift */,
 				BDE699D026959B4200ADD4F2 /* MilestoneAdditionViewController.swift */,
 				BD11B4DD26A04A97004429A9 /* AdditionalInfoViewController.swift */,
+				CE28F2A726A86FCC0070D5D5 /* IssueDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -396,6 +403,8 @@
 				BD1F87002684D33F005A6FA8 /* MilestoneTableViewCell.xib */,
 				BDE699CA26958CCA00ADD4F2 /* AdditionView.swift */,
 				BDE699CC26958CDA00ADD4F2 /* AdditionView.xib */,
+				CE28F2A326A86D020070D5D5 /* CommentTableViewCell.swift */,
+				CE28F2A426A86D020070D5D5 /* CommentTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -597,6 +606,7 @@
 				BD1D3701266E428700B51184 /* LaunchScreen.storyboard in Resources */,
 				BD1D36FE266E428700B51184 /* Assets.xcassets in Resources */,
 				BD1D36FC266E428700B51184 /* Main.storyboard in Resources */,
+				CE28F2A626A86D020070D5D5 /* CommentTableViewCell.xib in Resources */,
 				BD1D3735266F5D9800B51184 /* IssueTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +759,7 @@
 				BD1F87012684D33F005A6FA8 /* MilestoneTableViewCell.swift in Sources */,
 				BD1F86F62684C424005A6FA8 /* LabelListResponseDTO.swift in Sources */,
 				CEA84E00267B863F0006CC2E /* UserInfoViewModel.swift in Sources */,
+				CE28F2A526A86D020070D5D5 /* CommentTableViewCell.swift in Sources */,
 				CEB0B4132685A2AD00554D32 /* MilestoneListUseCase.swift in Sources */,
 				CEA84DF5267B2E1B0006CC2E /* LoginUseCase.swift in Sources */,
 				CE81A5E326824A8700D71888 /* UIColor.swift in Sources */,
@@ -788,6 +799,7 @@
 				CEA84DF3267B0D350006CC2E /* EndPoint.swift in Sources */,
 				BDE699CF26958E0000ADD4F2 /* LabelAdditionViewController.swift in Sources */,
 				BD1D36F5266E428700B51184 /* AppDelegate.swift in Sources */,
+				CE28F2A826A86FCC0070D5D5 /* IssueDetailViewController.swift in Sources */,
 				BD11B4E026A056A5004429A9 /* AdditionalInfoViewModel.swift in Sources */,
 				CEDBD77826A84C9300F0131D /* FilterCondition.swift in Sources */,
 				CEB0B4192685A4DB00554D32 /* MilestoneListViewModel.swift in Sources */,

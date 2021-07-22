@@ -16,6 +16,7 @@ class MilestoneTableViewCell: UITableViewCell, Identifying {
     }
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         self.openIssueView.layer.borderWidth = 1
         let customBlueColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1)
         self.openIssueView.layer.borderColor = customBlueColor.cgColor
