@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import Alamofire
 
 class LoginUseCase {
     
@@ -23,6 +24,10 @@ class LoginUseCase {
     
     func callbackURLscheme() -> String {
         return loginHelper.callbackURLscheme()
+    }
+    
+    func naverLoginURL() -> URL? {
+        return loginHelper.naverLoginURL()
     }
     
     func convertToGitHubLogInURL(from callbackURL: URL) -> URL? {
@@ -65,6 +70,19 @@ class LoginUseCase {
                     completion(true)
                 }
             }.store(in: &subscriptions)
+    }
+    
+    func executeFetchingNaverUserInfo(url: URL, authorization: String, userInfo: @escaping (LoginDTO) -> Void) {
+        let urlRequest = AF.request(url, method: .get, headers: ["Authorization" : authorization])
+        urlRequest.responseJSON { response in
+            guard let result = response.value as? [String: Any],
+                  let object = result["response"] as? [String: Any],
+                  let username = object["name"] as? String,
+                  let email = object["email"] as? String,
+                  let profileImage = object["profile_image"] as? String else { return }
+            let naverUserInfo = LoginDTO(email: email, username: username, profileImage: profileImage)
+            userInfo(naverUserInfo)
+        }
     }
     
 }

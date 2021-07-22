@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joF-lb-xtI">
-                                <rect key="frame" x="70" y="209" width="274.5" height="57.5"/>
+                                <rect key="frame" x="70" y="209" width="274.5" height="62.5"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w63-YT-NKm">
-                                <rect key="frame" x="0.0" y="338.5" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="343.5" width="414" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGK-7P-jaP">
                                         <rect key="frame" x="20" y="11" width="44.5" height="22"/>
@@ -95,35 +95,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqa-hW-Efv">
-                                <rect key="frame" x="96" y="460.5" width="42" height="32"/>
+                                <rect key="frame" x="96" y="465.5" width="42" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="로그인"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDW-DW-3fg">
-                                <rect key="frame" x="258" y="460.5" width="60" height="32"/>
+                                <rect key="frame" x="258" y="465.5" width="60" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="회원 가입"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpA-Ma-aho">
-                                <rect key="frame" x="16" y="676" width="382" height="56"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="xbG-rh-yvd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
-                                <state key="normal" title="  GitHub 계정으로 로그인" image="GitHubImage">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pressedGithubLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1MZ-2x-39U"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-kI-rKL">
                                 <rect key="frame" x="16" y="606" width="382" height="56"/>
@@ -146,26 +125,8 @@
                                     <action selector="pressedGoogleLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm3-Je-klR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WJ-Re-OVw">
-                                <rect key="frame" x="16" y="746" width="382" height="56"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="XVp-hC-bHi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="  Apple 계정으로 로그인" image="applelogo" catalog="system">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYA-lj-fVl">
-                                <rect key="frame" x="16" y="536" width="382" height="56"/>
+                                <rect key="frame" x="16" y="676" width="382" height="56"/>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="leS-b2-u0u"/>
@@ -185,6 +146,49 @@
                                     <action selector="pressedKakaoLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Fs-Fy-5KT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WJ-Re-OVw">
+                                <rect key="frame" x="16" y="746" width="382" height="56"/>
+                                <color key="backgroundColor" red="0.011764705882352941" green="0.7803921568627451" blue="0.3529411764705882" alpha="0.98334861906948468" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="XVp-hC-bHi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
+                                <state key="normal" title="  Naver 계정으로 로그인" image="NaverbtnG_square">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pressedNaverLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ras-a4-wsR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpA-Ma-aho">
+                                <rect key="frame" x="16" y="536" width="382" height="56"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="xbG-rh-yvd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
+                                <state key="normal" title="  GitHub 계정으로 로그인" image="GitHubImage">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pressedGithubLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1MZ-2x-39U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -193,8 +197,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0WJ-Re-OVw" secondAttribute="bottom" constant="60" id="3t1-zo-v4u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xpA-Ma-aho" secondAttribute="trailing" constant="16" id="4qY-P7-DLR"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5i3-fY-DRl"/>
-                            <constraint firstItem="xpA-Ma-aho" firstAttribute="top" secondItem="8VI-kI-rKL" secondAttribute="bottom" constant="14" id="7qT-Vy-mQg"/>
-                            <constraint firstItem="0WJ-Re-OVw" firstAttribute="top" secondItem="xpA-Ma-aho" secondAttribute="bottom" constant="14" id="9Rs-bP-KZT"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="top" secondItem="joF-lb-xtI" secondAttribute="bottom" constant="72" id="Av3-na-DtK"/>
                             <constraint firstItem="joF-lb-xtI" firstAttribute="top" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="165" id="BtE-vl-0aa"/>
                             <constraint firstItem="pqa-hW-Efv" firstAttribute="top" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="32" id="CXR-nE-p3o"/>
@@ -207,10 +209,12 @@
                             <constraint firstItem="hYA-lj-fVl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="QEz-Ea-Ssx"/>
                             <constraint firstItem="JDW-DW-3fg" firstAttribute="top" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="32" id="TSC-5Q-Nkw"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xf1-5F-1nk"/>
-                            <constraint firstItem="8VI-kI-rKL" firstAttribute="top" secondItem="hYA-lj-fVl" secondAttribute="bottom" constant="14" id="erd-h9-cIG"/>
-                            <constraint firstItem="hYA-lj-fVl" firstAttribute="top" relation="lessThanOrEqual" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="107.5" id="fNH-yO-fhj"/>
+                            <constraint firstItem="xpA-Ma-aho" firstAttribute="top" relation="lessThanOrEqual" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="102.5" id="cke-6b-vxw"/>
                             <constraint firstItem="xpA-Ma-aho" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="qfG-pg-Iwf"/>
                             <constraint firstItem="8VI-kI-rKL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uXQ-Xl-Dul"/>
+                            <constraint firstItem="hYA-lj-fVl" firstAttribute="top" secondItem="8VI-kI-rKL" secondAttribute="bottom" constant="14" id="ueP-vp-gln"/>
+                            <constraint firstItem="0WJ-Re-OVw" firstAttribute="top" secondItem="hYA-lj-fVl" secondAttribute="bottom" constant="14" id="ujp-Sd-Jaj"/>
+                            <constraint firstItem="8VI-kI-rKL" firstAttribute="top" secondItem="xpA-Ma-aho" secondAttribute="bottom" constant="14" id="ukL-HJ-WvC"/>
                             <constraint firstItem="JDW-DW-3fg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pqa-hW-Efv" secondAttribute="trailing" constant="127" id="yFo-Oj-aBY"/>
                             <constraint firstItem="joF-lb-xtI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="yzc-eH-LLK"/>
                         </constraints>
@@ -1341,7 +1345,7 @@
     </scenes>
     <resources>
         <image name="GitHubImage" width="24" height="24"/>
-        <image name="applelogo" catalog="system" width="103" height="128"/>
+        <image name="NaverbtnG_square" width="35" height="35"/>
         <image name="archivebox" catalog="system" width="128" height="106"/>
         <image name="btn_google_light_normal_ios" width="48" height="48"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>

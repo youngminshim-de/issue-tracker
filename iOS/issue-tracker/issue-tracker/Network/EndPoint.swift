@@ -36,6 +36,7 @@ enum SocialLogin: String {
     
     case google = "/google/ios"
     case kakao = "/kakao/ios"
+    case naver = "/naver/ios"
     
 }
 

@@ -25,6 +25,7 @@ PODS:
   - KakaoSDKUser (2.5.3):
     - KakaoSDKAuth (= 2.5.3)
   - MarkdownView (1.7.1)
+  - naveridlogin-sdk-ios (4.1.3)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - KakaoSDKCommon
   - KakaoSDKUser
   - MarkdownView
+  - naveridlogin-sdk-ios
   - SwiftLint
 
 SPEC REPOS:
@@ -46,6 +48,7 @@ SPEC REPOS:
     - KakaoSDKCommon
     - KakaoSDKUser
     - MarkdownView
+    - naveridlogin-sdk-ios
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -58,8 +61,9 @@ SPEC CHECKSUMS:
   KakaoSDKCommon: 08548932f6f570215ea038241a98157c0b3f7a8b
   KakaoSDKUser: 5d2de71fe070455bbaaad6a37af3eb500fbc8972
   MarkdownView: cf30a97ab39b2bce04406adce541972c882363bd
+  naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 3c8ab487515e3c56ed11ebbd510bc7aa716765b6
+PODFILE CHECKSUM: 965f9e6dda8fd8dc4c6e112f17aa46422e3ef428
 
 COCOAPODS: 1.10.1

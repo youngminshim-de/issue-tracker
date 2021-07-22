@@ -5,6 +5,7 @@ import GoogleSignIn
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import NaverThirdPartyLogin
 
 class LoginViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
 
@@ -87,6 +88,13 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
         }
     }
     
+    @IBAction func pressedNaverLogin(_ sender: UIButton) {
+        let naverLogin = NaverThirdPartyLoginConnection.getSharedInstance()
+        naverLogin?.delegate = self
+        naverLogin?.resetToken()
+        naverLogin?.requestThirdPartyLogin()
+    }
+    
 }
 
 extension LoginViewController: GIDSignInDelegate {
@@ -123,6 +131,52 @@ extension LoginViewController: GIDSignInDelegate {
                 }
             }
         }
+    }
+    
+}
+
+extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
+    
+    func getNaverInfo() {
+        let naverLogin = NaverThirdPartyLoginConnection.getSharedInstance()
+        guard let isValidAccessToken = naverLogin?.isValidAccessTokenExpireTimeNow(), isValidAccessToken == true else { return }
+        
+        guard let tokenType = naverLogin?.tokenType else { return }
+        guard let accessToken = naverLogin?.accessToken else { return }
+        guard let naverLoginURL = loginUseCase.naverLoginURL() else { return }
+        let authorization = "\(tokenType) \(accessToken)"
+        
+        self.loginUseCase.executeFetchingNaverUserInfo(url: naverLoginURL, authorization: authorization) { [weak self] userInfo in
+            print(userInfo)
+            self?.loginUseCase.executeSocialLogIn(url: .naver, userInfo: userInfo, completion: { [weak self] completion in
+                if completion {
+                    DispatchQueue.main.async {
+                        self?.performSegue(withIdentifier: "ToIssueList", sender: nil)
+                    }
+                } else {
+                    // 알러트
+                    print("로그인 에러")
+                }
+            })
+        }
+        
+    }
+    
+    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+        getNaverInfo()
+    }
+    
+    func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+        
+    }
+    
+    func oauth20ConnectionDidFinishDeleteToken() {
+        let naverLogin = NaverThirdPartyLoginConnection.getSharedInstance()
+        naverLogin?.requestDeleteToken()
+    }
+    
+    func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+        
     }
     
 }
