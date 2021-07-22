@@ -8,6 +8,9 @@ target 'issue-tracker' do
 pod 'SwiftLint'
 pod "MarkdownView"
 pod 'GoogleSignIn'
+pod 'KakaoSDKAuth'
+pod 'KakaoSDKUser'
+pod 'KakaoSDKCommon'
 
   # Pods for issue-tracker
 

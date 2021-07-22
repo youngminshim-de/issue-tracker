@@ -111,6 +111,7 @@
                                     <constraint firstAttribute="height" constant="56" id="xbG-rh-yvd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
                                 <state key="normal" title="  GitHub 계정으로 로그인" image="GitHubImage">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -122,6 +123,27 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="pressedGithubLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1MZ-2x-39U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-kI-rKL">
+                                <rect key="frame" x="16" y="606" width="382" height="56"/>
+                                <color key="backgroundColor" red="0.0" green="0.47733163934905759" blue="0.98960999768189706" alpha="0.75476892736573886" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="VL7-0w-hSe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
+                                <state key="normal" title=" Google 계정으로 로그인" image="btn_google_light_normal_ios">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pressedGoogleLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm3-Je-klR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WJ-Re-OVw">
@@ -142,15 +164,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-kI-rKL">
-                                <rect key="frame" x="16" y="606" width="382" height="56"/>
-                                <color key="backgroundColor" red="0.0" green="0.47733163934905759" blue="0.98960999768189706" alpha="0.75476892736573886" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYA-lj-fVl">
+                                <rect key="frame" x="16" y="536" width="382" height="56"/>
+                                <color key="backgroundColor" red="0.99607843137254903" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="VL7-0w-hSe"/>
+                                    <constraint firstAttribute="height" constant="56" id="leS-b2-u0u"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title=" Google 계정으로 로그인" image="btn_google_light_normal_ios">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
+                                <state key="normal" title="카카오 계정으로 로그인" image="kakao_login_original">
+                                    <color key="titleColor" white="0.0" alpha="0.84862472837334435" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -159,13 +182,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="pressedGoogleLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm3-Je-klR"/>
+                                    <action selector="pressedKakaoLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Fs-Fy-5KT"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hYA-lj-fVl" secondAttribute="trailing" constant="16" id="1Hu-8a-VFL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0WJ-Re-OVw" secondAttribute="bottom" constant="60" id="3t1-zo-v4u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xpA-Ma-aho" secondAttribute="trailing" constant="16" id="4qY-P7-DLR"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5i3-fY-DRl"/>
@@ -180,9 +204,11 @@
                             <constraint firstItem="0WJ-Re-OVw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="GA3-Xx-hED"/>
                             <constraint firstItem="pqa-hW-Efv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="96" id="GEA-Mi-lat"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JDW-DW-3fg" secondAttribute="trailing" constant="96" id="IeC-jA-bgF"/>
+                            <constraint firstItem="hYA-lj-fVl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="QEz-Ea-Ssx"/>
                             <constraint firstItem="JDW-DW-3fg" firstAttribute="top" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="32" id="TSC-5Q-Nkw"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xf1-5F-1nk"/>
-                            <constraint firstItem="8VI-kI-rKL" firstAttribute="top" relation="lessThanOrEqual" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="177.5" id="io0-Z3-VQl"/>
+                            <constraint firstItem="8VI-kI-rKL" firstAttribute="top" secondItem="hYA-lj-fVl" secondAttribute="bottom" constant="14" id="erd-h9-cIG"/>
+                            <constraint firstItem="hYA-lj-fVl" firstAttribute="top" relation="lessThanOrEqual" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="107.5" id="fNH-yO-fhj"/>
                             <constraint firstItem="xpA-Ma-aho" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="qfG-pg-Iwf"/>
                             <constraint firstItem="8VI-kI-rKL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uXQ-Xl-Dul"/>
                             <constraint firstItem="JDW-DW-3fg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pqa-hW-Efv" secondAttribute="trailing" constant="127" id="yFo-Oj-aBY"/>
@@ -1323,6 +1349,7 @@
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
+        <image name="kakao_login_original" width="37.5" height="37.5"/>
         <image name="mileStoneImage" width="17" height="18"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>

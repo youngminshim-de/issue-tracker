@@ -35,6 +35,7 @@ enum FilterState: String {
 enum SocialLogin: String {
     
     case google = "/google/ios"
+    case kakao = "/kakao/ios"
     
 }
 

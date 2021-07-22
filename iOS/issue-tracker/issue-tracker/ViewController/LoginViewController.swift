@@ -2,6 +2,9 @@ import UIKit
 import Combine
 import AuthenticationServices
 import GoogleSignIn
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class LoginViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
 
@@ -49,6 +52,39 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
     
     @IBAction func pressedGoogleLogin(_ sender: UIButton) {
         GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction func pressedKakaoLogin(_ sender: UIButton) {
+        UserApi.shared.loginWithKakaoAccount(prompts: [.Login]) {[weak self] _, error in
+            if let error = error {
+                // 알러트
+                print(error.localizedDescription)
+                return
+            } else {
+                UserApi.shared.me { user, error in
+                    if let error = error {
+                        // 알러트
+                        print(error.localizedDescription)
+                    } else {
+                        if let username = user?.kakaoAccount?.profile?.nickname, let email = user?.kakaoAccount?.email, let profileImage = user?.kakaoAccount?.profile?.thumbnailImageUrl {
+                            let userInfo = LoginDTO(email: email, username: username, profileImage: profileImage.absoluteString)
+                            print(userInfo)
+                            self?.loginUseCase.executeSocialLogIn(url: .kakao, userInfo: userInfo, completion: { [weak self] completion in
+                                if completion {
+                                    DispatchQueue.main.async {
+                                        self?.performSegue(withIdentifier: "ToIssueList", sender: nil)
+                                    }
+                                } else {
+                                    // 알러트
+                                    print("로그인 에러")
+                                }
+                            })
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
     
 }
