@@ -5,6 +5,7 @@ class LoginHelper {
     
     private let callbackURLScheme = "issueTracker"
     private let gitHubLoginUrlString = "https://github.com/login/oauth/authorize?client_id=04fb3475fc652d5304a3"
+    private let naverLoginUrlString = "https://openapi.naver.com/v1/nid/me"
     
     func callbackURLscheme() -> String {
         return callbackURLScheme
@@ -12,6 +13,10 @@ class LoginHelper {
     
     func gitHubLoginURL() -> URL? {
         return URL(string: gitHubLoginUrlString)
+    }
+    
+    func naverLoginURL() -> URL? {
+        return URL(string: naverLoginUrlString)
     }
     
     func extractedAuthorizationCode(from url: URL) -> String {
