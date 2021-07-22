@@ -15,6 +15,7 @@ enum Host: String {
 enum Path: String {
     
     case api = "/api"
+    case login = "/login"
     case user = "/user"
     case issues = "/issues"
     case close = "/close"
@@ -28,6 +29,12 @@ enum FilterState: String {
     case myIssue = "my_issue"
     case myComment = "my_comment"
     case myAssign = "my_assign"
+    
+}
+
+enum SocialLogin: String {
+    
+    case google = "/google/ios"
     
 }
 

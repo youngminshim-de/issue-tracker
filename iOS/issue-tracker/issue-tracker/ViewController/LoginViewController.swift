@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 import AuthenticationServices
+import GoogleSignIn
 
 class LoginViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
 
@@ -9,14 +10,15 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureWebAuthSession()
+        configureGitHubLogin()
+        configureGoogleLogin()
     }
     
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return self.view.window ?? ASPresentationAnchor()
     }
     
-    private func configureWebAuthSession() {
+    private func configureGitHubLogin() {
         guard let githubLoginURL = loginUseCase.gitHubLoginURL() else { return }
         let callbackURLScheme = loginUseCase.callbackURLscheme()
         
@@ -33,6 +35,7 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
                         self?.performSegue(withIdentifier: "ToIssueList", sender: nil)
                     }
                 } else {
+                    // 알러트 띄우기
                     print("로그인 에러")
                 }
             }
@@ -42,6 +45,48 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
     
     @IBAction func pressedGithubLogin(_ sender: UIButton) {
         webAuthSession?.start()
+    }
+    
+    @IBAction func pressedGoogleLogin(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+}
+
+extension LoginViewController: GIDSignInDelegate {
+    
+    func configureGoogleLogin() {
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            // 알러트
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+                print(error.localizedDescription)
+            }
+            return
+        }
+        
+        let dimension = UInt(round(100 * UIScreen.main.scale))
+        if let username = user.profile.name, let email = user.profile.email,
+           let profileImage = user.profile.imageURL(withDimension: dimension) {
+            let userInfo = LoginDTO(email: email, username: username, profileImage: profileImage.absoluteString)
+            print(userInfo)
+            self.loginUseCase.executeSocialLogIn(url: .google, userInfo: userInfo) { [weak self] completion in
+                if completion {
+                    DispatchQueue.main.async {
+                        self?.performSegue(withIdentifier: "ToIssueList", sender: nil)
+                    }
+                } else {
+                    // 알러트
+                    print("로그인 에러")
+                }
+            }
+        }
     }
     
 }

@@ -7,6 +7,7 @@ target 'issue-tracker' do
 
 pod 'SwiftLint'
 pod "MarkdownView"
+pod 'GoogleSignIn'
 
   # Pods for issue-tracker
 

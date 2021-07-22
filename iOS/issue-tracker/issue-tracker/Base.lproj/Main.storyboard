@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vYe-3U-hqP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -106,7 +106,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpA-Ma-aho">
                                 <rect key="frame" x="16" y="676" width="382" height="56"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="xbG-rh-yvd"/>
                                 </constraints>
@@ -142,18 +142,39 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-kI-rKL">
+                                <rect key="frame" x="16" y="606" width="382" height="56"/>
+                                <color key="backgroundColor" red="0.0" green="0.47733163934905759" blue="0.98960999768189706" alpha="0.75476892736573886" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="VL7-0w-hSe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title=" Google 계정으로 로그인" image="btn_google_light_normal_ios">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pressedGoogleLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm3-Je-klR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xpA-Ma-aho" firstAttribute="top" relation="lessThanOrEqual" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="247.5" id="0M8-RT-QG2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0WJ-Re-OVw" secondAttribute="bottom" constant="60" id="3t1-zo-v4u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xpA-Ma-aho" secondAttribute="trailing" constant="16" id="4qY-P7-DLR"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5i3-fY-DRl"/>
+                            <constraint firstItem="xpA-Ma-aho" firstAttribute="top" secondItem="8VI-kI-rKL" secondAttribute="bottom" constant="14" id="7qT-Vy-mQg"/>
                             <constraint firstItem="0WJ-Re-OVw" firstAttribute="top" secondItem="xpA-Ma-aho" secondAttribute="bottom" constant="14" id="9Rs-bP-KZT"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="top" secondItem="joF-lb-xtI" secondAttribute="bottom" constant="72" id="Av3-na-DtK"/>
                             <constraint firstItem="joF-lb-xtI" firstAttribute="top" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="165" id="BtE-vl-0aa"/>
                             <constraint firstItem="pqa-hW-Efv" firstAttribute="top" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="32" id="CXR-nE-p3o"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8VI-kI-rKL" secondAttribute="trailing" constant="16" id="Dh3-2g-Jli"/>
                             <constraint firstItem="joF-lb-xtI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EHH-hc-X9V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0WJ-Re-OVw" secondAttribute="trailing" constant="16" id="EyX-uo-3xc"/>
                             <constraint firstItem="0WJ-Re-OVw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="GA3-Xx-hED"/>
@@ -161,7 +182,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JDW-DW-3fg" secondAttribute="trailing" constant="96" id="IeC-jA-bgF"/>
                             <constraint firstItem="JDW-DW-3fg" firstAttribute="top" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="32" id="TSC-5Q-Nkw"/>
                             <constraint firstItem="w63-YT-NKm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xf1-5F-1nk"/>
+                            <constraint firstItem="8VI-kI-rKL" firstAttribute="top" relation="lessThanOrEqual" secondItem="w63-YT-NKm" secondAttribute="bottom" constant="177.5" id="io0-Z3-VQl"/>
                             <constraint firstItem="xpA-Ma-aho" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="qfG-pg-Iwf"/>
+                            <constraint firstItem="8VI-kI-rKL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uXQ-Xl-Dul"/>
                             <constraint firstItem="JDW-DW-3fg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pqa-hW-Efv" secondAttribute="trailing" constant="127" id="yFo-Oj-aBY"/>
                             <constraint firstItem="joF-lb-xtI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="yzc-eH-LLK"/>
                         </constraints>
@@ -1294,6 +1317,7 @@
         <image name="GitHubImage" width="24" height="24"/>
         <image name="applelogo" catalog="system" width="103" height="128"/>
         <image name="archivebox" catalog="system" width="128" height="106"/>
+        <image name="btn_google_light_normal_ios" width="48" height="48"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>

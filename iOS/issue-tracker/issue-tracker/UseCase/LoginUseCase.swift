@@ -5,12 +5,14 @@ class LoginUseCase {
     
     private let jwtManager: JWTManageable
     private let loginHelper: LoginHelper
+    private let endPoint: EndPoint
     private let networkManager: NetworkManager
     private var subscriptions: Set<AnyCancellable>
     
     init() {
         self.jwtManager = JWTManager()
         self.loginHelper = LoginHelper()
+        self.endPoint = EndPoint(scheme: Scheme.http.rawValue, host: Host.base.rawValue, path: Path.api.rawValue + Path.login.rawValue)
         self.networkManager = NetworkManager(requestManager: RequestManager(jwtManager: jwtManager), session: URLSession.shared)
         self.subscriptions = Set<AnyCancellable>()
     }
@@ -30,6 +32,25 @@ class LoginUseCase {
     
     func executeGitHubLogIn(url: URL?, completion: @escaping (Bool) -> Void) {
         self.networkManager.sendRequest(with: url, method: .get, type: JWTResponseDTO.self)
+            .sink { result in
+                switch result {
+                case .failure(_):
+                    completion(false)
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] jwtResponseDTO in
+                if self?.jwtManager.set(jwt: jwtResponseDTO.data.jwt) == false {
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }.store(in: &subscriptions)
+    }
+    
+    func executeSocialLogIn(url: SocialLogin, userInfo: LoginDTO, completion: @escaping (Bool) -> Void) {
+        let url = endPoint.makeURL(with: url.rawValue)
+        self.networkManager.sendRequest(with: url, method: .post, type: JWTResponseDTO.self, body: userInfo)
             .sink { result in
                 switch result {
                 case .failure(_):

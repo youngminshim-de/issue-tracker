@@ -1,20 +1,42 @@
 PODS:
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.5.0)
   - MarkdownView (1.7.1)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
+  - GoogleSignIn
   - MarkdownView
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - AppAuth
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - MarkdownView
     - SwiftLint
 
 SPEC CHECKSUMS:
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   MarkdownView: cf30a97ab39b2bce04406adce541972c882363bd
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 34b1cd2a554cc2a48debec24ef2a3866ea1dafbe
+PODFILE CHECKSUM: 4e168c9951490c02598e8730044bec27f1c4cc13
 
 COCOAPODS: 1.10.1

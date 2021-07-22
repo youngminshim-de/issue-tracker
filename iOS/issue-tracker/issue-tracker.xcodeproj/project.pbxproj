@@ -71,6 +71,7 @@
 		CE81A5E326824A8700D71888 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81A5E226824A8700D71888 /* UIColor.swift */; };
 		CE87A2E1268AEC210050B267 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA520BC26831E8100EB6E0E /* RequestManager.swift */; };
 		CE87A2E3268AEDA10050B267 /* RequestManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87A2E2268AEDA10050B267 /* RequestManagerTest.swift */; };
+		CE93EE4F26A909AB00BAAC79 /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */; };
 		CE97638A268208760025CEC3 /* IssueListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976389268208760025CEC3 /* IssueListResponseDTO.swift */; };
 		CE97638C26820BC70025CEC3 /* DefaultIssueListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */; };
 		CE976391268213A60025CEC3 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976390268213A60025CEC3 /* IssueList.swift */; };
@@ -199,6 +200,7 @@
 		CE81A5DF268242D100D71888 /* IssueListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModel.swift; sourceTree = "<group>"; };
 		CE81A5E226824A8700D71888 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		CE87A2E2268AEDA10050B267 /* RequestManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerTest.swift; sourceTree = "<group>"; };
+		CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
 		CE976389268208760025CEC3 /* IssueListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListResponseDTO.swift; sourceTree = "<group>"; };
 		CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIssueListUseCase.swift; sourceTree = "<group>"; };
 		CE976390268213A60025CEC3 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				BD98417526946434008491F4 /* NewLabelDTO.swift */,
 				BDE699D42695D0FD00ADD4F2 /* NewMilestoneDTO.swift */,
 				BD1B183E26A5B327006188C5 /* IssueAdditionDTO.swift */,
+				CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				BD1D36EF266E428700B51184 /* Resources */,
 				BD1D372F266F48E200B51184 /* ShellScript */,
 				A449E1189FD2D5869A484A13 /* [CP] Embed Pods Frameworks */,
+				54A4959317D934CA4AE0F355 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -541,6 +545,7 @@
 				BD1D370F266E428800B51184 /* Frameworks */,
 				BD1D3710266E428800B51184 /* Resources */,
 				88E775CBB315B3D091D279B1 /* [CP] Embed Pods Frameworks */,
+				F18AC14622C84B7A5A53CF6C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -628,6 +633,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		54A4959317D934CA4AE0F355 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-issue-tracker/Pods-issue-tracker-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-issue-tracker/Pods-issue-tracker-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-issue-tracker/Pods-issue-tracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		863DF8CA0E5395AE085087C0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -745,6 +767,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F18AC14622C84B7A5A53CF6C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-issue-tracker-issue-trackerUITests/Pods-issue-tracker-issue-trackerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-issue-tracker-issue-trackerUITests/Pods-issue-tracker-issue-trackerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-issue-tracker-issue-trackerUITests/Pods-issue-tracker-issue-trackerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -807,6 +846,7 @@
 				CE71835E2671EB78008B287F /* FilterTableViewCell.swift in Sources */,
 				CEB0B4152685A33D00554D32 /* MilestoneListResponseDTO.swift in Sources */,
 				CEA84DF1267B079C0006CC2E /* NetworkManager.swift in Sources */,
+				CE93EE4F26A909AB00BAAC79 /* LoginDTO.swift in Sources */,
 				BD1D36F7266E428700B51184 /* SceneDelegate.swift in Sources */,
 				BD11B4DE26A04A97004429A9 /* AdditionalInfoViewController.swift in Sources */,
 				BD1F86F82684C56E005A6FA8 /* LabelListUseCase.swift in Sources */,
