@@ -49,7 +49,7 @@ public class OAuthController {
 
     @ApiOperation(value = "구글 로그인 for iOS", notes = "로그인을 원하는 유저의 username, email" +
             ", profile_image를 json으로 보내주세요.(iOS)")
-    @GetMapping("/login/google/ios")
+    @PostMapping("/login/google/ios")
     public ApiResult<JwtResponse> loginGoogleIos(
             @RequestBody LoginRequestWithUserInfo loginRequestWithUserInfo) {
         return ApiResult.success(loginService.loginWithUserInfo(loginRequestWithUserInfo,
@@ -62,7 +62,9 @@ public class OAuthController {
         return ApiResult.success(loginService.loginWithCode(code, SocialLogin.KAKAO_WEB));
     }
 
-    @GetMapping("/login/kakao/ios")
+    @ApiOperation(value = "카카오 로그인 for iOS", notes = "로그인을 원하는 유저의 username, email" +
+            ", profile_image를 json으로 보내주세요.(iOS)")
+    @PostMapping("/login/kakao/ios")
     public ApiResult<JwtResponse> loginKakaoIos(
             @RequestBody LoginRequestWithUserInfo loginRequestWithUserInfo) {
         return ApiResult.success(loginService.loginWithUserInfo(loginRequestWithUserInfo,
@@ -75,7 +77,9 @@ public class OAuthController {
         return ApiResult.success(loginService.loginWithCode(code, SocialLogin.NAVER_WEB));
     }
 
-    @GetMapping("/login/naver/ios")
+    @ApiOperation(value = "네이버 로그인 for iOS", notes = "로그인을 원하는 유저의 username, email" +
+            ", profile_image를 json으로 보내주세요.(iOS)")
+    @PostMapping("/login/naver/ios")
     public ApiResult<JwtResponse> loginNaverIos(
             @RequestBody LoginRequestWithUserInfo loginRequestWithUserInfo) {
         return ApiResult.success(loginService.loginWithUserInfo(loginRequestWithUserInfo,
