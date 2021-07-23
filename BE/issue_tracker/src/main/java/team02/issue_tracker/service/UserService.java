@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import team02.issue_tracker.domain.Issue;
 import team02.issue_tracker.domain.IssueAssignee;
 import team02.issue_tracker.domain.User;
+import team02.issue_tracker.dto.UserInfoResponse;
 import team02.issue_tracker.dto.issue.IssueAssigneeIdsRequest;
 import team02.issue_tracker.exception.UserNotFoundException;
 import team02.issue_tracker.repository.IssueAssigneeRepository;
@@ -35,6 +36,12 @@ public class UserService {
 
     public User findOne(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    public List<UserInfoResponse> getAllUserInfoResponses() {
+        return userRepository.findAll().stream()
+                .map(UserInfoResponse::new)
+                .collect(Collectors.toList());
     }
 
     public Set<IssueAssignee> makeIssueAssignees(Issue issue, List<Long> assigneeIds) {
