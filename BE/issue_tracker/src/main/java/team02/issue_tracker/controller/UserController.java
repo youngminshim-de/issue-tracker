@@ -23,7 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ApiOperation(value = "유저 정보 조회", notes = "로그인된 유저의 정보를 조회합니다. (로그인 필수)")
+    @ApiOperation(value = "유저 정보 조회", notes = "Authorization 헤더에 JWT 토큰을 담아서 요청하시면 유저 정보를 불러올 수 있습니다.")
     @LoginRequired
     @GetMapping
     public ApiResult<UserInfoResponse> showUserInfo(@UserId Long id) {
