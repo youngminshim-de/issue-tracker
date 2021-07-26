@@ -1,17 +1,13 @@
-//
-//  FilterTableViewCell.swift
-//  issue-tracker
-//
-//  Created by user on 2021/06/10.
-//
-
 import UIKit
 
-class FilterTableViewCell: UITableViewCell {
+class FilterTableViewCell: UITableViewCell, Identifying {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var checkImage: UIImageView!
     
-    static let identifier = "FilterTableViewCell"
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        self.checkImage.isHidden = !selected
+    }
     
 }

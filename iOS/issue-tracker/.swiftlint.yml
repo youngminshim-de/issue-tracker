@@ -3,5 +3,8 @@ disabled_rules:
 - trailing_whitespace
 - comment_spacing
 - mark
+- identifier_name
+- redundant_string_enum_value
 included:
 excluded:
+- Pods

@@ -6,6 +6,12 @@ target 'issue-tracker' do
   use_frameworks!
 
 pod 'SwiftLint'
+pod "MarkdownView"
+pod 'GoogleSignIn'
+pod 'KakaoSDKAuth'
+pod 'KakaoSDKUser'
+pod 'KakaoSDKCommon'
+pod 'naveridlogin-sdk-ios'
 
   # Pods for issue-tracker
 
