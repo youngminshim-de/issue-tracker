@@ -3,12 +3,16 @@ import Combine
 
 class FilterViewModel {
     
+    private var isOpenList: [String]
+    private var userStateList: [String]
     @Published private var userList: UserList
     @Published private var labelList: LabelList
     @Published private var milestoneList: MilestoneList
     private let filterUseCase: AdditionalInfoUseCase
     
     init() {
+        self.isOpenList = ["열린 이슈", "닫힌 이슈"]
+        self.userStateList = ["내가 작성한 이슈", "나에게 할당된 이슈", "내가 댓글을 남긴 이슈"]
         self.userList = UserList(users: [])
         self.labelList = LabelList(labels: [])
         self.milestoneList = MilestoneList(Milestones: [])
@@ -72,6 +76,14 @@ class FilterViewModel {
             .eraseToAnyPublisher()
     }
     
+    func isOpen(indexPath: IndexPath) -> String {
+        return self.isOpenList[indexPath.row]
+    }
+    
+    func userState(indexPath: IndexPath) -> String {
+        return self.userStateList[indexPath.row]
+    }
+    
     func user(indexPath: IndexPath) -> String {
         return self.userList.users[indexPath.row].username
     }
@@ -82,6 +94,14 @@ class FilterViewModel {
     
     func milestone(indexPath: IndexPath) -> String {
         return self.milestoneList.Milestones[indexPath.row].title
+    }
+    
+    func isOpenCount() -> Int {
+        return self.isOpenList.count
+    }
+    
+    func userStateCount() -> Int {
+        return self.userStateList.count
     }
     
     func userCount() -> Int {

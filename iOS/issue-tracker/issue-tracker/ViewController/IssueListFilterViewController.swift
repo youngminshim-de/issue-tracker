@@ -31,6 +31,7 @@ class IssueListFilterViewController: UIViewController {
         super.viewDidLoad()
         filterTableView.tableFooterView = UIView()
         bind()
+        filterTableView.allowsMultipleSelection = true
     }
     
     private func bind() {
@@ -82,9 +83,9 @@ extension IssueListFilterViewController: UITableViewDataSource, UITableViewDeleg
         
         switch tableViewSection {
         case .isOpen:
-            return 1
+            return self.filterViewModel.isOpenCount()
         case .userState:
-            return 1
+            return self.filterViewModel.userStateCount()
         case .writer:
             return self.filterViewModel.userCount()
         case .label:
@@ -103,15 +104,15 @@ extension IssueListFilterViewController: UITableViewDataSource, UITableViewDeleg
         
         switch tableViewSection {
         case .isOpen:
-            cell.title.text = "열림닫힘"
+            cell.title.text = self.filterViewModel.isOpen(indexPath: indexPath)
         case .userState:
-            cell.title.text = "유저 상태"
+            cell.title.text = self.filterViewModel.userState(indexPath: indexPath)
         case .writer:
-            cell.title.text = filterViewModel.user(indexPath: indexPath)
+            cell.title.text = self.filterViewModel.user(indexPath: indexPath)
         case .label:
-            cell.title.text = filterViewModel.label(indexPath: indexPath)
+            cell.title.text = self.filterViewModel.label(indexPath: indexPath)
         case .mileStone:
-            cell.title.text = filterViewModel.milestone(indexPath: indexPath)
+            cell.title.text = self.filterViewModel.milestone(indexPath: indexPath)
         }
         
         return cell
@@ -128,6 +129,13 @@ extension IssueListFilterViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let heightForRowAt: CGFloat = 44
         return heightForRowAt
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let indexPaths = tableView.indexPathsForSelectedRows else { return }
+        let filteredIndexPaths = indexPaths.filter({ $0.section == indexPath.section && $0.row != indexPath.row })
+        if filteredIndexPaths.isEmpty { return }
+        tableView.deselectRow(at: filteredIndexPaths[0], animated: false)
     }
     
 }
