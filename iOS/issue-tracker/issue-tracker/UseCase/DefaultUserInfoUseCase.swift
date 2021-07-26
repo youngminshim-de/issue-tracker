@@ -21,7 +21,7 @@ class DefaultUserInfoUseCase: UserInfoUseCase {
     
     func executeFetchingUserInfo(completion: @escaping (Result<String, NetworkError>) -> Void) {
         let url = endPoint.makeURL()
-        networkManager.sendRequest(with: url, method: .get, type: UserInfoResponDTO.self)
+        networkManager.sendRequest(with: url, method: .get, type: UserInfoResponseDTO.self)
             .sink { result in
                 switch result {
                 case .failure(let error):

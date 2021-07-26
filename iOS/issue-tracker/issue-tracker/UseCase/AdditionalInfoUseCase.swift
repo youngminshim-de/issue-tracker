@@ -43,4 +43,19 @@ class AdditionalInfoUseCase {
             }.store(in: &subscriptions)
     }
     
+    func executeFetchingUserList(completion: @escaping (Result<UserList, NetworkError>) -> Void) {
+        let url = endPoint.makeURL(with: Path.users.rawValue)
+        networkManager.sendRequest(with: url, method: .get, type: UserListResponseDTO.self)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { userListResponseDTO in
+                completion(.success(userListResponseDTO.toDomain()))
+            }.store(in: &subscriptions)
+    }
+    
 }

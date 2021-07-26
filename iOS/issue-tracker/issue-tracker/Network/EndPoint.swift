@@ -17,6 +17,7 @@ enum Path: String {
     case api = "/api"
     case login = "/login"
     case user = "/user"
+    case users = "/users"
     case issues = "/issues"
     case close = "/close"
     case label = "/labels"

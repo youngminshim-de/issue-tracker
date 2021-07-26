@@ -1,15 +1,18 @@
 import UIKit
+import Combine
 
 class IssueListFilterViewController: UIViewController {
 
     enum Section: Int, CaseIterable {
-        case state, author, label, mileStone
+        case isOpen, userState, writer, label, mileStone
         
         func sectionDescription() -> String {
             switch self {
-            case .state:
-                return "상태"
-            case .author:
+            case .isOpen:
+                return "이슈 상태"
+            case .userState:
+                return "사용자 관련 이슈"
+            case .writer:
                 return "작성자"
             case .label:
                 return "레이블"
@@ -21,9 +24,32 @@ class IssueListFilterViewController: UIViewController {
     
     @IBOutlet weak var filterTableView: UITableView!
     
+    private let filterViewModel = FilterViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         filterTableView.tableFooterView = UIView()
+        bind()
+    }
+    
+    private func bind() {
+        self.filterViewModel.didUpdateUserList()
+            .sink { [weak self] _ in
+                self?.filterTableView.reloadData()
+            }.store(in: &subscriptions)
+        
+        self.filterViewModel.didUpdateLabelList()
+            .sink { [weak self] _ in
+                self?.filterTableView.reloadData()
+            }.store(in: &subscriptions)
+        
+        self.filterViewModel.didUpdateMilestoneList()
+            .sink { [weak self] _ in
+                self?.filterTableView.reloadData()
+            }.store(in: &subscriptions)
+        
+        self.filterViewModel.fetchAllLists()
     }
     
     private func makeHeaderView(section: Int) -> UIView {
@@ -53,26 +79,41 @@ extension IssueListFilterViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let tableViewSection = Section.allCases[section]
-        switch tableViewSection {
-        case .state:
-            return 1
-        case .author:
-            return 2
-        case .label:
-            return 3
-        case .mileStone:
-            return 4
-        }
         
+        switch tableViewSection {
+        case .isOpen:
+            return 1
+        case .userState:
+            return 1
+        case .writer:
+            return self.filterViewModel.userCount()
+        case .label:
+            return self.filterViewModel.labelCount()
+        case .mileStone:
+            return self.filterViewModel.milestoneCount()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.identifier, for: indexPath) as? FilterTableViewCell else {
             return UITableViewCell()
         }
-        // 임시 값
-        cell.title.text = "asdfasdfasdf"
-        cell.checkImage.isHidden = false
+        
+        let tableViewSection = Section.allCases[indexPath.section]
+        
+        switch tableViewSection {
+        case .isOpen:
+            cell.title.text = "열림닫힘"
+        case .userState:
+            cell.title.text = "유저 상태"
+        case .writer:
+            cell.title.text = filterViewModel.user(indexPath: indexPath)
+        case .label:
+            cell.title.text = filterViewModel.label(indexPath: indexPath)
+        case .mileStone:
+            cell.title.text = filterViewModel.milestone(indexPath: indexPath)
+        }
+        
         return cell
     }
     

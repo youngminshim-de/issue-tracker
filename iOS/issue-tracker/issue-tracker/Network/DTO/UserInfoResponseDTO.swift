@@ -1,9 +1,20 @@
 import Foundation
 
-struct UserInfoResponDTO: Decodable {
+struct UserInfoResponseDTO: Decodable {
     
     let data: UserInfoDTO?
     let error: String?
+    
+}
+
+struct UserListResponseDTO: Decodable {
+    
+    let data: [UserInfoDTO]
+    let error: String?
+    
+    func toDomain() -> UserList {
+        return UserList(users: data.map { User(id: $0.id, email: $0.email ?? "", username: $0.username, profileImage: $0.profileImage) })
+    }
     
 }
 
