@@ -65,6 +65,16 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillHide(_ sender: NSNotification) {
         self.view.frame.origin.y = 0
     }
+    
+    @IBAction func pressedSeeMoreButton(_ sender: UIButton) {
+        guard let popUpViewController = self.storyboard?.instantiateViewController(identifier: IssueDetailPopUpViewController.identifier) as? IssueDetailPopUpViewController else {
+            return
+        }
+        
+        popUpViewController.modalPresentationStyle = .overCurrentContext
+        self.present(popUpViewController, animated: false, completion: nil)
+    }
+    
 }
 
 extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate {

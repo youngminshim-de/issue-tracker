@@ -71,6 +71,7 @@
 		CE81A5E326824A8700D71888 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81A5E226824A8700D71888 /* UIColor.swift */; };
 		CE87A2E1268AEC210050B267 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA520BC26831E8100EB6E0E /* RequestManager.swift */; };
 		CE87A2E3268AEDA10050B267 /* RequestManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87A2E2268AEDA10050B267 /* RequestManagerTest.swift */; };
+		CE91C3F926AEBA830008D2FB /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91C3F826AEBA830008D2FB /* UIButton.swift */; };
 		CE93EE4F26A909AB00BAAC79 /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */; };
 		CE97638A268208760025CEC3 /* IssueListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976389268208760025CEC3 /* IssueListResponseDTO.swift */; };
 		CE97638C26820BC70025CEC3 /* DefaultIssueListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */; };
@@ -83,6 +84,7 @@
 		CE988CB9268DA50000304E53 /* ResponseBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DEF81268345BC00D6121C /* ResponseBodyDTO.swift */; };
 		CE988CBA268DA50900304E53 /* IssueListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976389268208760025CEC3 /* IssueListResponseDTO.swift */; };
 		CE988CBB268DA51000304E53 /* RequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DEF8326834F7A00D6121C /* RequestBodyDTO.swift */; };
+		CEA0F3A526AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA0F3A426AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift */; };
 		CEA520BD26831E8100EB6E0E /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA520BC26831E8100EB6E0E /* RequestManager.swift */; };
 		CEA84DEF267B07390006CC2E /* JWTResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DEE267B07390006CC2E /* JWTResponseDTO.swift */; };
 		CEA84DF1267B079C0006CC2E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DF0267B079C0006CC2E /* NetworkManager.swift */; };
@@ -200,12 +202,14 @@
 		CE81A5DF268242D100D71888 /* IssueListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModel.swift; sourceTree = "<group>"; };
 		CE81A5E226824A8700D71888 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		CE87A2E2268AEDA10050B267 /* RequestManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerTest.swift; sourceTree = "<group>"; };
+		CE91C3F826AEBA830008D2FB /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
 		CE976389268208760025CEC3 /* IssueListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListResponseDTO.swift; sourceTree = "<group>"; };
 		CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIssueListUseCase.swift; sourceTree = "<group>"; };
 		CE976390268213A60025CEC3 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
 		CE988CB0268D8ECA00304E53 /* UserInfoUseCaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUseCaseStub.swift; sourceTree = "<group>"; };
 		CE988CB4268D903700304E53 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
+		CEA0F3A426AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailPopUpViewController.swift; sourceTree = "<group>"; };
 		CEA520BC26831E8100EB6E0E /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		CEA84DEE267B07390006CC2E /* JWTResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTResponseDTO.swift; sourceTree = "<group>"; };
 		CEA84DF0267B079C0006CC2E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 				BDE699D026959B4200ADD4F2 /* MilestoneAdditionViewController.swift */,
 				BD11B4DD26A04A97004429A9 /* AdditionalInfoViewController.swift */,
 				CE28F2A726A86FCC0070D5D5 /* IssueDetailViewController.swift */,
+				CEA0F3A426AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				CE81A5E226824A8700D71888 /* UIColor.swift */,
+				CE91C3F826AEBA830008D2FB /* UIButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -794,6 +800,7 @@
 				CE71835C2671E63C008B287F /* IssueListFilterViewController.swift in Sources */,
 				BDE699D52695D0FD00ADD4F2 /* NewMilestoneDTO.swift in Sources */,
 				BD98417626946434008491F4 /* NewLabelDTO.swift in Sources */,
+				CE91C3F926AEBA830008D2FB /* UIButton.swift in Sources */,
 				BDCEAF6426733EEC005EE147 /* LabelListViewController.swift in Sources */,
 				BD1F87012684D33F005A6FA8 /* MilestoneTableViewCell.swift in Sources */,
 				BD1F86F62684C424005A6FA8 /* LabelListResponseDTO.swift in Sources */,
@@ -824,6 +831,7 @@
 				CE81A5E0268242D100D71888 /* IssueListViewModel.swift in Sources */,
 				CE976391268213A60025CEC3 /* IssueList.swift in Sources */,
 				CEA520BD26831E8100EB6E0E /* RequestManager.swift in Sources */,
+				CEA0F3A526AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift in Sources */,
 				BDE699D126959B4200ADD4F2 /* MilestoneAdditionViewController.swift in Sources */,
 				BD0814692681C5C100C3D6D7 /* Identyfying.swift in Sources */,
 				BD08146D2681C79E00C3D6D7 /* URLSessionProtocol.swift in Sources */,
