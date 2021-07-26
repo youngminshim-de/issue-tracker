@@ -1,8 +1,8 @@
 import UIKit
 import Combine
 
-class IssueListViewController: UIViewController {
-
+class IssueListViewController: UIViewController, IssueListFilterViewControllerDelegate {
+    
     @IBOutlet weak var issueTableView: UITableView!
     private var issueListViewModel: IssueListViewModel!
     private var subscriptions = Set<AnyCancellable>()
@@ -54,6 +54,11 @@ class IssueListViewController: UIViewController {
                 self?.issueListViewModel.fetchIssueList()
             }.store(in: &subscriptions)
         
+        issueListViewModel.fetchIssueList()
+    }
+    
+    func IssueListFilterViewControllerDidFinish(filterCondition: FilterCondition) {
+        issueListViewModel.setFilterCondition(filterCondition)
         issueListViewModel.fetchIssueList()
     }
     
@@ -125,6 +130,8 @@ class IssueListViewController: UIViewController {
         guard let filterViewController = self.storyboard?.instantiateViewController(identifier: IssueListFilterViewController.identifier) as? IssueListFilterViewController else {
             return
         }
+        
+        filterViewController.delegate = self
         self.present(filterViewController, animated: true, completion: nil)
     }
     

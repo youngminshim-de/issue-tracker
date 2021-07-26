@@ -9,6 +9,7 @@ class FilterViewModel {
     @Published private var labelList: LabelList
     @Published private var milestoneList: MilestoneList
     private let filterUseCase: AdditionalInfoUseCase
+    private var filterCondition: FilterCondition
     
     init() {
         self.isOpenList = ["열린 이슈", "닫힌 이슈"]
@@ -17,6 +18,7 @@ class FilterViewModel {
         self.labelList = LabelList(labels: [])
         self.milestoneList = MilestoneList(Milestones: [])
         self.filterUseCase = AdditionalInfoUseCase()
+        self.filterCondition = FilterCondition()
     }
     
     func fetchAllLists() {
@@ -76,6 +78,40 @@ class FilterViewModel {
             .eraseToAnyPublisher()
     }
     
+    func makeFilterCondition() -> FilterCondition {
+        return filterCondition
+    }
+    
+    func addFilterCondition(section: IssueListFilterViewController.Section, row: Int) {
+        switch section {
+        case .isOpen:
+            self.filterCondition.isOpen = self.interpretIsOpen(row: row)
+        case .userState:
+            self.filterCondition.filter = self.interpretUserState(row: row)
+        case .writer:
+            self.filterCondition.writer = self.userList.users[row].id
+        case .label:
+            self.filterCondition.label = self.labelList.labels[row].id
+        case .mileStone:
+            self.filterCondition.milestone = self.milestoneList.Milestones[row].id
+        }
+    }
+    
+    func deleteFilterCondition(section: IssueListFilterViewController.Section, row: Int) {
+        switch section {
+        case .isOpen:
+            self.filterCondition.isOpen = nil
+        case .userState:
+            self.filterCondition.filter = nil
+        case .writer:
+            self.filterCondition.writer = nil
+        case .label:
+            self.filterCondition.label = nil
+        case .mileStone:
+            self.filterCondition.milestone = nil
+        }
+    }
+    
     func isOpen(indexPath: IndexPath) -> String {
         return self.isOpenList[indexPath.row]
     }
@@ -116,4 +152,21 @@ class FilterViewModel {
         return self.milestoneList.Milestones.count
     }
     
+    private func interpretIsOpen(row: Int) -> Bool {
+        return row == 0
+    }
+    
+    private func interpretUserState(row: Int) -> String? {
+        switch row {
+        case 0:
+            return "my_issue"
+        case 1:
+            return "my_comment"
+        case 2:
+            return "my_assign"
+        default:
+            return nil
+        }
+    }
+
 }

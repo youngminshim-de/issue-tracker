@@ -335,6 +335,9 @@
                                         <rect key="frame" x="368" y="21" width="30" height="33"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="저장"/>
+                                        <connections>
+                                            <action selector="pressedSaveButton:" destination="q2y-Ti-QDY" eventType="touchUpInside" id="vM0-jf-SvC"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFF-as-Kb2">
                                         <rect key="frame" x="192.5" y="27" width="29.5" height="21"/>

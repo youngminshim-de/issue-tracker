@@ -1,6 +1,10 @@
 import UIKit
 import Combine
 
+protocol IssueListFilterViewControllerDelegate: AnyObject {
+    func IssueListFilterViewControllerDidFinish(filterCondition: FilterCondition)
+}
+
 class IssueListFilterViewController: UIViewController {
 
     enum Section: Int, CaseIterable {
@@ -23,6 +27,7 @@ class IssueListFilterViewController: UIViewController {
     }
     
     @IBOutlet weak var filterTableView: UITableView!
+    weak var delegate: IssueListFilterViewControllerDelegate?
     
     private let filterViewModel = FilterViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -68,6 +73,11 @@ class IssueListFilterViewController: UIViewController {
         label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
         label.text = Section.allCases[section].sectionDescription()
         return headerView
+    }
+    
+    @IBAction func pressedSaveButton(_ sender: UIButton) {
+        self.delegate?.IssueListFilterViewControllerDidFinish(filterCondition: filterViewModel.makeFilterCondition())
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func pressedCancelButton(_ sender: UIButton) {
@@ -133,11 +143,18 @@ extension IssueListFilterViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let indexPaths = tableView.indexPathsForSelectedRows else { return }
+        let section = Section.allCases[indexPath.section]
         let filteredIndexPaths = indexPaths.filter({ $0.section == indexPath.section && $0.row != indexPath.row })
-        if filteredIndexPaths.isEmpty { return }
-        tableView.deselectRow(at: filteredIndexPaths[0], animated: false)
+        if !filteredIndexPaths.isEmpty {
+            tableView.deselectRow(at: filteredIndexPaths[0], animated: false)
+        }
+        filterViewModel.addFilterCondition(section: section, row: indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let section = Section.allCases[indexPath.section]
+        filterViewModel.deleteFilterCondition(section: section, row: indexPath.row)
+    }
 }
 
 extension IssueListFilterViewController: Identifying { }

@@ -48,6 +48,10 @@ class IssueListViewModel {
             .eraseToAnyPublisher()
     }
     
+    func setFilterCondition(_ filterCondition: FilterCondition) {
+        self.filterCondition = filterCondition
+    }
+    
     func issueCount(isFiltering: Bool) -> Int {
         return isFiltering ? filteredIssueList.issues.count : issueList.issues.count
     }
