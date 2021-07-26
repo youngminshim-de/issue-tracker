@@ -123,9 +123,9 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         default:
             break
         }
+        
         additionalInfoViewController.delegate = self
         self.present(additionalInfoViewController, animated: true, completion: nil)
-        
     }
     
     @IBAction func editTitle(_ sender: UITextField) {

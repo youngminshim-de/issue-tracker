@@ -34,7 +34,7 @@ class AdditionalInfoViewModel {
         case .milestone:
             self.fetchMilestoneList()
         case .assignee:
-            break
+            self.fetchUserList()
         }
     }
     
@@ -59,6 +59,19 @@ class AdditionalInfoViewModel {
             case .success(let milestoneList):
                 for milestone in milestoneList.Milestones {
                     self.additionalInfo.append(AdditionalInfo.init(id: milestone.id, title: milestone.title))
+                }
+            }
+        }
+    }
+    
+    private func fetchUserList() {
+        additionalInfoUseCase.executeFetchingUserList { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let userList):
+                for user in userList.users {
+                    self.additionalInfo.append(AdditionalInfo.init(id: user.id, title: user.username))
                 }
             }
         }
