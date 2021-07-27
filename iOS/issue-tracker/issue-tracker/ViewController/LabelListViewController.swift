@@ -9,11 +9,11 @@ class LabelListViewController: UIViewController, AdditionViewControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         configureTableViewFooterView()
         configureNavigationTitle()
         configureAddButton()
         labelTableView.register(LabelTableViewCell.nib, forCellReuseIdentifier: LabelTableViewCell.identifier)
-        bind()
     }
     
     private func bind() {

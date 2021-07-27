@@ -517,7 +517,7 @@
         <!--Issue Detail View Controller-->
         <scene sceneID="zO3-S5-bgW">
             <objects>
-                <viewController id="vYe-3U-hqP" customClass="IssueDetailViewController" customModule="issue_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IssueDetailViewController" id="vYe-3U-hqP" customClass="IssueDetailViewController" customModule="issue_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Daa-Xj-oRg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

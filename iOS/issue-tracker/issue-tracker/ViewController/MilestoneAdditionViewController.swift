@@ -12,9 +12,9 @@ class MilestoneAdditionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         configureMilestoneView()
         configureAddTarget()
-        bind()
         configureView()
     }
     

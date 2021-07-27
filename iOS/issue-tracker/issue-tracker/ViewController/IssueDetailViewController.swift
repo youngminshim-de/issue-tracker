@@ -11,16 +11,44 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     
+    private let issueDetailViewModel = IssueDetailViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         configureCommentTextField()
         configureCommentTableView()
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
         view.addGestureRecognizer(tapGesture)
-
         commentTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+    }
+    
+    private func bind() {
+        issueDetailViewModel.didUpdateIssueDetail()
+            .sink { [weak self] _ in
+                
+            }.store(in: &subscriptions)
+        
+    }
+    
+    func fetchIssueDetail(issueID: Int) {
+        self.issueDetailViewModel.fetchIssueDetail(issueID)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -92,3 +120,5 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
 }
+
+extension IssueDetailViewController: Identifying { }

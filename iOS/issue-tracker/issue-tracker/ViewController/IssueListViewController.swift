@@ -24,8 +24,8 @@ class IssueListViewController: UIViewController, IssueListFilterViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewModel()
         bind()
+        configureViewModel()
         configureNavigationItem()
         configureTableView()
     }
@@ -194,6 +194,14 @@ extension IssueListViewController: UITableViewDataSource, UITableViewDelegate {
         let deleteAction = deleteAction(at: indexPath)
         let closeAction = closeAction(at: indexPath)
         return UISwipeActionsConfiguration(actions: [closeAction, deleteAction])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let issueDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueDetailViewController.identifier) as? IssueDetailViewController else {
+            return
+        }
+//        issueDetailViewController.fetchIssueDetail(issueID: )
+        self.navigationController?.pushViewController(issueDetailViewController, animated: true)
     }
     
 }

@@ -16,8 +16,8 @@ class LabelAdditionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureAddTarget()
         bind()
+        configureAddTarget()
         configureView()
     }
     

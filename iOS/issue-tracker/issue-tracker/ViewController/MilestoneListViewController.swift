@@ -9,11 +9,11 @@ class MilestoneListViewController: UIViewController, AdditionViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         configureTableViewFooterView()
         configureNavigationTitle()
         configureAddButton()
         milestoneTabelView.register(MilestoneTableViewCell.nib, forCellReuseIdentifier: MilestoneTableViewCell.identifier)
-        bind()
     }
     
     private func bind() {

@@ -121,7 +121,7 @@ class FilterViewModel {
     }
     
     func user(indexPath: IndexPath) -> String {
-        return self.userList.users[indexPath.row].username
+        return self.userList.users[indexPath.row].userName
     }
     
     func label(indexPath: IndexPath) -> String {

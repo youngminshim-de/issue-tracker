@@ -24,7 +24,7 @@ struct IssueDTO: Decodable {
     let assignees: [WriterDTO]
     let milestone: MilestoneDTO?
     let labels: [LabelDTO]
-    let firstComment: CommentDTO
+    let firstComment: FirstCommentDTO
     
     enum CodingKeys: String, CodingKey {
         case id, title
@@ -45,6 +45,10 @@ struct WriterDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case id, username
         case profileImage = "profile_image"
+    }
+    
+    func toDomain() -> Writer {
+        return .init(id: self.id, username: self.username, profileImage: self.profileImage)
     }
     
 }
@@ -79,7 +83,7 @@ struct LabelDTO: Decodable {
     }
 }
 
-struct CommentDTO: Decodable {
+struct FirstCommentDTO: Decodable {
     
     let content: String
     

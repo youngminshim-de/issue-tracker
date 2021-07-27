@@ -34,8 +34,8 @@ class IssueListFilterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        filterTableView.tableFooterView = UIView()
         bind()
+        filterTableView.tableFooterView = UIView()
         filterTableView.allowsMultipleSelection = true
     }
     

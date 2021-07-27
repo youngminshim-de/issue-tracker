@@ -45,6 +45,10 @@
 		BD920F122672583600EDD555 /* IssueSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD920F112672583600EDD555 /* IssueSelectionViewController.swift */; };
 		BD984174269461C7008491F4 /* AdditionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD984173269461C7008491F4 /* AdditionUseCase.swift */; };
 		BD98417626946434008491F4 /* NewLabelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98417526946434008491F4 /* NewLabelDTO.swift */; };
+		BD9A8C8126B044760080D052 /* IssueDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A8C8026B044760080D052 /* IssueDetailViewModel.swift */; };
+		BD9A8C8326B046E10080D052 /* IssueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A8C8226B046E10080D052 /* IssueDetail.swift */; };
+		BD9A8C8526B04C560080D052 /* IssueDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A8C8426B04C560080D052 /* IssueDetailUseCase.swift */; };
+		BD9A8C8726B04CA80080D052 /* IssueDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A8C8626B04CA80080D052 /* IssueDetailDTO.swift */; };
 		BDCEAF62267315C9005EE147 /* IssueAdditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCEAF61267315C9005EE147 /* IssueAdditionViewController.swift */; };
 		BDCEAF6426733EEC005EE147 /* LabelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCEAF6326733EEC005EE147 /* LabelListViewController.swift */; };
 		BDCEAF6726733F8F005EE147 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCEAF6526733F8F005EE147 /* LabelTableViewCell.swift */; };
@@ -178,6 +182,10 @@
 		BD920F112672583600EDD555 /* IssueSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectionViewController.swift; sourceTree = "<group>"; };
 		BD984173269461C7008491F4 /* AdditionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionUseCase.swift; sourceTree = "<group>"; };
 		BD98417526946434008491F4 /* NewLabelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLabelDTO.swift; sourceTree = "<group>"; };
+		BD9A8C8026B044760080D052 /* IssueDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewModel.swift; sourceTree = "<group>"; };
+		BD9A8C8226B046E10080D052 /* IssueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetail.swift; sourceTree = "<group>"; };
+		BD9A8C8426B04C560080D052 /* IssueDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailUseCase.swift; sourceTree = "<group>"; };
+		BD9A8C8626B04CA80080D052 /* IssueDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailDTO.swift; sourceTree = "<group>"; };
 		BDCEAF61267315C9005EE147 /* IssueAdditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAdditionViewController.swift; sourceTree = "<group>"; };
 		BDCEAF6326733EEC005EE147 /* LabelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListViewController.swift; sourceTree = "<group>"; };
 		BDCEAF6526733F8F005EE147 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -438,6 +446,7 @@
 				CEB0B4162685A3E600554D32 /* MilestoneList.swift */,
 				BD11B4E326A05AE4004429A9 /* AdditionalInfo.swift */,
 				CEDBD77726A84C9300F0131D /* FilterCondition.swift */,
+				BD9A8C8226B046E10080D052 /* IssueDetail.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -456,6 +465,7 @@
 				BDE699D42695D0FD00ADD4F2 /* NewMilestoneDTO.swift */,
 				BD1B183E26A5B327006188C5 /* IssueAdditionDTO.swift */,
 				CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */,
+				BD9A8C8626B04CA80080D052 /* IssueDetailDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -471,6 +481,7 @@
 				BD984173269461C7008491F4 /* AdditionUseCase.swift */,
 				BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */,
 				BD1B183C26A5B28C006188C5 /* IssueAdditionUseCase.swift */,
+				BD9A8C8426B04C560080D052 /* IssueDetailUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -501,6 +512,7 @@
 				BDE699D22695CE9800ADD4F2 /* MilestoneAdditionViewModel.swift */,
 				BD11B4DF26A056A5004429A9 /* AdditionalInfoViewModel.swift */,
 				CE91C40026AED1110008D2FB /* FilterViewModel.swift */,
+				BD9A8C8026B044760080D052 /* IssueDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -807,6 +819,7 @@
 				BDE699D52695D0FD00ADD4F2 /* NewMilestoneDTO.swift in Sources */,
 				BD98417626946434008491F4 /* NewLabelDTO.swift in Sources */,
 				CE91C3F926AEBA830008D2FB /* UIButton.swift in Sources */,
+				BD9A8C8126B044760080D052 /* IssueDetailViewModel.swift in Sources */,
 				BDCEAF6426733EEC005EE147 /* LabelListViewController.swift in Sources */,
 				BD1F87012684D33F005A6FA8 /* MilestoneTableViewCell.swift in Sources */,
 				BD1F86F62684C424005A6FA8 /* LabelListResponseDTO.swift in Sources */,
@@ -838,9 +851,11 @@
 				CE976391268213A60025CEC3 /* IssueList.swift in Sources */,
 				CEA520BD26831E8100EB6E0E /* RequestManager.swift in Sources */,
 				CEA0F3A526AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift in Sources */,
+				BD9A8C8726B04CA80080D052 /* IssueDetailDTO.swift in Sources */,
 				BDE699D126959B4200ADD4F2 /* MilestoneAdditionViewController.swift in Sources */,
 				BD0814692681C5C100C3D6D7 /* Identyfying.swift in Sources */,
 				BD08146D2681C79E00C3D6D7 /* URLSessionProtocol.swift in Sources */,
+				BD9A8C8526B04C560080D052 /* IssueDetailUseCase.swift in Sources */,
 				CEA84DFD267B7E7D0006CC2E /* UserInfoResponseDTO.swift in Sources */,
 				CEA84DEF267B07390006CC2E /* JWTResponseDTO.swift in Sources */,
 				CE3014D926A69749009D520F /* IssueSelectionViewModel.swift in Sources */,
@@ -862,6 +877,7 @@
 				CEB0B4152685A33D00554D32 /* MilestoneListResponseDTO.swift in Sources */,
 				CEA84DF1267B079C0006CC2E /* NetworkManager.swift in Sources */,
 				CE91C3FD26AECDB60008D2FB /* UserList.swift in Sources */,
+				BD9A8C8326B046E10080D052 /* IssueDetail.swift in Sources */,
 				CE93EE4F26A909AB00BAAC79 /* LoginDTO.swift in Sources */,
 				BD1D36F7266E428700B51184 /* SceneDelegate.swift in Sources */,
 				BD11B4DE26A04A97004429A9 /* AdditionalInfoViewController.swift in Sources */,

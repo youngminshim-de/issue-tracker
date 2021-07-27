@@ -13,7 +13,7 @@ struct UserListResponseDTO: Decodable {
     let error: String?
     
     func toDomain() -> UserList {
-        return UserList(users: data.map { User(id: $0.id, email: $0.email ?? "", username: $0.username, profileImage: $0.profileImage) })
+        return UserList(users: data.map { User(id: $0.id, email: $0.email ?? "", userName: $0.username, profileImage: $0.profileImage) })
     }
     
 }

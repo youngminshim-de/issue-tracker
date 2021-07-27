@@ -71,7 +71,7 @@ class AdditionalInfoViewModel {
                 print(error.localizedDescription)
             case .success(let userList):
                 for user in userList.users {
-                    self.additionalInfo.append(AdditionalInfo.init(id: user.id, title: user.username))
+                    self.additionalInfo.append(AdditionalInfo.init(id: user.id, title: user.userName))
                 }
             }
         }

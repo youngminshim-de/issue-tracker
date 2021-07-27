@@ -33,6 +33,7 @@ class DefaultUserInfoUseCase: UserInfoUseCase {
                 guard let data = userInfoResponDTO.data else {
                     return
                 }
+                MyInfo.shared.setMyInfo(data)
                 completion(.success(data.profileImage))
             }.store(in: &subscriptions)
     }
