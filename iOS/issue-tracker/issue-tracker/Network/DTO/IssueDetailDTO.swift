@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct IssueDetailResponseDTO: Decodable {
     
     let data: IssueDetailDTO
@@ -11,8 +10,6 @@ struct IssueDetailResponseDTO: Decodable {
     }
     
 }
-
-
 
 struct IssueDetailDTO: Decodable {
     
@@ -41,7 +38,7 @@ struct CommentDTO: Decodable {
     
     let id: Int
     let writer: WriterDTO
-    let content: String
+    let content: String?
     let createdTime: String
     let emojis: [EmojiDTO]
     let file: String?
@@ -52,7 +49,7 @@ struct CommentDTO: Decodable {
     }
     
     func toDomain() -> Comment {
-        return .init(commentID: self.id, writer: self.writer.toDomain(), createdTime: self.createdTime, content: self.content, file: self.file ?? "", emojis: self.emojis.map { $0.toDomain() })
+        return .init(commentID: self.id, writer: self.writer.toDomain(), createdTime: self.createdTime, content: self.content ?? "", file: self.file ?? "", emojis: self.emojis.map { $0.toDomain() })
     }
     
 }
@@ -65,4 +62,11 @@ struct EmojiDTO: Decodable {
     func toDomain() -> Emoji {
         return .init(id: self.id, name: self.name)
     }
+}
+
+struct NewCommentDTO: Encodable {
+    
+    let content: String
+    let file: String
+    
 }

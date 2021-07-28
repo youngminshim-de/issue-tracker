@@ -8,8 +8,8 @@ class TabBarRootController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
         configureViewModel()
+        bind()
     }
     
     private func configureViewModel() {

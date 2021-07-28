@@ -96,4 +96,12 @@ class IssueListViewModel {
         self.filteredIssueList.issues = self.issueList.issues.filter({ $0.title.localizedCaseInsensitiveContains(title) })
     }
     
+    func selectedIssueId(indexPath: IndexPath, isFiltering: Bool) -> Int {
+        if isFiltering {
+            return self.filteredIssueList.issues[indexPath.row].id
+        } else {
+            return self.issueList.issues[indexPath.row].id
+        }
+    }
+    
 }

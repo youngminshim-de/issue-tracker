@@ -24,10 +24,10 @@ class IssueListViewController: UIViewController, IssueListFilterViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
         configureViewModel()
         configureNavigationItem()
         configureTableView()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,7 +200,9 @@ extension IssueListViewController: UITableViewDataSource, UITableViewDelegate {
         guard let issueDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueDetailViewController.identifier) as? IssueDetailViewController else {
             return
         }
-//        issueDetailViewController.fetchIssueDetail(issueID: )
+        
+        let issueID = self.issueListViewModel.selectedIssueId(indexPath: indexPath, isFiltering: isFiltering)
+        issueDetailViewController.setIssueID(issueID)
         self.navigationController?.pushViewController(issueDetailViewController, animated: true)
     }
     
