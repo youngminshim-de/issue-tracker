@@ -13,6 +13,7 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
     
     private let issueDetailViewModel = IssueDetailViewModel()
     private var subscriptions = Set<AnyCancellable>()
+//    private var cachedImage = [UIImage?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +52,32 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
                 self?.issueState.text = "\(issueDetail.isOpen ? "열림" : "닫힘")"
                 self?.writer.text = ",\(issueDetail.writer.username)님이 작성했습니다."
                 self?.writeTime.text = self?.issueDetailViewModel.relativeCreatedTime(issueDetail.createdTime)
+//                self?.loadImage()
                 self?.commentTableView.reloadData()
             }.store(in: &subscriptions)
         
         issueDetailViewModel.fetchIssueDetail()
     }
+    
+//    func loadImage() {
+//        self.cachedImage = [UIImage?](repeating: nil, count: issueDetailViewModel.commentCount())
+//
+//        for index in 0..<cachedImage.count {
+//            let indexPath = IndexPath(row: index, section: 0)
+//            let urlString = issueDetailViewModel.file(indexPath: indexPath)
+//            guard let imageUrlString = urlString, let imageURL = URL(string: imageUrlString) else { continue }
+//            DispatchQueue.global().async {
+//                let imageData = try? Data(contentsOf: imageURL)
+//                guard let data = imageData, let image = UIImage(data: data) else { return }
+//                self.cachedImage[indexPath.row] = image
+//                DispatchQueue.main.async {
+//                    self.commentTableView.beginUpdates()
+//                    self.commentTableView.reloadRows(at: [indexPath], with: .fade)
+//                    self.commentTableView.endUpdates()
+//                }
+//            }
+//        }
+//    }
     
     private func configureIssueOptionButton() {
         let buttonImage = UIImage(systemName: "ellipsis")
@@ -144,20 +166,6 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.identifier, for: indexPath) as? CommentTableViewCell else {
             return UITableViewCell()
-        }
-        
-        DispatchQueue.global().async {
-            guard let fileUrl = self.issueDetailViewModel.file(indexPath: indexPath) else {
-                cell.fileImage.image = nil
-                return
-            }
-            
-            guard let imageURL = URL(string: fileUrl) else { return }
-            let imageData = try? Data(contentsOf: imageURL)
-            guard let data = imageData, let image = UIImage(data: data) else { return }
-            DispatchQueue.main.async {
-                cell.fileImage.image = image
-            }
         }
         
         DispatchQueue.global().async {

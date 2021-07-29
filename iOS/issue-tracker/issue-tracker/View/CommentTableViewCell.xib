@@ -58,27 +58,24 @@
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Hd-ae-38u">
                         <rect key="frame" x="68" y="72.5" width="291" height="160"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="160" id="pfU-go-gTi"/>
-                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="wPY-Ca-CEp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="3x4-oH-dgK"/>
                     <constraint firstItem="wPY-Ca-CEp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="6Pq-kd-gyX"/>
                     <constraint firstAttribute="trailing" secondItem="swl-C4-S2S" secondAttribute="trailing" constant="26" id="DoG-SN-tIX"/>
-                    <constraint firstItem="6Hd-ae-38u" firstAttribute="top" secondItem="w0r-15-bUr" secondAttribute="bottom" constant="16" id="FcP-1g-U5O"/>
                     <constraint firstAttribute="bottom" secondItem="XMC-xQ-0RU" secondAttribute="bottom" constant="17" id="GIk-pM-rP1"/>
                     <constraint firstItem="w0r-15-bUr" firstAttribute="leading" secondItem="wPY-Ca-CEp" secondAttribute="trailing" constant="8" id="H8X-Et-KuF"/>
                     <constraint firstItem="swl-C4-S2S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="HQg-cC-eYX"/>
                     <constraint firstItem="3Q7-cW-oBw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Ky1-fn-3Bo"/>
+                    <constraint firstItem="6Hd-ae-38u" firstAttribute="top" secondItem="w0r-15-bUr" secondAttribute="bottom" constant="16" id="Rcq-Pl-EJK"/>
+                    <constraint firstAttribute="trailing" secondItem="6Hd-ae-38u" secondAttribute="trailing" constant="16" id="WAn-Q0-p9h"/>
+                    <constraint firstItem="XMC-xQ-0RU" firstAttribute="top" secondItem="6Hd-ae-38u" secondAttribute="bottom" constant="16" id="Wj0-zw-Gpu"/>
                     <constraint firstItem="w0r-15-bUr" firstAttribute="top" secondItem="3Q7-cW-oBw" secondAttribute="bottom" constant="2" id="XyT-5y-n5G"/>
                     <constraint firstAttribute="trailing" secondItem="XMC-xQ-0RU" secondAttribute="trailing" constant="16" id="dUb-0J-hkU"/>
-                    <constraint firstAttribute="trailing" secondItem="6Hd-ae-38u" secondAttribute="trailing" constant="16" id="fxn-R3-3Ha"/>
-                    <constraint firstItem="XMC-xQ-0RU" firstAttribute="top" secondItem="6Hd-ae-38u" secondAttribute="bottom" constant="16" id="hy2-fH-dcc"/>
+                    <constraint firstItem="6Hd-ae-38u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="68" id="gob-tt-7S8"/>
                     <constraint firstItem="XMC-xQ-0RU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="68" id="rSe-lE-ISe"/>
                     <constraint firstItem="3Q7-cW-oBw" firstAttribute="leading" secondItem="wPY-Ca-CEp" secondAttribute="trailing" constant="8" id="skS-0a-3Rm"/>
-                    <constraint firstItem="6Hd-ae-38u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="68" id="uNA-Ms-InQ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
