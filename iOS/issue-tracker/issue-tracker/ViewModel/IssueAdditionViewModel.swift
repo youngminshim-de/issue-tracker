@@ -25,7 +25,7 @@ class IssueAdditionViewModel {
         self.issueAdditionUseCase = IssueAdditionUseCase()
     }
     
-    func AddNewIssue() {
+    func addNewIssue() {
         let newIssue = self.makeIssueAddition()
         self.issueAdditionUseCase.executeAddingIssue(newIssue) { result in
             switch result {
@@ -37,7 +37,7 @@ class IssueAdditionViewModel {
         }
     }
     
-    func UploadImage(imageData: String?) {
+    func uploadImage(imageData: String?) {
         self.issueAdditionUseCase.executeUploadImage(imageData: imageData) { result in
             switch result {
             case .failure(let error):

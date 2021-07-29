@@ -56,6 +56,13 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
                 self?.commentTableView.reloadData()
             }.store(in: &subscriptions)
         
+        issueDetailViewModel.didUpdateResultMessage()
+            .sink { [weak self] resultMessage in
+                if resultMessage != nil {
+                    self?.issueDetailViewModel.fetchIssueDetail()
+                }
+            }.store(in: &subscriptions)
+        
         issueDetailViewModel.fetchIssueDetail()
     }
     
@@ -125,7 +132,9 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func postComment() {
-        
+        self.issueDetailViewModel.addNewComment()
+        self.commentTextField.text = ""
+        self.commentTextField.resignFirstResponder()
     }
     
     @objc func keyboardWillShow(_ sender: NSNotification) {
@@ -151,8 +160,8 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
             postButton.isEnabled = false
         } else {
             postButton.isEnabled = true
+            issueDetailViewModel.setNewComment(sender.text!)
         }
-        
     }
     
 }

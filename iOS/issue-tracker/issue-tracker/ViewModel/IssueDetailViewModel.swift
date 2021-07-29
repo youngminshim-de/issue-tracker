@@ -4,17 +4,20 @@ import Combine
 class IssueDetailViewModel {
     
     @Published private var issueDetail: IssueDetail?
+    @Published private var resultMessage: String?
     private let issueDetailUseCase: IssueDetailUseCase
     private var issueID: Int
+    private var newComment: String
     
     init() {
         self.issueDetail = nil
         self.issueDetailUseCase = IssueDetailUseCase()
         self.issueID = 0
+        self.newComment = ""
     }
     
     func fetchIssueDetail() {
-        self.issueDetailUseCase.executeFetchingLabelList(issueID) { result in
+        self.issueDetailUseCase.executeFetchingLabelList(issueID: issueID) { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -24,8 +27,25 @@ class IssueDetailViewModel {
         }
     }
     
+    func addNewComment() {
+        self.issueDetailUseCase.executeAddingNewComment(issueID: issueID, comment: NewCommentDTO(content: newComment, file: nil)) { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let resultMessage):
+                self.resultMessage = resultMessage
+            }
+        }
+    }
+    
     func didUpdateIssueDetail() -> AnyPublisher<IssueDetail?, Never> {
         return $issueDetail
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func didUpdateResultMessage() -> AnyPublisher<String?, Never> {
+        return $resultMessage
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
@@ -84,6 +104,10 @@ class IssueDetailViewModel {
     
     func file(indexPath: IndexPath) -> String? {
         return self.issueDetail?.comments[indexPath.row].file
+    }
+    
+    func setNewComment(_ comment: String) {
+        self.newComment = comment
     }
     
 }

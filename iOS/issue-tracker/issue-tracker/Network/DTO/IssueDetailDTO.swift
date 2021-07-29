@@ -67,6 +67,6 @@ struct EmojiDTO: Decodable {
 struct NewCommentDTO: Encodable {
     
     let content: String
-    let file: String
+    let file: String?
     
 }

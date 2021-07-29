@@ -123,7 +123,7 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
     }
     
     @IBAction func pressedSaveButton(_ sender: UIButton) {
-        issueAdditionViewModel.AddNewIssue()
+        issueAdditionViewModel.addNewIssue()
     }
     
     @IBAction func pressedAdditionButton(_ sender: UIButton) {
@@ -187,7 +187,7 @@ extension IssueAdditionViewController: UIImagePickerControllerDelegate, UINaviga
             self.loadingView.start()
             
             let imageData = makeBase64Image(pickedImage)
-            self.issueAdditionViewModel.UploadImage(imageData: imageData)
+            self.issueAdditionViewModel.uploadImage(imageData: imageData)
         }
     }
     
