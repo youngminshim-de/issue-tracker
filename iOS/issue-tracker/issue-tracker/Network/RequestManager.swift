@@ -29,6 +29,30 @@ class RequestManager {
         return urlRequest
     }
     
+    func makeMultipartRequest(imageData: String?) -> URLRequest {
+        let endPointToImgur = "https://api.imgur.com/3/image"
+        let clientID = "82ac84dde2ec92f"
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+
+        var request = URLRequest(url: URL(string: endPointToImgur)!)
+        request.addValue("Client-ID \(clientID)", forHTTPHeaderField: "Authorization")
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+
+        var body = ""
+        body += "--\(boundary)\r\n"
+        body += "Content-Disposition:form-data; name=\"image\""
+        body += "\r\n\r\n\(imageData ?? "")\r\n"
+        body += "--\(boundary)--\r\n"
+        
+        let postData = body.data(using: .utf8)
+        request.httpBody = postData
+        
+        return request
+    }
+    
 }
 
 enum HttpMethod: String {

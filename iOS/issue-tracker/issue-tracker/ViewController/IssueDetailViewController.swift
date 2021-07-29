@@ -147,6 +147,20 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
         }
         
         DispatchQueue.global().async {
+            guard let fileUrl = self.issueDetailViewModel.file(indexPath: indexPath) else {
+                cell.fileImage.image = nil
+                return
+            }
+            
+            guard let imageURL = URL(string: fileUrl) else { return }
+            let imageData = try? Data(contentsOf: imageURL)
+            guard let data = imageData, let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async {
+                cell.fileImage.image = image
+            }
+        }
+        
+        DispatchQueue.global().async {
             let profileImageUrl = self.issueDetailViewModel.commentProfileImage(indexPath: indexPath)
             guard let imageURL = URL(string: profileImageUrl) else { return }
             let imageData = try? Data(contentsOf: imageURL)

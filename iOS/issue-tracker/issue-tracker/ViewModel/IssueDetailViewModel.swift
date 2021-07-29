@@ -82,4 +82,8 @@ class IssueDetailViewModel {
         return content
     }
     
+    func file(indexPath: IndexPath) -> String? {
+        return self.issueDetail?.comments[indexPath.row].file
+    }
+    
 }

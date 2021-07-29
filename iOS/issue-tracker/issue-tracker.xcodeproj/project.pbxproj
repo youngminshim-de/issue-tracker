@@ -92,6 +92,8 @@
 		CE988CBB268DA51000304E53 /* RequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DEF8326834F7A00D6121C /* RequestBodyDTO.swift */; };
 		CEA0F3A526AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA0F3A426AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift */; };
 		CEA520BD26831E8100EB6E0E /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA520BC26831E8100EB6E0E /* RequestManager.swift */; };
+		CEA6FC0A26B2880100262F1B /* ImageUploadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6FC0926B2880100262F1B /* ImageUploadResponseDTO.swift */; };
+		CEA6FC0C26B299EA00262F1B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6FC0B26B299EA00262F1B /* LoadingView.swift */; };
 		CEA84DEF267B07390006CC2E /* JWTResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DEE267B07390006CC2E /* JWTResponseDTO.swift */; };
 		CEA84DF1267B079C0006CC2E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DF0267B079C0006CC2E /* NetworkManager.swift */; };
 		CEA84DF3267B0D350006CC2E /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DF2267B0D350006CC2E /* EndPoint.swift */; };
@@ -223,6 +225,8 @@
 		CE988CB4268D903700304E53 /* IssueListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewModelTest.swift; sourceTree = "<group>"; };
 		CEA0F3A426AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailPopUpViewController.swift; sourceTree = "<group>"; };
 		CEA520BC26831E8100EB6E0E /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		CEA6FC0926B2880100262F1B /* ImageUploadResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadResponseDTO.swift; sourceTree = "<group>"; };
+		CEA6FC0B26B299EA00262F1B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CEA84DEE267B07390006CC2E /* JWTResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTResponseDTO.swift; sourceTree = "<group>"; };
 		CEA84DF0267B079C0006CC2E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEA84DF2267B0D350006CC2E /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 				BDE699CC26958CDA00ADD4F2 /* AdditionView.xib */,
 				CE28F2A326A86D020070D5D5 /* CommentTableViewCell.swift */,
 				CE28F2A426A86D020070D5D5 /* CommentTableViewCell.xib */,
+				CEA6FC0B26B299EA00262F1B /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				BD1B183E26A5B327006188C5 /* IssueAdditionDTO.swift */,
 				CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */,
 				BD9A8C8626B04CA80080D052 /* IssueDetailDTO.swift */,
+				CEA6FC0926B2880100262F1B /* ImageUploadResponseDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -817,6 +823,7 @@
 			files = (
 				CE71835C2671E63C008B287F /* IssueListFilterViewController.swift in Sources */,
 				BDE699D52695D0FD00ADD4F2 /* NewMilestoneDTO.swift in Sources */,
+				CEA6FC0A26B2880100262F1B /* ImageUploadResponseDTO.swift in Sources */,
 				BD98417626946434008491F4 /* NewLabelDTO.swift in Sources */,
 				CE91C3F926AEBA830008D2FB /* UIButton.swift in Sources */,
 				BD9A8C8126B044760080D052 /* IssueDetailViewModel.swift in Sources */,
@@ -867,6 +874,7 @@
 				CEA84DF3267B0D350006CC2E /* EndPoint.swift in Sources */,
 				BDE699CF26958E0000ADD4F2 /* LabelAdditionViewController.swift in Sources */,
 				BD1D36F5266E428700B51184 /* AppDelegate.swift in Sources */,
+				CEA6FC0C26B299EA00262F1B /* LoadingView.swift in Sources */,
 				CE28F2A826A86FCC0070D5D5 /* IssueDetailViewController.swift in Sources */,
 				BD11B4E026A056A5004429A9 /* AdditionalInfoViewModel.swift in Sources */,
 				CEDBD77826A84C9300F0131D /* FilterCondition.swift in Sources */,

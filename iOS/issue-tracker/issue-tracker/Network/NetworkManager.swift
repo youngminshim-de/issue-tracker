@@ -62,6 +62,22 @@ struct NetworkManager {
             .eraseToAnyPublisher()
     }
     
+    func sendUploadImageToImgur(imageData: String?) -> AnyPublisher<ImageUploadResponseDTO, NetworkError> {
+        let urlRequest = requestManager.makeMultipartRequest(imageData: imageData)
+        
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .mapError { _ in
+                NetworkError.networkConnection
+            }
+            .flatMap { data, _ -> AnyPublisher<ImageUploadResponseDTO, NetworkError> in
+                let decodedData = Just(data)
+                    .decode(type: ImageUploadResponseDTO.self, decoder: JSONDecoder())
+                    .mapError { _ in NetworkError.decoding }
+                    .eraseToAnyPublisher()
+                return decodedData
+            }.eraseToAnyPublisher()
+    }
+    
 }
 
 enum NetworkError: String, Error {

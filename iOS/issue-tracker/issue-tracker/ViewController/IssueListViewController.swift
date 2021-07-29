@@ -36,6 +36,7 @@ class IssueListViewController: UIViewController, IssueListFilterViewControllerDe
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
         self.issueListViewModel.fetchIssueList()
+        configureTableViewFooterView()
     }
     
     private func bind() {
@@ -123,7 +124,7 @@ class IssueListViewController: UIViewController, IssueListFilterViewControllerDe
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.issueTableView.tableFooterView = nil
+        self.issueTableView.tableFooterView = UIView()
     }
  
     @objc func showIssueListFilterView(sender: UIBarButtonItem) {

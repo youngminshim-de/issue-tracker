@@ -10,7 +10,7 @@ class IssueAdditionViewModel {
     @Published private var assignees: [AdditionalInfo]
     private var title: String
     private var comment: String
-    private var file: String?
+    @Published private var file: String?
     private let issueAdditionUseCase: IssueAdditionUseCase
     
     init() {
@@ -33,6 +33,17 @@ class IssueAdditionViewModel {
                 print(error.localizedDescription)
             case .success(let resultMessage):
                 self.resultMessage = resultMessage
+            }
+        }
+    }
+    
+    func UploadImage(imageData: String?) {
+        self.issueAdditionUseCase.executeUploadImage(imageData: imageData) { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let imageLink):
+                self.file = imageLink
             }
         }
     }
@@ -96,7 +107,35 @@ class IssueAdditionViewModel {
             .eraseToAnyPublisher()
     }
     
+    func didUpdateImage() -> AnyPublisher<String?, Never> {
+        return $file
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func markdownImageFormat() -> String {
+        guard let file = self.file else {
+            return ""
+        }
+        
+        return "![image](\(file))"
+    }
+    
+    func rangeOfMarkdownImageFormat(string: String?) -> Range<String.Index>? {
+        guard let string = string, let file = file, let range = string.range(of: "![image](\(file))") else {
+            return nil
+        }
+        
+        return range
+    }
+    
     func makeIssueAddition() -> IssueAdditionDTO {
+        if rangeOfMarkdownImageFormat(string: self.comment) == nil {
+            self.file = nil
+        } else {
+            self.comment.removeSubrange(rangeOfMarkdownImageFormat(string: self.comment)!)
+        }
+        
         return IssueAdditionDTO(title: self.title, comment: self.comment, file: self.file, labelIds: self.labels.map { $0.id }, milestoneId: self.milestones.reduce(0) { $0 + $1.id }, assigneeIds: self.assignees.map { $0.id })
     }
 }

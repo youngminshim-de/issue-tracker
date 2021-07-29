@@ -11,6 +11,8 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
     @IBOutlet var addtionButtons: [UIButton]!
     @IBOutlet var seletedLabels: [UILabel]!
     
+    private let photoPicker = UIImagePickerController()
+    private let loadingView = LoadingView()
     private var markdownView: MarkdownView?
     private let issueAdditionViewModel = IssueAdditionViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -19,6 +21,8 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         super.viewDidLoad()
         bind()
         configureSaveButtonColor()
+        self.photoPicker.delegate = self
+        self.loadingView.initilize(viewController: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +56,15 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
                     self?.navigationController?.popViewController(animated: true)
                 }
             }.store(in: &subscriptions)
+        
+        issueAdditionViewModel.didUpdateImage()
+            .sink { [weak self] result in
+                guard let result = result, let self = self else { return }
+                self.loadingView.stop()
+                
+                self.markdownTextView.text += self.issueAdditionViewModel.markdownImageFormat()
+                self.issueAdditionViewModel.configureComment(self.markdownTextView.text)
+            }.store(in: &subscriptions)
     }
     
     private func configureSaveButtonColor() {
@@ -63,6 +76,7 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         guard let view = markdownView else {
             return
         }
+        
         view.load(markdown: markdownTextView.text)
         markdownPreView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +84,11 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         view.rightAnchor.constraint(equalTo: markdownTextView.rightAnchor).isActive = true
         view.topAnchor.constraint(equalTo: markdownTextView.topAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: markdownTextView.bottomAnchor).isActive = true
+    }
+    
+    private func removeMarkdownImageFormat() {
+        guard let range = self.issueAdditionViewModel.rangeOfMarkdownImageFormat(string: self.markdownTextView.text) else { return }
+        self.markdownTextView.text.removeSubrange(range)
     }
     
     private func makeAdditionalViewController() -> AdditionalInfoViewController {
@@ -88,7 +107,6 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
     }
     
     @IBAction func pressedSegmentedControl(_ sender: UISegmentedControl) {
-        
         switch sender.selectedSegmentIndex {
         case 0:
             markdownView?.removeFromSuperview()
@@ -139,10 +157,44 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
 }
 
 extension IssueAdditionViewController: UITextViewDelegate {
+    
     func textViewDidChange(_ textView: UITextView) {
         guard let text = textView.text else {
             return
         }
+        
         self.issueAdditionViewModel.configureComment(text)
     }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let menuItem = UIMenuItem(title: "Insert Photo", action: #selector(openPhotoLibrary))
+        UIMenuController.shared.menuItems = [menuItem]
+    }
+    
+}
+
+extension IssueAdditionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @objc func openPhotoLibrary() {
+        photoPicker.sourceType = .photoLibrary
+        present(photoPicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.removeMarkdownImageFormat()
+            self.dismiss(animated: true, completion: nil)
+            self.loadingView.start()
+            
+            let imageData = makeBase64Image(pickedImage)
+            self.issueAdditionViewModel.UploadImage(imageData: imageData)
+        }
+    }
+    
+    func makeBase64Image(_ image: UIImage) -> String? {
+        let imageData = image.jpegData(compressionQuality: 0.5)
+        let base64Image = imageData?.base64EncodedString(options: .lineLength64Characters)
+        return base64Image
+    }
+    
 }

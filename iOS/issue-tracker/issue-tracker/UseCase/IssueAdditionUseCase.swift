@@ -34,4 +34,24 @@ class IssueAdditionUseCase {
             }.store(in: &subscriptions)
     }
     
+    func executeUploadImage(imageData: String?, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        networkManager.sendUploadImageToImgur(imageData: imageData)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { response in
+                if let error = response.success, !error, let status = response.status {
+                    completion(.success("\(status)"))
+                } else {
+                    if let link = response.data?.link {
+                        completion(.success(link))
+                    }
+                }
+            }.store(in: &subscriptions)
+    }
+    
 }

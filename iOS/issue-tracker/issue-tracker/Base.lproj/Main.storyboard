@@ -285,7 +285,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50" scale="large" weight="thin"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vwo-83-pmj" kind="show" id="w5e-3q-9pX"/>
+                                    <segue destination="vwo-83-pmj" kind="show" id="4Bk-lm-ve9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -495,7 +495,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Zjk-if-fF4" firstAttribute="trailing" secondItem="kSF-HF-RgO" secondAttribute="trailing" id="H8h-i6-PaW"/>
-                            <constraint firstItem="PWh-Oi-pe4" firstAttribute="top" secondItem="Zjk-if-fF4" secondAttribute="top" id="LB0-AQ-H5f"/>
+                            <constraint firstItem="PWh-Oi-pe4" firstAttribute="top" secondItem="Zjk-if-fF4" secondAttribute="top" id="Iyk-9b-nBQ"/>
                             <constraint firstItem="kSF-HF-RgO" firstAttribute="leading" secondItem="Zjk-if-fF4" secondAttribute="leading" id="R38-he-jl5"/>
                             <constraint firstAttribute="bottom" secondItem="kSF-HF-RgO" secondAttribute="bottom" id="bhG-6N-1xP"/>
                             <constraint firstItem="Zjk-if-fF4" firstAttribute="trailing" secondItem="PWh-Oi-pe4" secondAttribute="trailing" id="rkl-Jw-CH5"/>
@@ -503,6 +503,7 @@
                             <constraint firstItem="kSF-HF-RgO" firstAttribute="top" secondItem="PWh-Oi-pe4" secondAttribute="bottom" id="zIi-2U-Lc5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="rEW-0b-Wu0"/>
                     <connections>
                         <outlet property="allSelectionButton" destination="OZP-81-836" id="rnr-3R-1pa"/>
                         <outlet property="issueCloseButton" destination="kkY-Pn-s75" id="6iM-YA-BYC"/>
@@ -512,7 +513,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKP-OA-TSw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3897" y="798"/>
+            <point key="canvasLocation" x="3894.202898550725" y="797.54464285714278"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="zO3-S5-bgW">
@@ -1291,7 +1292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhG-06-lC8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3097" y="798"/>
+            <point key="canvasLocation" x="3087" y="798"/>
         </scene>
         <!--Label Addition View Controller-->
         <scene sceneID="KS4-zj-Ife">
