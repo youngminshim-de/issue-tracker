@@ -1,10 +1,12 @@
 package team02.issue_tracker.dto.issue;
 
 import lombok.Getter;
+import team02.issue_tracker.domain.Comment;
 import team02.issue_tracker.domain.Issue;
 import team02.issue_tracker.domain.Milestone;
 import team02.issue_tracker.dto.CommentResponse;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,7 @@ public class DetailIssueResponse extends AbstractIssueResponse {
         super(issue);
         this.milestone = toMilestoneDetailResponse(issue.getMilestone(), totalIssueCountInMilestone, openIssueCountInMilestone);
         this.comments = issue.getComments().stream()
+                .sorted(Comparator.comparing(Comment::getId))
                 .map(CommentResponse::new)
                 .collect(Collectors.toList());
     }
