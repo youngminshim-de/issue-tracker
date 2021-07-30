@@ -31,6 +31,17 @@ class IssueDetailViewModel {
             }
         }
     }
+
+    func delete(commentID: Int) {
+        issueDetailUseCase.executeDeleteComment(commentID) { result in
+            switch result {
+            case .failure(let errorMessage):
+                break
+            case .success(let resultMessage):
+                self.resultMessage = resultMessage
+            }
+        }
+    }
     
     func addNewComment() {
         self.issueDetailUseCase.executeAddingNewComment(issueID: issueID, comment: NewCommentDTO(content: newComment, file: nil)) { result in
@@ -139,6 +150,10 @@ class IssueDetailViewModel {
             return
         }
         self.commentID = id
+    }
+    
+    func commentId() -> Int {
+        return self.commentID
     }
     
 }

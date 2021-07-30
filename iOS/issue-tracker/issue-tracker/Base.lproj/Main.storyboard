@@ -712,8 +712,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcY-0t-qWT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPW-TE-WgN">
-                                <rect key="frame" x="32" y="348" width="350" height="200"/>
+                                <rect key="frame" x="32" y="868" width="350" height="200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-t0-5di">
                                         <rect key="frame" x="25" y="50" width="300" height="90"/>
@@ -741,6 +745,9 @@
                                                 <rect key="frame" x="65" y="5" width="230" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFiledAction:" destination="YJI-qm-kOQ" eventType="editingChanged" id="Idf-yK-ErU"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="asgawegasdgasdgasdgasdgasdgasdgasgesgesgaseg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvM-H5-sRK">
                                                 <rect key="frame" x="65" y="57" width="230" height="21"/>
@@ -848,11 +855,18 @@
                         <viewLayoutGuide key="safeArea" id="23n-ge-oli"/>
                         <constraints>
                             <constraint firstItem="hPW-TE-WgN" firstAttribute="centerX" secondItem="7L7-zh-6uZ" secondAttribute="centerX" id="3o7-q0-vuc"/>
-                            <constraint firstItem="hPW-TE-WgN" firstAttribute="centerY" secondItem="7L7-zh-6uZ" secondAttribute="centerY" id="mOk-jH-nTT"/>
+                            <constraint firstItem="bcY-0t-qWT" firstAttribute="leading" secondItem="23n-ge-oli" secondAttribute="leading" id="FZV-t4-f63"/>
+                            <constraint firstItem="23n-ge-oli" firstAttribute="trailing" secondItem="bcY-0t-qWT" secondAttribute="trailing" id="ZBv-1S-6dV"/>
+                            <constraint firstItem="bcY-0t-qWT" firstAttribute="top" secondItem="7L7-zh-6uZ" secondAttribute="top" id="dGw-Kh-bro"/>
+                            <constraint firstAttribute="bottom" secondItem="bcY-0t-qWT" secondAttribute="bottom" id="jsR-Y0-5yg"/>
+                            <constraint firstItem="hPW-TE-WgN" firstAttribute="centerY" secondItem="7L7-zh-6uZ" secondAttribute="centerY" constant="520" id="mOk-jH-nTT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="commentTextField" destination="hff-eP-DoD" id="sV4-bh-Nwh"/>
+                        <outlet property="commentView" destination="hPW-TE-WgN" id="Rma-Qt-0cV"/>
+                        <outlet property="commentViewCenterYConstraint" destination="mOk-jH-nTT" id="CSy-Ju-L7Q"/>
+                        <outlet property="dimmedView" destination="bcY-0t-qWT" id="cXz-f7-SNe"/>
                         <outlet property="fileNameLabel" destination="hvM-H5-sRK" id="CH6-ba-Xrc"/>
                     </connections>
                 </viewController>

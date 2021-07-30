@@ -29,7 +29,7 @@ class IssueDetailUseCase {
     }
     
     func executeAddingNewComment(issueID: Int, comment: NewCommentDTO, completion: @escaping (Result<String, NetworkError>) -> Void) {
-        let path = "\(Path.issues.rawValue)/\(issueID)/comments"
+        let path = "\(Path.issues.rawValue)/\(issueID)\(Path.comments.rawValue)"
         let url = endPoint.makeURL(with: path)
         networkManager.sendRequest(with: url, method: .post, type: ResponseBodyDTO.self, body: comment)
             .sink { result in
@@ -71,5 +71,48 @@ class IssueDetailUseCase {
                 }
             }.store(in: &subscriptions)
     }
+        
+    func executeEditingComment(commentID: Int, comment: NewCommentDTO, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        let path = "\(Path.comments.rawValue)/\(commentID)"
+        let url = endPoint.makeURL(with: path)
+        networkManager.sendRequest(with: url, method: .patch, type: ResponseBodyDTO.self, body: comment)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { response in
+                if let error = response.error {
+                    completion(.success(error))
+                } else {
+                    if let data = response.data {
+                        completion(.success(data))
+                    }
+                }
+            }.store(in: &subscriptions)
+    }
     
+    func executeDeleteComment(_ commentID: Int, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        let path = "\(Path.comments.rawValue)/\(commentID)"
+        let url = endPoint.makeURL(with: path)
+        networkManager.sendRequest(with: url, method: .delete, type: ResponseBodyDTO.self)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { response in
+                if let error = response.error {
+                    completion(.success(error))
+                } else {
+                    if let data = response.data {
+                        completion(.success(data))
+                    }
+                }
+            }.store(in: &subscriptions)
+    }
 }
