@@ -55,6 +55,9 @@
                         </constraints>
                         <color key="tintColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="ellipsis" catalog="system"/>
+                        <connections>
+                            <action selector="pressedEmojiButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RaS-VN-EmQ"/>
+                        </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Hd-ae-38u">
                         <rect key="frame" x="68" y="72.5" width="291" height="160"/>
@@ -81,7 +84,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="comment" destination="XMC-xQ-0RU" id="gcA-FT-WfJ"/>
-                <outlet property="commentOption" destination="swl-C4-S2S" id="jXk-v8-pNH"/>
+                <outlet property="commentOption" destination="swl-C4-S2S" id="r9y-sP-6PP"/>
                 <outlet property="fileImage" destination="6Hd-ae-38u" id="74n-YY-mrf"/>
                 <outlet property="userImageView" destination="wPY-Ca-CEp" id="KOa-gs-pdu"/>
                 <outlet property="userName" destination="3Q7-cW-oBw" id="HKj-0K-9v0"/>

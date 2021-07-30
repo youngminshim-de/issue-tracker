@@ -11,6 +11,85 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     
+    let emojiContainerView: UIView = {
+        let containerView = UIView()
+//        let containerView = UIImageView(image: UIImage(named: "emojiBox")?.withAlpha(0.85))
+//        containerView.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        containerView.backgroundColor = .clear
+        containerView.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        
+        let containerBackgroundImageView = UIImageView()
+        containerBackgroundImageView.image = UIImage(named: "emojiBox")
+        
+//        let emojis = ["😊", "😳", "❤️", "☀️", "☁️", "🥇", "🎉", "😭", "👍", "🔥"]
+        let emojisArray1 = ["😊", "😳", "❤️", "☀️", "☁️"]
+        let emojisArray2 = ["🥇", "🎉", "😭", "👍", "🔥"]
+        let emojiHeight: CGFloat = 40
+        let padding: CGFloat = 8
+        
+        let emojiSubviews1: [UIView] = emojisArray1.map({ emoji in
+            let label = UILabel()
+            label.backgroundColor = .clear
+            label.text = emoji
+            label.textAlignment = .center
+            label.isUserInteractionEnabled = true
+            return label
+        })
+        
+        let emojiSubviews2: [UIView] = emojisArray2.map({ emoji in
+            let label = UILabel()
+            label.backgroundColor = .clear
+            label.text = emoji
+            label.textAlignment = .center
+            label.isUserInteractionEnabled = true
+            return label
+        })
+        
+        let blueView = UIView()
+        blueView.backgroundColor = .blue
+        let yellowView = UIView()
+        yellowView.backgroundColor = .yellow
+        
+        let stackView = UIStackView(arrangedSubviews: emojiSubviews1)
+        stackView.distribution = .fillEqually
+        stackView.spacing = padding
+        stackView.layoutMargins = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
+        let stackView2 = UIStackView(arrangedSubviews: emojiSubviews2)
+        stackView2.distribution = .fillEqually
+        stackView2.spacing = padding
+        stackView2.layoutMargins = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        stackView2.isLayoutMarginsRelativeArrangement = true
+        
+        let containerStackview = UIStackView(arrangedSubviews: [stackView, stackView2])
+        containerStackview.axis = .vertical
+        containerStackview.distribution = .fillEqually
+        containerStackview.spacing = 0
+        containerStackview.layoutMargins = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        containerStackview.isLayoutMarginsRelativeArrangement = true
+        
+        let emojiCountInRow = CGFloat(emojisArray1.count)
+        let width = emojiCountInRow * emojiHeight + (emojiCountInRow + 1) * padding
+        let height = emojiHeight * 2 + 3 * padding
+        
+        containerView.addSubview(containerBackgroundImageView)
+        containerView.addSubview(containerStackview)
+        containerView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        containerView.layer.cornerRadius = 15
+        containerView.layer.borderWidth = 1
+        containerView.layer.borderColor = UIColor.systemGray6.cgColor
+        containerView.layer.shadowColor = UIColor(white: 0.1, alpha: 0.6).cgColor
+        containerView.layer.shadowRadius = 8
+        containerView.layer.shadowOpacity = 0.5
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        
+        containerBackgroundImageView.frame = containerView.frame
+        containerStackview.frame = containerView.frame
+
+        return containerView
+    }()
+    
     private let issueDetailViewModel = IssueDetailViewModel()
     private var subscriptions = Set<AnyCancellable>()
 //    private var cachedImage = [UIImage?]()
@@ -26,6 +105,22 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         commentTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+//        view.addSubview(emojiContainerView)
+    }
+    
+    @objc func handleTap(gesture: UITapGestureRecognizer) {
+        let hitTest = emojiContainerView.hitTest(gesture.location(in: emojiContainerView), with: nil)
+        if hitTest == nil {
+            print(hitTest)
+            emojiContainerView.removeFromSuperview()
+        }
+        
+        if hitTest is UILabel {
+            hitTest?.alpha = 0
+            print(hitTest as? UILabel)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,8 +284,39 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.userName.text = self.issueDetailViewModel.commentUsername(indexPath: indexPath)
         cell.writeTime.text = self.issueDetailViewModel.commentWriteTime(indexPath: indexPath)
         cell.comment.text = self.issueDetailViewModel.comment(indexPath: indexPath)
+        cell.index = indexPath.row
+        cell.delegate = self
         
         return cell
+    }
+    
+}
+
+extension IssueDetailViewController: CommentTableViewCellDelegate {
+    
+    func CommentTableViewCellActionDidFinish(index: Int, sender: UIButton) {
+        print(index, sender)
+        
+        // 이미 버튼이 눌린 상태면 지우기
+        if self.emojiContainerView.superview != nil {
+            self.emojiContainerView.removeFromSuperview()
+            return
+        }
+        
+        if let buttonLocation = sender.superview?.convert(sender.frame, to: self.view) {
+            let x = (buttonLocation.minX + buttonLocation.size.width) - emojiContainerView.frame.width
+            let y = buttonLocation.minY
+            view.addSubview(emojiContainerView)
+            print(x, y)
+            emojiContainerView.alpha = 0
+            emojiContainerView.transform = CGAffineTransform(translationX: x, y: y)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
+                self.emojiContainerView.alpha = 1
+                self.emojiContainerView.transform = CGAffineTransform(translationX: x, y: y + buttonLocation.size.height)
+            }
+        }
+        
     }
     
 }
