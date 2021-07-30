@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class IssueDetailViewController: UIViewController, UITextFieldDelegate {
+class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentModificationViewControllerDelegate {
 
     @IBOutlet weak var issueTitle: UILabel!
     @IBOutlet weak var issueNumber: UILabel!
@@ -226,16 +226,26 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         commentTableView.tableFooterView = footerView
     }
     
-    private func showCommentModificationViewController(sender: UIButton) {
+    private func showCommentModificationViewController(commentID: Int) {
         guard let commentModificationViewController = self.storyboard?.instantiateViewController(identifier: CommentModificationViewController.identifier) as? CommentModificationViewController else {
             return
         }
-        
-        let touchPoint = sender.convert(CGPoint.zero, to: self.commentTableView)
-        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint) else { return }
-        self.issueDetailViewModel.setCommentID(indexPath: clickedButtonIndexPath)
+        commentModificationViewController.delegate = self
+        commentModificationViewController.setCommentID(commentID)
         commentModificationViewController.modalPresentationStyle = .overCurrentContext
-        self.present(commentModificationViewController, animated: false, completion: nil)
+        self.present(commentModificationViewController, animated: true) {
+            let y = commentModificationViewController.view.frame.height / 2 + commentModificationViewController.commentView.frame.height / 2
+            commentModificationViewController.commentViewCenterYConstraint.constant = y
+            print(y)
+            UIView.animate(withDuration: 0.4) {
+                commentModificationViewController.commentViewCenterYConstraint.constant = 0
+            }
+        }
+    
+    }
+    
+    func CommentModificationViewControllerDidFinish() {
+        self.issueDetailViewModel.fetchIssueDetail()
     }
     
     @objc func postComment() {
@@ -258,17 +268,24 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         }
         
         popUpViewController.modalPresentationStyle = .overCurrentContext
-        self.present(popUpViewController, animated: false, completion: nil)
+        self.present(popUpViewController, animated: true, completion: nil)
     }
     
     @objc func pressedOption(_ sender: UIButton) {
+        let touchPoint = sender.convert(CGPoint.zero, to: self.commentTableView)
+        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint) else {
+            return
+        }
+        self.issueDetailViewModel.setCommentID(indexPath: clickedButtonIndexPath)
+        let commentID = self.issueDetailViewModel.commentId()
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "수정", style: .default) { _ in
-            self.showCommentModificationViewController(sender: sender)
+            self.showCommentModificationViewController(commentID: commentID)
         })
         
         alert.addAction(UIAlertAction(title: "삭제", style: .destructive) { _ in
-            
+            self.issueDetailViewModel.delete(commentID: commentID)
         })
         
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
