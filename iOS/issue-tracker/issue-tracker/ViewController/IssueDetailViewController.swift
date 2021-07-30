@@ -226,6 +226,18 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         commentTableView.tableFooterView = footerView
     }
     
+    private func showCommentModificationViewController(sender: UIButton) {
+        guard let commentModificationViewController = self.storyboard?.instantiateViewController(identifier: CommentModificationViewController.identifier) as? CommentModificationViewController else {
+            return
+        }
+        
+        let touchPoint = sender.convert(CGPoint.zero, to: self.commentTableView)
+        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint) else { return }
+        self.issueDetailViewModel.setCommentID(indexPath: clickedButtonIndexPath)
+        commentModificationViewController.modalPresentationStyle = .overCurrentContext
+        self.present(commentModificationViewController, animated: false, completion: nil)
+    }
+    
     @objc func postComment() {
         self.issueDetailViewModel.addNewComment()
         self.commentTextField.text = ""
@@ -249,27 +261,6 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         self.present(popUpViewController, animated: false, completion: nil)
     }
     
-    @IBAction func textFieldAction(_ sender: UITextField) {
-        guard let postButton = sender.rightView as? UIButton else { return }
-        if sender.text == nil || sender.text == "" {
-            postButton.isEnabled = false
-        } else {
-            postButton.isEnabled = true
-            issueDetailViewModel.setNewComment(sender.text!)
-        }
-    }
-    
-    private func showCommentModificationViewController(sender: UIButton) {
-        guard let commentModificationViewController = self.storyboard?.instantiateViewController(identifier: CommentModificationViewController.identifier) as? CommentModificationViewController else {
-            return
-        }
-        let touchPoint = sender.convert(CGPoint.zero, to: self.commentTableView)
-        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint) else { return }
-        self.issueDetailViewModel.setCommentID(indexPath: clickedButtonIndexPath)
-        commentModificationViewController.modalPresentationStyle = .overCurrentContext
-        self.present(commentModificationViewController, animated: false, completion: nil)
-    }
-    
     @objc func pressedOption(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "수정", style: .default) { _ in
@@ -284,8 +275,36 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func showEmojiViewController(_ sender: UIButton) {
+    @objc func showEmojiCollection(_ sender: UIButton) {
         
+        if self.emojiContainerView.superview != nil {
+            self.emojiContainerView.removeFromSuperview()
+            return
+        }
+        
+        if let buttonLocation = sender.superview?.convert(sender.frame, to: self.view) {
+            let x = (buttonLocation.minX + buttonLocation.size.width) - emojiContainerView.frame.width
+            let y = buttonLocation.minY
+            view.addSubview(emojiContainerView)
+            print(x, y)
+            emojiContainerView.alpha = 0
+            emojiContainerView.transform = CGAffineTransform(translationX: x, y: y)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
+                self.emojiContainerView.alpha = 1
+                self.emojiContainerView.transform = CGAffineTransform(translationX: x, y: y + buttonLocation.size.height)
+            }
+        }
+    }
+    
+    @IBAction func textFieldAction(_ sender: UITextField) {
+        guard let postButton = sender.rightView as? UIButton else { return }
+        if sender.text == nil || sender.text == "" {
+            postButton.isEnabled = false
+        } else {
+            postButton.isEnabled = true
+            issueDetailViewModel.setNewComment(sender.text!)
+        }
     }
     
 }
@@ -315,46 +334,15 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
             cell.commentOption.addTarget(self, action: #selector(pressedOption(_:)), for: .touchUpInside)
         } else {
             cell.commentOption.setImage(UIImage(systemName: "smiley"), for: .normal)
-            cell.commentOption.addTarget(self, action: #selector(showEmojiViewController), for: .touchUpInside)
+            cell.commentOption.addTarget(self, action: #selector(showEmojiCollection(_:)), for: .touchUpInside)
         }
         
         cell.userName.text = self.issueDetailViewModel.commentUsername(indexPath: indexPath)
         cell.writeTime.text = self.issueDetailViewModel.commentWriteTime(indexPath: indexPath)
         cell.comment.text = self.issueDetailViewModel.comment(indexPath: indexPath)
-        cell.index = indexPath.row
-        cell.delegate = self
         
         return cell
     }
-}
-
-extension IssueDetailViewController: CommentTableViewCellDelegate {
-    
-    func CommentTableViewCellActionDidFinish(index: Int, sender: UIButton) {
-        print(index, sender)
-        
-        // 이미 버튼이 눌린 상태면 지우기
-        if self.emojiContainerView.superview != nil {
-            self.emojiContainerView.removeFromSuperview()
-            return
-        }
-        
-        if let buttonLocation = sender.superview?.convert(sender.frame, to: self.view) {
-            let x = (buttonLocation.minX + buttonLocation.size.width) - emojiContainerView.frame.width
-            let y = buttonLocation.minY
-            view.addSubview(emojiContainerView)
-            print(x, y)
-            emojiContainerView.alpha = 0
-            emojiContainerView.transform = CGAffineTransform(translationX: x, y: y)
-            
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
-                self.emojiContainerView.alpha = 1
-                self.emojiContainerView.transform = CGAffineTransform(translationX: x, y: y + buttonLocation.size.height)
-            }
-        }
-        
-    }
-    
 }
 
 extension IssueDetailViewController: Identifying { }
