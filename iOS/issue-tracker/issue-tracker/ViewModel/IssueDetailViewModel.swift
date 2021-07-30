@@ -7,12 +7,15 @@ class IssueDetailViewModel {
     @Published private var resultMessage: String?
     private let issueDetailUseCase: IssueDetailUseCase
     private var issueID: Int
+    private var commentID: Int
     private var newComment: String
+    private let myInfo = MyInfo.shared
     
     init() {
         self.issueDetail = nil
         self.issueDetailUseCase = IssueDetailUseCase()
         self.issueID = 0
+        self.commentID = 0
         self.newComment = ""
     }
     
@@ -110,4 +113,14 @@ class IssueDetailViewModel {
         self.newComment = comment
     }
     
+    func writer(indexPath: IndexPath) -> Bool {
+        return self.issueDetail?.comments[indexPath.row].writer.id == myInfo.id
+    }
+    
+    func setCommentID(indexPath: IndexPath) {
+        guard let id = self.issueDetail?.comments[indexPath.row].commentID else {
+            return
+        }
+        self.commentID = id
+    }
 }
