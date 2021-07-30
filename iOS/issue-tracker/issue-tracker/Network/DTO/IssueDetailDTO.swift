@@ -70,3 +70,13 @@ struct NewCommentDTO: Encodable {
     let file: String?
     
 }
+
+struct NewEmojiDTO: Encodable {
+    
+    let emojiId: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case emojiId = "emoji_id"
+    }
+    
+}

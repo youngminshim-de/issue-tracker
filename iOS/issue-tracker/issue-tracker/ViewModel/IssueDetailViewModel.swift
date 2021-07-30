@@ -10,6 +10,7 @@ class IssueDetailViewModel {
     private var commentID: Int
     private var newComment: String
     private let myInfo = MyInfo.shared
+    private let emojiArray: [String]
     
     init() {
         self.issueDetail = nil
@@ -17,6 +18,7 @@ class IssueDetailViewModel {
         self.issueID = 0
         self.commentID = 0
         self.newComment = ""
+        self.emojiArray = ["😊", "😳", "❤️", "☀️", "☁️", "🥇", "🎉", "😭", "👍", "🔥"]
     }
     
     func fetchIssueDetail() {
@@ -37,6 +39,21 @@ class IssueDetailViewModel {
                 print(error.localizedDescription)
             case .success(let resultMessage):
                 self.resultMessage = resultMessage
+            }
+        }
+    }
+    
+    func addNewEmoji(_ selectedEmoji: String) {
+        if let emojiIndex = self.emojiArray.enumerated().filter({ $0.element == selectedEmoji }).first?.offset {
+            let emojiID = emojiIndex + 1
+            
+            issueDetailUseCase.executeAddingNewEmoji(commentID: self.commentID, emoji: NewEmojiDTO(emojiId: emojiID)) { result in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let resultMessage):
+                    self.resultMessage = resultMessage
+                }
             }
         }
     }
@@ -123,4 +140,5 @@ class IssueDetailViewModel {
         }
         self.commentID = id
     }
+    
 }
