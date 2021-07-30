@@ -164,6 +164,21 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @objc func showCommentModificationViewController(_ sender: UIButton) {
+        guard let commentModificationViewController = self.storyboard?.instantiateViewController(identifier: CommentModificationViewController.identifier) as? CommentModificationViewController else {
+            return
+        }
+        let touchPoint = sender.convert(CGPoint.zero, to: self.commentTableView)
+        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint) else { return }
+        issueDetailViewModel.setCommentID(indexPath: clickedButtonIndexPath)
+        commentModificationViewController.modalPresentationStyle = .overCurrentContext
+        self.present(commentModificationViewController, animated: false, completion: nil)
+    }
+    
+    @objc func showEmojiViewController(_ sender: UIButton) {
+        
+    }
+    
 }
 
 extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate {
@@ -186,13 +201,20 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
                 cell.userImageView.image = image
             }
         }
+        
+        if issueDetailViewModel.writer(indexPath: indexPath) {
+            cell.commentOption.addTarget(self, action: #selector(showCommentModificationViewController(_:)), for: .touchUpInside)
+        } else {
+            cell.commentOption.setImage(UIImage(systemName: "smiley"), for: .normal)
+            cell.commentOption.addTarget(self, action: #selector(showEmojiViewController), for: .touchUpInside)
+        }
+        
         cell.userName.text = self.issueDetailViewModel.commentUsername(indexPath: indexPath)
         cell.writeTime.text = self.issueDetailViewModel.commentWriteTime(indexPath: indexPath)
         cell.comment.text = self.issueDetailViewModel.comment(indexPath: indexPath)
         
         return cell
     }
-    
 }
 
 extension IssueDetailViewController: Identifying { }
