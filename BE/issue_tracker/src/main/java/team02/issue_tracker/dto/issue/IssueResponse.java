@@ -25,6 +25,9 @@ public class IssueResponse extends AbstractIssueResponse {
     }
 
     private IssueCommentResponse toCommentResponse(Comment comment) {
+        if (comment == null) {
+            return null;
+        }
         return new IssueCommentResponse(comment);
     }
 }
