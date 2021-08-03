@@ -44,6 +44,11 @@ public class IssueService {
 
     private IssueResponse toIssueResponse(Issue issue) {
         List<Comment> comments = commentService.findByIssueId(issue.getId());
+
+        if(comments.isEmpty()) {
+            return new IssueResponse(issue, null);
+        }
+
         Comment firstComment = comments.stream()
                 .findFirst()
                 .orElseThrow(CommentNotFoundException::new);
