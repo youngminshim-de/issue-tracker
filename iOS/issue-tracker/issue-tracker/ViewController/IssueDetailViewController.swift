@@ -13,7 +13,7 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
     
     private let issueDetailViewModel = IssueDetailViewModel()
     private var subscriptions = Set<AnyCancellable>()
-//    private var cachedImage = [UIImage?]()
+    private var cachedImage = [UIImage?]()
     
     let emojiContainerView: UIView = {
         let containerView = UIView()
@@ -169,7 +169,7 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
                 self?.issueState.text = "\(issueDetail.isOpen ? "열림" : "닫힘")"
                 self?.writer.text = ",\(issueDetail.writer.username)님이 작성했습니다."
                 self?.writeTime.text = self?.issueDetailViewModel.relativeCreatedTime(issueDetail.createdTime)
-//                self?.loadImage()
+                self?.loadImage()
                 self?.commentTableView.reloadData()
             }.store(in: &subscriptions)
         
@@ -183,25 +183,25 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
         issueDetailViewModel.fetchIssueDetail()
     }
     
-//    func loadImage() {
-//        self.cachedImage = [UIImage?](repeating: nil, count: issueDetailViewModel.commentCount())
-//
-//        for index in 0..<cachedImage.count {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            let urlString = issueDetailViewModel.file(indexPath: indexPath)
-//            guard let imageUrlString = urlString, let imageURL = URL(string: imageUrlString) else { continue }
-//            DispatchQueue.global().async {
-//                let imageData = try? Data(contentsOf: imageURL)
-//                guard let data = imageData, let image = UIImage(data: data) else { return }
-//                self.cachedImage[indexPath.row] = image
-//                DispatchQueue.main.async {
-//                    self.commentTableView.beginUpdates()
-//                    self.commentTableView.reloadRows(at: [indexPath], with: .fade)
-//                    self.commentTableView.endUpdates()
-//                }
-//            }
-//        }
-//    }
+    func loadImage() {
+        self.cachedImage = [UIImage?](repeating: nil, count: issueDetailViewModel.commentCount())
+
+        for index in 0..<cachedImage.count {
+            let indexPath = IndexPath(row: index, section: 0)
+            let urlString = issueDetailViewModel.file(indexPath: indexPath)
+            guard let imageUrlString = urlString, let imageURL = URL(string: imageUrlString) else { continue }
+            
+            DispatchQueue.global().async {
+                let imageData = try? Data(contentsOf: imageURL)
+                guard let data = imageData, let image = UIImage(data: data) else { return }
+                self.cachedImage[indexPath.row] = image
+                
+                DispatchQueue.main.async {
+                    self.commentTableView.reloadRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+    }
     
     private func configureIssueOptionButton() {
         let buttonImage = UIImage(systemName: "ellipsis")
@@ -240,6 +240,9 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
     private func configureCommentTableView() {
         commentTableView.register(CommentTableViewCell.nib, forCellReuseIdentifier: CommentTableViewCell.identifier)
         configureTableViewFooterView()
+        
+        let estimatedRowHeight: CGFloat = 350
+        commentTableView.estimatedRowHeight = estimatedRowHeight
     }
     
     private func configureTableViewFooterView() {
@@ -248,13 +251,13 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
         commentTableView.tableFooterView = footerView
     }
     
-    private func showCommentModificationViewController(commentID: Int) {
+    private func showCommentModificationViewController(comment: Comment) {
         guard let commentModificationViewController = self.storyboard?.instantiateViewController(identifier: CommentModificationViewController.identifier) as? CommentModificationViewController else {
             return
         }
         
         commentModificationViewController.delegate = self
-        commentModificationViewController.setCommentID(commentID)
+        commentModificationViewController.setComment(comment)
         commentModificationViewController.modalPresentationStyle = .overCurrentContext
         self.present(commentModificationViewController, animated: false, completion: nil)
     }
@@ -288,15 +291,17 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
     
     @objc func pressedOption(_ sender: UIButton) {
         let touchPoint = sender.convert(CGPoint.zero, to: self.commentTableView)
-        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint) else {
+        guard let clickedButtonIndexPath = self.commentTableView.indexPathForRow(at: touchPoint),
+              let clickedCommentInfo = self.issueDetailViewModel.commentInfo(indexPath: clickedButtonIndexPath) else {
             return
         }
+        
         self.issueDetailViewModel.setCommentID(indexPath: clickedButtonIndexPath)
-        let commentID = self.issueDetailViewModel.commentId()
+        let commentID = clickedCommentInfo.commentID
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "수정", style: .default) { _ in
-            self.showCommentModificationViewController(commentID: commentID)
+            self.showCommentModificationViewController(comment: clickedCommentInfo)
         })
         
         alert.addAction(UIAlertAction(title: "삭제", style: .destructive) { _ in
@@ -356,6 +361,15 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.identifier, for: indexPath) as? CommentTableViewCell else {
             return UITableViewCell()
+        }
+        
+        if !cachedImage.isEmpty {
+            if cachedImage[indexPath.row] == nil {
+                cell.setHeightZero()
+            } else {
+                cell.setDefaultHeight()
+                cell.fileImage.image = cachedImage[indexPath.row]
+            }
         }
         
         DispatchQueue.global().async {

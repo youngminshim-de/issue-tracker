@@ -34,7 +34,6 @@ class RequestManager {
         let clientID = "82ac84dde2ec92f"
         
         let boundary = "Boundary-\(UUID().uuidString)"
-
         var request = URLRequest(url: URL(string: endPointToImgur)!)
         request.addValue("Client-ID \(clientID)", forHTTPHeaderField: "Authorization")
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")

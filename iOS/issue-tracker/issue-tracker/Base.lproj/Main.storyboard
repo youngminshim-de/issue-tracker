@@ -723,26 +723,26 @@
                                         <rect key="frame" x="25" y="50" width="300" height="90"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="코멘트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmw-nr-tdq">
-                                                <rect key="frame" x="10" y="12" width="45" height="21"/>
+                                                <rect key="frame" x="10" y="12" width="45" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="파일명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeC-y0-1lL">
-                                                <rect key="frame" x="10" y="57" width="45" height="21"/>
+                                                <rect key="frame" x="10" y="58" width="45" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lme-jx-YVp">
-                                                <rect key="frame" x="10" y="44" width="290" height="1"/>
+                                                <rect key="frame" x="10" y="45" width="290" height="1"/>
                                                 <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="xk6-Rs-aB2"/>
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hff-eP-DoD">
-                                                <rect key="frame" x="65" y="5" width="230" height="34"/>
+                                                <rect key="frame" x="65" y="5" width="230" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -750,11 +750,23 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="asgawegasdgasdgasdgasdgasdgasdgasgesgesgaseg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvM-H5-sRK">
-                                                <rect key="frame" x="65" y="57" width="230" height="21"/>
+                                                <rect key="frame" x="65" y="58" width="205" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjl-DA-wzr">
+                                                <rect key="frame" x="272" y="58" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="DQI-t2-qeW"/>
+                                                    <constraint firstAttribute="height" constant="20" id="bE6-tw-hLJ"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="pressedFileDelete:" destination="YJI-qm-kOQ" eventType="touchUpInside" id="abc-Xm-qjp"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -762,6 +774,7 @@
                                             <constraint firstAttribute="height" constant="90" id="148-2s-vTD"/>
                                             <constraint firstItem="hvM-H5-sRK" firstAttribute="top" secondItem="lme-jx-YVp" secondAttribute="bottom" constant="12" id="3H9-6f-gyx"/>
                                             <constraint firstAttribute="bottom" secondItem="hvM-H5-sRK" secondAttribute="bottom" constant="12" id="4uT-Hp-L61"/>
+                                            <constraint firstItem="wjl-DA-wzr" firstAttribute="top" secondItem="lme-jx-YVp" secondAttribute="bottom" constant="12" id="5dx-vk-EoK"/>
                                             <constraint firstItem="lmw-nr-tdq" firstAttribute="leading" secondItem="iAb-t0-5di" secondAttribute="leading" constant="10" id="AKw-pU-ald"/>
                                             <constraint firstItem="SeC-y0-1lL" firstAttribute="top" secondItem="lmw-nr-tdq" secondAttribute="bottom" constant="24" id="Cin-tk-Jyz"/>
                                             <constraint firstAttribute="trailing" secondItem="hff-eP-DoD" secondAttribute="trailing" constant="5" id="J6y-js-4hG"/>
@@ -769,11 +782,13 @@
                                             <constraint firstItem="SeC-y0-1lL" firstAttribute="top" secondItem="lme-jx-YVp" secondAttribute="bottom" constant="12" id="RF7-kr-EcG"/>
                                             <constraint firstItem="hvM-H5-sRK" firstAttribute="leading" secondItem="SeC-y0-1lL" secondAttribute="trailing" constant="10" id="T4y-Xn-tg5"/>
                                             <constraint firstAttribute="trailing" secondItem="lme-jx-YVp" secondAttribute="trailing" id="Uce-V4-5Mv"/>
-                                            <constraint firstAttribute="trailing" secondItem="hvM-H5-sRK" secondAttribute="trailing" constant="5" id="VM7-S9-YFO"/>
+                                            <constraint firstAttribute="trailing" secondItem="hvM-H5-sRK" secondAttribute="trailing" constant="30" id="VM7-S9-YFO"/>
                                             <constraint firstItem="lme-jx-YVp" firstAttribute="top" secondItem="hff-eP-DoD" secondAttribute="bottom" constant="5" id="Wpv-nL-wKU"/>
+                                            <constraint firstAttribute="trailing" secondItem="wjl-DA-wzr" secondAttribute="trailing" constant="8" id="XoJ-Jo-oYA"/>
                                             <constraint firstItem="lme-jx-YVp" firstAttribute="top" secondItem="lmw-nr-tdq" secondAttribute="bottom" constant="11" id="f5w-UK-jdJ"/>
                                             <constraint firstItem="hff-eP-DoD" firstAttribute="top" secondItem="iAb-t0-5di" secondAttribute="top" constant="5" id="hAd-dc-ln0"/>
                                             <constraint firstItem="lmw-nr-tdq" firstAttribute="top" secondItem="iAb-t0-5di" secondAttribute="top" constant="12" id="irC-xM-GwK"/>
+                                            <constraint firstAttribute="bottom" secondItem="wjl-DA-wzr" secondAttribute="bottom" constant="12" id="oOJ-tB-Tg1"/>
                                             <constraint firstItem="SeC-y0-1lL" firstAttribute="leading" secondItem="iAb-t0-5di" secondAttribute="leading" constant="10" id="p6S-3m-ugk"/>
                                             <constraint firstItem="lme-jx-YVp" firstAttribute="leading" secondItem="iAb-t0-5di" secondAttribute="leading" constant="10" id="qiA-PS-C0j"/>
                                             <constraint firstAttribute="width" constant="300" id="tgx-Wk-dfW"/>
@@ -807,8 +822,8 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="사진 업로드"/>
                                         <connections>
+                                            <action selector="pressedFileUpload:" destination="YJI-qm-kOQ" eventType="touchUpInside" id="xIz-Jc-D7e"/>
                                             <action selector="pressedSaveButton:" destination="q2y-Ti-QDY" eventType="touchUpInside" id="h3Q-5e-rgc"/>
-                                            <action selector="pressedUpload:" destination="YJI-qm-kOQ" eventType="touchUpInside" id="xIz-Jc-D7e"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60C-e5-Zfp">
@@ -867,6 +882,7 @@
                         <outlet property="commentView" destination="hPW-TE-WgN" id="Rma-Qt-0cV"/>
                         <outlet property="commentViewCenterYConstraint" destination="mOk-jH-nTT" id="CSy-Ju-L7Q"/>
                         <outlet property="dimmedView" destination="bcY-0t-qWT" id="cXz-f7-SNe"/>
+                        <outlet property="fileDeleteButton" destination="wjl-DA-wzr" id="UdO-O8-sWS"/>
                         <outlet property="fileNameLabel" destination="hvM-H5-sRK" id="CH6-ba-Xrc"/>
                     </connections>
                 </viewController>

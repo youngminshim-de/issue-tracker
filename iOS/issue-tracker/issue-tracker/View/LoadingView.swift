@@ -22,7 +22,7 @@ class LoadingView {
     }
     
     func stop() {
-        viewController?.dismiss(animated: false, completion: nil)
+        alert.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -81,6 +81,7 @@
 		CE91C3FD26AECDB60008D2FB /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91C3FC26AECDB60008D2FB /* UserList.swift */; };
 		CE91C40126AED1110008D2FB /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91C40026AED1110008D2FB /* FilterViewModel.swift */; };
 		CE93EE4F26A909AB00BAAC79 /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */; };
+		CE94C07226B9D96E00375467 /* CommentModificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C07126B9D96E00375467 /* CommentModificationUseCase.swift */; };
 		CE97638A268208760025CEC3 /* IssueListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976389268208760025CEC3 /* IssueListResponseDTO.swift */; };
 		CE97638C26820BC70025CEC3 /* DefaultIssueListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */; };
 		CE976391268213A60025CEC3 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976390268213A60025CEC3 /* IssueList.swift */; };
@@ -222,6 +223,7 @@
 		CE91C3FC26AECDB60008D2FB /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		CE91C40026AED1110008D2FB /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
+		CE94C07126B9D96E00375467 /* CommentModificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModificationUseCase.swift; sourceTree = "<group>"; };
 		CE976389268208760025CEC3 /* IssueListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListResponseDTO.swift; sourceTree = "<group>"; };
 		CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIssueListUseCase.swift; sourceTree = "<group>"; };
 		CE976390268213A60025CEC3 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */,
 				BD1B183C26A5B28C006188C5 /* IssueAdditionUseCase.swift */,
 				BD9A8C8426B04C560080D052 /* IssueDetailUseCase.swift */,
+				CE94C07126B9D96E00375467 /* CommentModificationUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				CE3014D926A69749009D520F /* IssueSelectionViewModel.swift in Sources */,
 				BDE699CB26958CCA00ADD4F2 /* AdditionView.swift in Sources */,
 				CE97638C26820BC70025CEC3 /* DefaultIssueListUseCase.swift in Sources */,
+				CE94C07226B9D96E00375467 /* CommentModificationUseCase.swift in Sources */,
 				BDCEAF6726733F8F005EE147 /* LabelTableViewCell.swift in Sources */,
 				BDE699D32695CE9800ADD4F2 /* MilestoneAdditionViewModel.swift in Sources */,
 				BD1D36F9266E428700B51184 /* LoginViewController.swift in Sources */,

@@ -58,6 +58,9 @@
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Hd-ae-38u">
                         <rect key="frame" x="68" y="72.5" width="291" height="160"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="160" id="fUB-I1-h0x"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -83,6 +86,7 @@
                 <outlet property="comment" destination="XMC-xQ-0RU" id="gcA-FT-WfJ"/>
                 <outlet property="commentOption" destination="swl-C4-S2S" id="r9y-sP-6PP"/>
                 <outlet property="fileImage" destination="6Hd-ae-38u" id="74n-YY-mrf"/>
+                <outlet property="imageViewHeight" destination="fUB-I1-h0x" id="D66-og-ufX"/>
                 <outlet property="userImageView" destination="wPY-Ca-CEp" id="KOa-gs-pdu"/>
                 <outlet property="userName" destination="3Q7-cW-oBw" id="HKj-0K-9v0"/>
                 <outlet property="writeTime" destination="w0r-15-bUr" id="BbS-q5-ZbT"/>

@@ -105,6 +105,10 @@ class IssueDetailViewModel {
         return self.issueDetail?.comments.count ?? 0
     }
     
+    func commentInfo(indexPath: IndexPath) -> Comment? {
+        return self.issueDetail?.comments[indexPath.row]
+    }
+    
     func commentProfileImage(indexPath: IndexPath) -> String {
         guard let imageUrl = self.issueDetail?.comments[indexPath.row].writer.profileImage else {
             return ""

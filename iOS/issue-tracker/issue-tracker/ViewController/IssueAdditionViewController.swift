@@ -183,7 +183,7 @@ extension IssueAdditionViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.removeMarkdownImageFormat()
-            self.dismiss(animated: true, completion: nil)
+            photoPicker.dismiss(animated: true, completion: nil)
             self.loadingView.start()
             
             let imageData = makeBase64Image(pickedImage)
