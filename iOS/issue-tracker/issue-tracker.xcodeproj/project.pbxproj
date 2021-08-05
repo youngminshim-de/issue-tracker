@@ -91,6 +91,8 @@
 		CE94C0AC26BBB7AF00375467 /* EmojiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE94C0AA26BBB7AF00375467 /* EmojiCollectionViewCell.xib */; };
 		CE94C0AE26BBBA8700375467 /* CollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C0AD26BBBA8700375467 /* CollectionViewLeftAlignFlowLayout.swift */; };
 		CE94C0B026BBDF9C00375467 /* IssueStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C0AF26BBDF9C00375467 /* IssueStateView.swift */; };
+		CE94C0B326BC039500375467 /* IssueLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C0B126BC039500375467 /* IssueLabelCollectionViewCell.swift */; };
+		CE94C0B426BC039500375467 /* IssueLabelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE94C0B226BC039500375467 /* IssueLabelCollectionViewCell.xib */; };
 		CE97638A268208760025CEC3 /* IssueListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976389268208760025CEC3 /* IssueListResponseDTO.swift */; };
 		CE97638C26820BC70025CEC3 /* DefaultIssueListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */; };
 		CE976391268213A60025CEC3 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976390268213A60025CEC3 /* IssueList.swift */; };
@@ -242,6 +244,8 @@
 		CE94C0AA26BBB7AF00375467 /* EmojiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE94C0AD26BBBA8700375467 /* CollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
 		CE94C0AF26BBDF9C00375467 /* IssueStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueStateView.swift; sourceTree = "<group>"; };
+		CE94C0B126BC039500375467 /* IssueLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE94C0B226BC039500375467 /* IssueLabelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueLabelCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE976389268208760025CEC3 /* IssueListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListResponseDTO.swift; sourceTree = "<group>"; };
 		CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIssueListUseCase.swift; sourceTree = "<group>"; };
 		CE976390268213A60025CEC3 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
@@ -445,6 +449,8 @@
 			children = (
 				BD1D3732266F5D9800B51184 /* IssueTableViewCell.swift */,
 				BD1D3733266F5D9800B51184 /* IssueTableViewCell.xib */,
+				CE94C0B126BC039500375467 /* IssueLabelCollectionViewCell.swift */,
+				CE94C0B226BC039500375467 /* IssueLabelCollectionViewCell.xib */,
 				CE71835D2671EB78008B287F /* FilterTableViewCell.swift */,
 				BDCEAF6526733F8F005EE147 /* LabelTableViewCell.swift */,
 				BDCEAF6626733F8F005EE147 /* LabelTableViewCell.xib */,
@@ -674,6 +680,7 @@
 				BD1F87022684D33F005A6FA8 /* MilestoneTableViewCell.xib in Resources */,
 				BDE699CD26958CDA00ADD4F2 /* AdditionView.xib in Resources */,
 				BD6AF8C7266F64D200ADBCDE /* .swiftlint.yml in Resources */,
+				CE94C0B426BC039500375467 /* IssueLabelCollectionViewCell.xib in Resources */,
 				BD1D3701266E428700B51184 /* LaunchScreen.storyboard in Resources */,
 				BD1D36FE266E428700B51184 /* Assets.xcassets in Resources */,
 				BD1D36FC266E428700B51184 /* Main.storyboard in Resources */,
@@ -871,6 +878,7 @@
 				CE28F2A526A86D020070D5D5 /* CommentTableViewCell.swift in Sources */,
 				CEB0B4132685A2AD00554D32 /* MilestoneListUseCase.swift in Sources */,
 				CEA84DF5267B2E1B0006CC2E /* LoginUseCase.swift in Sources */,
+				CE94C0B326BC039500375467 /* IssueLabelCollectionViewCell.swift in Sources */,
 				CE81A5E326824A8700D71888 /* UIColor.swift in Sources */,
 				BD1B183F26A5B327006188C5 /* IssueAdditionDTO.swift in Sources */,
 				BD1F86FE2684D20F005A6FA8 /* MilestoneListViewController.swift in Sources */,
