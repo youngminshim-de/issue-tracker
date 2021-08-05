@@ -21,6 +21,7 @@ enum Path: String {
     case issues = "/issues"
     case close = "/close"
     case label = "/labels"
+    case title = "/title"
     case milestone = "/milestone"
     case milestones = "/milestones"
     case assignees = "/assignees"

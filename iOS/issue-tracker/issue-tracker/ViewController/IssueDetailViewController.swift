@@ -286,6 +286,7 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
         }
         
         popUpViewController.modalPresentationStyle = .overCurrentContext
+        popUpViewController.delegate = self
         popUpViewController.setIssueDetail(issueDetailViewModel.issueInfo())
         self.present(popUpViewController, animated: false, completion: nil)
     }
@@ -396,6 +397,14 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         return cell
     }
+}
+
+extension IssueDetailViewController: IssueDetailPopUpViewControllerDelegate {
+    
+    func IssueDetailPopUpViewControllerDidFinish() {
+        self.issueDetailViewModel.fetchIssueDetail()
+    }
+    
 }
 
 extension IssueDetailViewController: Identifying { }

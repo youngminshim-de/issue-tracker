@@ -1,6 +1,10 @@
 import UIKit
 import Combine
 
+protocol IssueDetailPopUpViewControllerDelegate: AnyObject {
+    func IssueDetailPopUpViewControllerDidFinish()
+}
+
 class IssueDetailPopUpViewController: UIViewController {
     @IBOutlet weak var dimmedView: UIView!
     @IBOutlet weak var containerView: UIView!
@@ -15,6 +19,8 @@ class IssueDetailPopUpViewController: UIViewController {
     
     private var issueDetailPopUpViewModel = IssueDetailPopUpViewModel()
     private var subscriptions = Set<AnyCancellable>()
+    
+    weak var delegate: IssueDetailPopUpViewControllerDelegate?
     
     let defaultHeight: CGFloat = 355
     let defaultBottomOffset: CGFloat = 10
@@ -157,12 +163,39 @@ class IssueDetailPopUpViewController: UIViewController {
         present(additionalViewController, animated: true, completion: nil)
     }
     
+    @IBAction func pressedIssueEditButton(_ sender: UIButton) {
+        guard let issueEditViewController = self.storyboard?.instantiateViewController(identifier: IssueEditViewController.identifier) as? IssueEditViewController else { return }
+        
+        let issueID = self.issueDetailPopUpViewModel.issueID()
+        let issueTitle = self.issueDetailPopUpViewModel.issueTitle()
+        issueEditViewController.setIssueInfo(issueID: issueID, title: issueTitle)
+        issueEditViewController.delegate = self
+        
+        issueEditViewController.modalPresentationStyle = .overCurrentContext
+        self.present(issueEditViewController, animated: false, completion: nil)
+    }
+    
+    @IBAction func pressedChangingIssueStateButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedIssueDeleteButton(_ sender: UIButton) {
+    }
+    
 }
 
 extension IssueDetailPopUpViewController: AdditionalInfoViewControllerDelegate {
     
     func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo) {
         self.issueDetailPopUpViewModel.editIssueInfo(additionalInfo: additionalInfo, infoType: infoType)
+    }
+    
+}
+
+extension IssueDetailPopUpViewController: IssueEditViewControllerDelegate {
+    
+    func issueEditViewControllerDidFinish() {
+        self.delegate?.IssueDetailPopUpViewControllerDidFinish()
+        animateDismissView()
     }
     
 }

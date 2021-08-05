@@ -24,6 +24,12 @@ struct IssueAdditionEditDTO: Encodable {
     
 }
 
+struct IssueTitleDTO: Encodable {
+    
+    let title: String?
+    
+}
+
 // 이하는 필요 없음
 // IssueAdditionEditDTO로 퉁 쳤기 때문.
 struct LabelIDsDTO: Encodable {

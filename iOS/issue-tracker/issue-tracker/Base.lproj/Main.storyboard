@@ -827,12 +827,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60C-e5-Zfp">
-                                        <rect key="frame" x="268" y="147" width="32" height="40"/>
+                                        <rect key="frame" x="255" y="147" width="45" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="b8B-2R-PQx"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="저장"/>
+                                        <state key="normal" title="저장   "/>
                                         <connections>
                                             <action selector="pressedSaveButton:" destination="YJI-qm-kOQ" eventType="touchUpInside" id="bZZ-jC-Qdn"/>
                                             <action selector="pressedSaveButton:" destination="q2y-Ti-QDY" eventType="touchUpInside" id="fFa-nO-VYl"/>
@@ -888,7 +888,123 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YQH-HC-TIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1314.4927536231885" y="1510.7142857142856"/>
+            <point key="canvasLocation" x="694" y="1478"/>
+        </scene>
+        <!--Issue Edit View Controller-->
+        <scene sceneID="Ch3-dY-uH2">
+            <objects>
+                <viewController storyboardIdentifier="IssueEditViewController" id="Wi1-bT-BGI" customClass="IssueEditViewController" customModule="issue_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jnz-Ya-jxO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-2U-36O">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.60036918185404597" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSW-CP-TYA">
+                                <rect key="frame" x="32" y="878" width="350" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이슈 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuK-3I-FJM">
+                                        <rect key="frame" x="25" y="20" width="63" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWc-uo-Sji">
+                                        <rect key="frame" x="305" y="20" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="Dms-Kt-WDB"/>
+                                            <constraint firstAttribute="height" constant="20" id="oVp-8O-ZXK"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="pressedCancelButton:" destination="Wi1-bT-BGI" eventType="touchUpInside" id="0bp-OO-8Yg"/>
+                                            <action selector="pressedCancelButton:" destination="YJI-qm-kOQ" eventType="touchUpInside" id="RTE-Je-nFW"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-ec-i1D">
+                                        <rect key="frame" x="25" y="51" width="300" height="45"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="leb-SQ-lRC">
+                                                <rect key="frame" x="5" y="5" width="290" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="issueTextFieldAction:" destination="Wi1-bT-BGI" eventType="editingChanged" id="k5K-jh-sI0"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="leb-SQ-lRC" secondAttribute="trailing" constant="5" id="hF8-NK-TBV"/>
+                                            <constraint firstItem="leb-SQ-lRC" firstAttribute="top" secondItem="cxv-ec-i1D" secondAttribute="top" constant="5" id="hPH-OP-uHK"/>
+                                            <constraint firstAttribute="height" constant="45" id="kUa-yZ-Kau"/>
+                                            <constraint firstAttribute="bottom" secondItem="leb-SQ-lRC" secondAttribute="bottom" constant="5" id="lZc-X5-EWs"/>
+                                            <constraint firstItem="leb-SQ-lRC" firstAttribute="leading" secondItem="cxv-ec-i1D" secondAttribute="leading" constant="5" id="z7L-iU-Wrl"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8g-Bf-HXm">
+                                        <rect key="frame" x="295" y="102" width="30" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="저장"/>
+                                        <connections>
+                                            <action selector="pressedSaveButton:" destination="Wi1-bT-BGI" eventType="touchUpInside" id="Z9o-05-9nd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="V8g-Bf-HXm" firstAttribute="leading" relation="lessThanOrEqual" secondItem="eSW-CP-TYA" secondAttribute="leading" constant="295" id="8JP-Ro-K9e"/>
+                                    <constraint firstItem="cxv-ec-i1D" firstAttribute="top" secondItem="yuK-3I-FJM" secondAttribute="bottom" constant="10" id="EWb-KP-t1C"/>
+                                    <constraint firstAttribute="bottom" secondItem="V8g-Bf-HXm" secondAttribute="bottom" constant="5" id="Mno-Yo-Pev"/>
+                                    <constraint firstItem="RWc-uo-Sji" firstAttribute="top" secondItem="eSW-CP-TYA" secondAttribute="top" constant="20" id="Y3K-Iz-hyD"/>
+                                    <constraint firstAttribute="width" constant="350" id="bPH-Z5-A7T"/>
+                                    <constraint firstAttribute="trailing" secondItem="RWc-uo-Sji" secondAttribute="trailing" constant="25" id="dLt-Jd-ShL"/>
+                                    <constraint firstAttribute="height" constant="140" id="gG2-wl-VG3"/>
+                                    <constraint firstItem="cxv-ec-i1D" firstAttribute="leading" secondItem="eSW-CP-TYA" secondAttribute="leading" constant="25" id="gVt-VJ-zeT"/>
+                                    <constraint firstItem="yuK-3I-FJM" firstAttribute="leading" secondItem="eSW-CP-TYA" secondAttribute="leading" constant="25" id="kLd-mS-Nnx"/>
+                                    <constraint firstAttribute="trailing" secondItem="cxv-ec-i1D" secondAttribute="trailing" constant="25" id="qDK-f3-SwQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="V8g-Bf-HXm" secondAttribute="trailing" constant="25" id="sW5-vK-ECQ"/>
+                                    <constraint firstItem="yuK-3I-FJM" firstAttribute="top" secondItem="eSW-CP-TYA" secondAttribute="top" constant="20" id="u0q-gz-0Mh"/>
+                                    <constraint firstItem="RWc-uo-Sji" firstAttribute="leading" relation="lessThanOrEqual" secondItem="yuK-3I-FJM" secondAttribute="trailing" constant="217" id="zhm-Sj-ydz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gpN-W9-xBL"/>
+                        <constraints>
+                            <constraint firstItem="eSW-CP-TYA" firstAttribute="centerX" secondItem="jnz-Ya-jxO" secondAttribute="centerX" id="TVX-Tf-ZPh"/>
+                            <constraint firstAttribute="trailing" secondItem="vIc-2U-36O" secondAttribute="trailing" id="Vbf-MB-zkH"/>
+                            <constraint firstItem="vIc-2U-36O" firstAttribute="leading" secondItem="jnz-Ya-jxO" secondAttribute="leading" id="WXw-y5-4PK"/>
+                            <constraint firstItem="vIc-2U-36O" firstAttribute="top" secondItem="jnz-Ya-jxO" secondAttribute="top" id="f8H-MR-mfT"/>
+                            <constraint firstItem="eSW-CP-TYA" firstAttribute="centerY" secondItem="jnz-Ya-jxO" secondAttribute="centerY" constant="500" id="jIi-fM-0L5"/>
+                            <constraint firstAttribute="bottom" secondItem="vIc-2U-36O" secondAttribute="bottom" id="nIG-js-Sxx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="eSW-CP-TYA" id="lje-8V-U4t"/>
+                        <outlet property="containerViewHeight" destination="jIi-fM-0L5" id="xQ7-Gu-bFi"/>
+                        <outlet property="dimmedView" destination="vIc-2U-36O" id="G78-7w-zp7"/>
+                        <outlet property="issueTextField" destination="leb-SQ-lRC" id="wX0-pY-TcI"/>
+                        <outlet property="saveButton" destination="V8g-Bf-HXm" id="Br1-rA-qi9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ASF-nv-m2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423.1884057971015" y="1480.5803571428571"/>
         </scene>
         <!--Issue Detail Pop Up View Controller-->
         <scene sceneID="g0e-OP-E0B">
@@ -903,7 +1019,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.60188253036397976" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4WO-1s-zAA">
-                                <rect key="frame" x="0.0" y="896" width="414" height="355"/>
+                                <rect key="frame" x="0.0" y="541" width="414" height="355"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8b-9V-jFl">
                                         <rect key="frame" x="16" y="50" width="382" height="269"/>
@@ -1021,6 +1137,9 @@
                                                 <rect key="frame" x="0.0" y="135" width="382" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="pressedIssueEditButton:" destination="s9Q-ml-eYt" eventType="touchUpInside" id="U6N-aG-Q0a"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이슈 편집" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSH-XW-sQR">
                                                 <rect key="frame" x="20" y="146" width="80" height="22"/>
@@ -1044,11 +1163,17 @@
                                                 <rect key="frame" x="0.0" y="180" width="382" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="pressedChangingIssueStateButton:" destination="s9Q-ml-eYt" eventType="touchUpInside" id="8HO-Q7-DxF"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0je-6z-9Ma">
                                                 <rect key="frame" x="0.0" y="225" width="382" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="pressedIssueDeleteButton:" destination="s9Q-ml-eYt" eventType="touchUpInside" id="XTL-lu-nVP"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이슈 삭제" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wut-cq-edo">
                                                 <rect key="frame" x="20" y="236" width="80" height="22"/>
@@ -1225,7 +1350,7 @@
                             <constraint firstItem="4WO-1s-zAA" firstAttribute="leading" secondItem="Nq2-v7-HvZ" secondAttribute="leading" id="FeL-WQ-4aX"/>
                             <constraint firstItem="Nq2-v7-HvZ" firstAttribute="bottom" secondItem="jbL-Zy-g0u" secondAttribute="bottom" id="GUH-FC-ipy"/>
                             <constraint firstItem="jbL-Zy-g0u" firstAttribute="leading" secondItem="Nq2-v7-HvZ" secondAttribute="leading" id="HdU-43-Dri"/>
-                            <constraint firstItem="4WO-1s-zAA" firstAttribute="bottom" secondItem="opG-HT-Agz" secondAttribute="bottom" constant="355" id="Of9-J8-DcJ"/>
+                            <constraint firstItem="4WO-1s-zAA" firstAttribute="bottom" secondItem="opG-HT-Agz" secondAttribute="bottom" id="Of9-J8-DcJ"/>
                             <constraint firstItem="4WO-1s-zAA" firstAttribute="trailing" secondItem="Nq2-v7-HvZ" secondAttribute="trailing" id="oew-HC-yZS"/>
                             <constraint firstItem="Nq2-v7-HvZ" firstAttribute="trailing" secondItem="jbL-Zy-g0u" secondAttribute="trailing" id="xKj-Ix-mPt"/>
                         </constraints>
@@ -1243,7 +1368,6 @@
                         <outletCollection property="detailInfoEditButtons" destination="NqU-nb-kSU" collectionClass="NSMutableArray" id="zMQ-CL-tlN"/>
                         <outletCollection property="detailInfoEditButtons" destination="57w-P1-Qf6" collectionClass="NSMutableArray" id="BBi-2A-EIo"/>
                         <outletCollection property="detailInfoEditButtons" destination="H2z-5m-iV1" collectionClass="NSMutableArray" id="SDg-ek-wzv"/>
-                        <outletCollection property="detailInfoEditButtons" destination="h4m-6P-OEQ" collectionClass="NSMutableArray" id="7FB-6I-fLO"/>
                         <outletCollection property="detailInfoEditButtons" destination="0je-6z-9Ma" collectionClass="NSMutableArray" id="N0Z-Hl-4R0"/>
                     </connections>
                 </viewController>
