@@ -29,7 +29,7 @@ class IssueDetailPopUpUseCase {
             }.store(in: &subscriptions)
     }
     
-    func executeEditIssueInfo(issueID: Int, additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo, completion: @escaping (Result<String, NetworkError>) -> Void) {
+    func executeEditIssueInfo(issueID: Int, additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo, completion: @escaping (Result<IssueEditResult, NetworkError>) -> Void) {
         let url = endPoint.makeURL(with: "/\(issueID)" + makePath(of: infoType))
         let editDTO = makeDTO(additionalInfo: additionalInfo, infoType: infoType)
 
@@ -42,11 +42,56 @@ class IssueDetailPopUpUseCase {
                     break
                 }
             } receiveValue: { response in
-                if let error = response.error {
-                    completion(.success(error))
+                if response.error != nil {
+                    completion(.success(.error))
                 } else {
-                    if let data = response.data {
-                        completion(.success(data))
+                    if response.data != nil {
+                        completion(.success(.additionInfoEdited))
+                    }
+                }
+            }.store(in: &subscriptions)
+    }
+    
+    func executeChangingIssueState(issueID: Int, state: String, completion: @escaping (Result<IssueEditResult, NetworkError>) -> Void) {
+        let url = endPoint.makeURL(with: "/\(state)")
+        let issueDTO = IssueIDsDTO(issueIds: [issueID])
+        
+        networkManager.sendRequest(with: url, method: .post, type: ResponseBodyDTO.self, body: issueDTO)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { response in
+                if response.error != nil {
+                    completion(.success(.error))
+                } else {
+                    if response.data != nil {
+                        completion(.success(.stateChanged))
+                    }
+                }
+            }.store(in: &subscriptions)
+    }
+    
+    func executeDeleteIssueState(issueID: Int, completion: @escaping (Result<IssueEditResult, NetworkError>) -> Void) {
+        let url = endPoint.makeURL(with: "/\(issueID)")
+        
+        networkManager.sendRequest(with: url, method: .delete, type: ResponseBodyDTO.self)
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { response in
+                if response.error != nil {
+                    completion(.success(.error))
+                } else {
+                    if response.data != nil {
+                        completion(.success(.delete))
                     }
                 }
             }.store(in: &subscriptions)

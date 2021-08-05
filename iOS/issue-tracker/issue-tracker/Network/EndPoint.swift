@@ -19,6 +19,7 @@ enum Path: String {
     case user = "/user"
     case users = "/users"
     case issues = "/issues"
+    case open = "/open"
     case close = "/close"
     case label = "/labels"
     case title = "/title"

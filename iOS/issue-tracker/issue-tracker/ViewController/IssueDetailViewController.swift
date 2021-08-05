@@ -401,8 +401,12 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
 
 extension IssueDetailViewController: IssueDetailPopUpViewControllerDelegate {
     
-    func IssueDetailPopUpViewControllerDidFinish() {
+    func IssueDetailPopUpViewControllerDidFinishEditing() {
         self.issueDetailViewModel.fetchIssueDetail()
+    }
+    
+    func IssueDetailPopUpViewControllerDidFinishDeleting() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

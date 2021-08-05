@@ -2,7 +2,8 @@ import UIKit
 import Combine
 
 protocol IssueDetailPopUpViewControllerDelegate: AnyObject {
-    func IssueDetailPopUpViewControllerDidFinish()
+    func IssueDetailPopUpViewControllerDidFinishEditing()
+    func IssueDetailPopUpViewControllerDidFinishDeleting()
 }
 
 class IssueDetailPopUpViewController: UIViewController {
@@ -53,8 +54,13 @@ class IssueDetailPopUpViewController: UIViewController {
         
         self.issueDetailPopUpViewModel.didUpdateResultMessage()
             .sink { [weak self] resultMessage in
-                if resultMessage != nil {
+                if resultMessage == .additionInfoEdited {
                     self?.issueDetailPopUpViewModel.fetchIssueDetail()
+                } else if resultMessage == .stateChanged {
+                    self?.issueEditViewControllerDidFinish()
+                } else if resultMessage == .delete {
+                    self?.animateDismissView()
+                    self?.delegate?.IssueDetailPopUpViewControllerDidFinishDeleting()
                 }
             }.store(in: &subscriptions)
     }
@@ -176,9 +182,11 @@ class IssueDetailPopUpViewController: UIViewController {
     }
     
     @IBAction func pressedChangingIssueStateButton(_ sender: UIButton) {
+        self.issueDetailPopUpViewModel.changeIssueState()
     }
     
     @IBAction func pressedIssueDeleteButton(_ sender: UIButton) {
+        self.issueDetailPopUpViewModel.deleteIssue()
     }
     
 }
@@ -194,7 +202,7 @@ extension IssueDetailPopUpViewController: AdditionalInfoViewControllerDelegate {
 extension IssueDetailPopUpViewController: IssueEditViewControllerDelegate {
     
     func issueEditViewControllerDidFinish() {
-        self.delegate?.IssueDetailPopUpViewControllerDidFinish()
+        self.delegate?.IssueDetailPopUpViewControllerDidFinishEditing()
         animateDismissView()
     }
     

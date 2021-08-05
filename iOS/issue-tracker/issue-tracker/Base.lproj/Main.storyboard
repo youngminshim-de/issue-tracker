@@ -1019,7 +1019,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.60188253036397976" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4WO-1s-zAA">
-                                <rect key="frame" x="0.0" y="541" width="414" height="355"/>
+                                <rect key="frame" x="0.0" y="896" width="414" height="355"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8b-9V-jFl">
                                         <rect key="frame" x="16" y="50" width="382" height="269"/>
@@ -1350,7 +1350,7 @@
                             <constraint firstItem="4WO-1s-zAA" firstAttribute="leading" secondItem="Nq2-v7-HvZ" secondAttribute="leading" id="FeL-WQ-4aX"/>
                             <constraint firstItem="Nq2-v7-HvZ" firstAttribute="bottom" secondItem="jbL-Zy-g0u" secondAttribute="bottom" id="GUH-FC-ipy"/>
                             <constraint firstItem="jbL-Zy-g0u" firstAttribute="leading" secondItem="Nq2-v7-HvZ" secondAttribute="leading" id="HdU-43-Dri"/>
-                            <constraint firstItem="4WO-1s-zAA" firstAttribute="bottom" secondItem="opG-HT-Agz" secondAttribute="bottom" id="Of9-J8-DcJ"/>
+                            <constraint firstItem="4WO-1s-zAA" firstAttribute="bottom" secondItem="opG-HT-Agz" secondAttribute="bottom" constant="355" id="Of9-J8-DcJ"/>
                             <constraint firstItem="4WO-1s-zAA" firstAttribute="trailing" secondItem="Nq2-v7-HvZ" secondAttribute="trailing" id="oew-HC-yZS"/>
                             <constraint firstItem="Nq2-v7-HvZ" firstAttribute="trailing" secondItem="jbL-Zy-g0u" secondAttribute="trailing" id="xKj-Ix-mPt"/>
                         </constraints>
