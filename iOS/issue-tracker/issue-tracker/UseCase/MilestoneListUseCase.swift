@@ -8,7 +8,7 @@ class MilestoneListUseCase {
     private var subscriptions: Set<AnyCancellable>
 
     init() {
-        self.endPoint = EndPoint(scheme: Scheme.http.rawValue, host: Host.base.rawValue, path: Path.api.rawValue + Path.milestone.rawValue)
+        self.endPoint = EndPoint(scheme: Scheme.http.rawValue, host: Host.base.rawValue, path: Path.api.rawValue + Path.milestones.rawValue)
         self.networkManager = NetworkManager(requestManager: RequestManager(jwtManager: JWTManager()), session: URLSession.shared)
         self.subscriptions = Set<AnyCancellable>()
     }

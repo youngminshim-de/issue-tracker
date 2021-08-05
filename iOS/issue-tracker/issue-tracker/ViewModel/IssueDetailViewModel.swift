@@ -101,6 +101,10 @@ class IssueDetailViewModel {
         return relativeFormatter.localizedString(for: createTimeDate, relativeTo: Date())
     }
     
+    func issueInfo() -> IssueDetail? {
+        return issueDetail
+    }
+    
     func commentCount() -> Int {
         return self.issueDetail?.comments.count ?? 0
     }

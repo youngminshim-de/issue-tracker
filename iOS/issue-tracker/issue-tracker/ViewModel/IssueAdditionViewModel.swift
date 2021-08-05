@@ -48,7 +48,7 @@ class IssueAdditionViewModel {
         }
     }
     
-    func setAdditionalInfo(_ additionalInfo: [AdditionalInfo], infoType: AdditionalInfoViewModel.IssueAdditionalInfo) {
+    func setAdditionalInfo(_ additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo) {
         switch infoType {
         case .label:
             self.labels = additionalInfo

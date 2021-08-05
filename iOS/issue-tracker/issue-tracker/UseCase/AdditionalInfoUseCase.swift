@@ -29,7 +29,7 @@ class AdditionalInfoUseCase {
     }
     
     func executeFetchingMilestoneList(completion: @escaping (Result<MilestoneList, NetworkError>) -> Void) {
-        let url = endPoint.makeURL(with: Path.milestone.rawValue)
+        let url = endPoint.makeURL(with: Path.milestones.rawValue)
         networkManager.sendRequest(with: url, method: .get, type: MilestoneListResponseDTO.self)
             .sink { result in
                 switch result {

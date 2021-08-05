@@ -56,7 +56,7 @@ class AdditionUseCase {
     }
     
     func executeAddingMilestone(_ newMilestone: NewMilestoneDTO, completion: @escaping (Result<String, NetworkError>) -> Void) {
-        let url = endPoint.makeURL(with: Path.milestone.rawValue)
+        let url = endPoint.makeURL(with: Path.milestones.rawValue)
         networkManager.sendRequest(with: url, method: .post, type: ResponseBodyDTO.self, body: newMilestone)
             .sink { result in
                 switch result {
@@ -77,7 +77,7 @@ class AdditionUseCase {
     }
     
     func executeEditingMilestone(_ newMilestone: NewMilestoneDTO, milestoneID: Int, completion: @escaping (Result<String, NetworkError>) -> Void) {
-        let url = endPoint.makeURL(with: "\(Path.milestone.rawValue)/\(milestoneID)")
+        let url = endPoint.makeURL(with: "\(Path.milestones.rawValue)/\(milestoneID)")
         networkManager.sendRequest(with: url, method: .put, type: ResponseBodyDTO.self, body: newMilestone)
             .sink { result in
                 switch result {

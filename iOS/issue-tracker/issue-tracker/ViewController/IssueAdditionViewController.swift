@@ -98,7 +98,7 @@ class IssueAdditionViewController: UIViewController, AdditionalInfoViewControlle
         return additionalInfoViewController
     }
     
-    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: AdditionalInfoViewModel.IssueAdditionalInfo) {
+    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo) {
         self.issueAdditionViewModel.setAdditionalInfo(additionalInfo, infoType: infoType)
     }
     

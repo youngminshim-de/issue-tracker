@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 protocol AdditionalInfoViewControllerDelegate: AnyObject {
-    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: AdditionalInfoViewModel.IssueAdditionalInfo)
+    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo)
 }
 
 class AdditionalInfoViewController: UIViewController {
@@ -56,7 +56,7 @@ class AdditionalInfoViewController: UIViewController {
         self.titleLabel.text = self.additionalInfoViewModel.additionalInfoType().rawValue
     }
     
-    func setAdditionalInfoType(of info: AdditionalInfoViewModel.IssueAdditionalInfo) {
+    func setAdditionalInfoType(of info: IssueAdditionalInfo) {
         self.additionalInfoViewModel.setInfoType(of: info)
     }
     

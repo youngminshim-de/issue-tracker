@@ -1,23 +1,30 @@
 import UIKit
+import Combine
 
 class IssueDetailPopUpViewController: UIViewController {
     @IBOutlet weak var dimmedView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var detailInfoEditButtons: [UIButton]!
     
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var issueLabel: UILabel!
+    @IBOutlet weak var issueMilestone: UILabel!
+    @IBOutlet weak var issueAssignee: UILabel!
+    @IBOutlet weak var issueStateLabel: UILabel!
     
-    let defaultHeight: CGFloat = 310
+    private var issueDetailPopUpViewModel = IssueDetailPopUpViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+    
+    let defaultHeight: CGFloat = 355
     let defaultBottomOffset: CGFloat = 10
-    let dismissibleHeight: CGFloat = 150
+    let dismissibleHeight: CGFloat = 200
     let maximumContainerHeight: CGFloat = 400
-    var currentContainerHeight: CGFloat = 310
+    var currentContainerHeight: CGFloat = 355
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         setupPanGesture()
         configureButtonsBackgroudColor()
     }
@@ -28,14 +35,32 @@ class IssueDetailPopUpViewController: UIViewController {
         animateShowDimmedView()
     }
     
-    func animatePresentViewController() {
+    private func bind() {
+        self.issueDetailPopUpViewModel.didUpdateIssueDetail()
+            .sink { [weak self] issueDetail in
+                guard let issueDetail = issueDetail else { return }
+                self?.issueLabel.text = issueDetail.label
+                self?.issueMilestone.text = issueDetail.milestone
+                self?.issueAssignee.text = issueDetail.assignees.first?.username
+                self?.issueStateLabel.text = self?.issueDetailPopUpViewModel.issueStateLabel()
+            }.store(in: &subscriptions)
+        
+        self.issueDetailPopUpViewModel.didUpdateResultMessage()
+            .sink { [weak self] resultMessage in
+                if resultMessage != nil {
+                    self?.issueDetailPopUpViewModel.fetchIssueDetail()
+                }
+            }.store(in: &subscriptions)
+    }
+    
+    private func animatePresentViewController() {
         UIView.animate(withDuration: 0.3) {
             self.containerBottomConstraint.constant = self.defaultBottomOffset
             self.view.layoutIfNeeded()
         }
     }
 
-    func animateShowDimmedView() {
+    private func animateShowDimmedView() {
         let dimmedViewMaxAlpha: CGFloat = 0.6
         dimmedView.alpha = 0
         UIView.animate(withDuration: 0.4) {
@@ -43,7 +68,7 @@ class IssueDetailPopUpViewController: UIViewController {
         }
     }
     
-    func animateDismissView() {
+    private func animateDismissView() {
         UIView.animate(withDuration: 0.3) {
             self.containerBottomConstraint.constant = self.defaultHeight
             self.view.layoutIfNeeded()
@@ -56,7 +81,7 @@ class IssueDetailPopUpViewController: UIViewController {
         }
     }
     
-    func animateContainerHeight(_ height: CGFloat) {
+    private func animateContainerHeight(_ height: CGFloat) {
         UIView.animate(withDuration: 0.4) {
             self.containerHeightConstraint.constant = height
             self.view.layoutIfNeeded()
@@ -64,17 +89,21 @@ class IssueDetailPopUpViewController: UIViewController {
         currentContainerHeight = height
     }
 
-    func setupPanGesture() {
+    private func setupPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(gesture:)))
         panGesture.delaysTouchesBegan = false
         panGesture.delaysTouchesEnded = false
         view.addGestureRecognizer(panGesture)
     }
     
-    func configureButtonsBackgroudColor() {
-        self.editButton.setBackgroundColor(UIColor(white: 1, alpha: 1), for: .normal)
-        self.closeButton.setBackgroundColor(UIColor(white: 1, alpha: 1), for: .normal)
-        self.deleteButton.setBackgroundColor(UIColor(white: 1, alpha: 1), for: .normal)
+    private func configureButtonsBackgroudColor() {
+        self.detailInfoEditButtons.forEach { button in
+            button.setBackgroundColor(UIColor(white: 1, alpha: 1), for: .normal)
+        }
+    }
+    
+    func setIssueDetail(_ issueDetail: IssueDetail?) {
+        self.issueDetailPopUpViewModel.setIssueDetail(issueDetail)
     }
     
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
@@ -107,6 +136,37 @@ class IssueDetailPopUpViewController: UIViewController {
         animateDismissView()
     }
     
+    @IBAction func pressedEditIssueInfo(_ sender: UIButton) {
+        var infoType: IssueAdditionalInfo?
+        switch sender {
+        case self.detailInfoEditButtons[0]:
+            infoType = .label
+        case self.detailInfoEditButtons[1]:
+            infoType = .milestone
+        case self.detailInfoEditButtons[2]:
+            infoType = .assignee
+        default:
+            break
+        }
+        
+        guard let additionalViewController = self.storyboard?.instantiateViewController(identifier: AdditionalInfoViewController.identifier) as? AdditionalInfoViewController,
+            let infoType = infoType else { return }
+        
+        additionalViewController.setAdditionalInfoType(of: infoType)
+        additionalViewController.delegate = self
+        present(additionalViewController, animated: true, completion: nil)
+    }
+    
+}
+
+extension IssueDetailPopUpViewController: AdditionalInfoViewControllerDelegate {
+    
+    func AdditionalInfoViewControllerDidFinish(additionalInfo: [AdditionalInfo], infoType: IssueAdditionalInfo) {
+        self.issueDetailPopUpViewModel.editIssueInfo(additionalInfo: additionalInfo, infoType: infoType)
+    }
+    
 }
 
 extension IssueDetailPopUpViewController: Identifying { }
+
+// assignee 추가가 status 500으로 되지 않음.

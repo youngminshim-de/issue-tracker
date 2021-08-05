@@ -286,6 +286,7 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
         }
         
         popUpViewController.modalPresentationStyle = .overCurrentContext
+        popUpViewController.setIssueDetail(issueDetailViewModel.issueInfo())
         self.present(popUpViewController, animated: false, completion: nil)
     }
     

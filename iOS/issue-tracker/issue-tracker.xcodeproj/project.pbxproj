@@ -82,6 +82,8 @@
 		CE91C40126AED1110008D2FB /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91C40026AED1110008D2FB /* FilterViewModel.swift */; };
 		CE93EE4F26A909AB00BAAC79 /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */; };
 		CE94C07226B9D96E00375467 /* CommentModificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C07126B9D96E00375467 /* CommentModificationUseCase.swift */; };
+		CE94C0A026BB55C500375467 /* IssueDetailPopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C09F26BB55C500375467 /* IssueDetailPopUpViewModel.swift */; };
+		CE94C0A226BB739100375467 /* IssueDetailPopUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94C0A126BB739100375467 /* IssueDetailPopUpUseCase.swift */; };
 		CE97638A268208760025CEC3 /* IssueListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976389268208760025CEC3 /* IssueListResponseDTO.swift */; };
 		CE97638C26820BC70025CEC3 /* DefaultIssueListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */; };
 		CE976391268213A60025CEC3 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE976390268213A60025CEC3 /* IssueList.swift */; };
@@ -224,6 +226,8 @@
 		CE91C40026AED1110008D2FB /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		CE93EE4E26A909AB00BAAC79 /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
 		CE94C07126B9D96E00375467 /* CommentModificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModificationUseCase.swift; sourceTree = "<group>"; };
+		CE94C09F26BB55C500375467 /* IssueDetailPopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailPopUpViewModel.swift; sourceTree = "<group>"; };
+		CE94C0A126BB739100375467 /* IssueDetailPopUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailPopUpUseCase.swift; sourceTree = "<group>"; };
 		CE976389268208760025CEC3 /* IssueListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListResponseDTO.swift; sourceTree = "<group>"; };
 		CE97638B26820BC70025CEC3 /* DefaultIssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIssueListUseCase.swift; sourceTree = "<group>"; };
 		CE976390268213A60025CEC3 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 				BD11B4E126A0586B004429A9 /* AdditionalInfoUseCase.swift */,
 				BD1B183C26A5B28C006188C5 /* IssueAdditionUseCase.swift */,
 				BD9A8C8426B04C560080D052 /* IssueDetailUseCase.swift */,
+				CE94C0A126BB739100375467 /* IssueDetailPopUpUseCase.swift */,
 				CE94C07126B9D96E00375467 /* CommentModificationUseCase.swift */,
 			);
 			path = UseCase;
@@ -527,6 +532,7 @@
 				BD11B4DF26A056A5004429A9 /* AdditionalInfoViewModel.swift */,
 				CE91C40026AED1110008D2FB /* FilterViewModel.swift */,
 				BD9A8C8026B044760080D052 /* IssueDetailViewModel.swift */,
+				CE94C09F26BB55C500375467 /* IssueDetailPopUpViewModel.swift */,
 				BD85EE3826B3ED02005B7D76 /* CommentModificationViewModel.swift */,
 			);
 			path = ViewModel;
@@ -852,6 +858,7 @@
 				BD1F86FA2684C6D5005A6FA8 /* LabelList.swift in Sources */,
 				BD08146B2681C76F00C3D6D7 /* JWTManageable.swift in Sources */,
 				BD1B183B26A5927D006188C5 /* IssueAdditionViewModel.swift in Sources */,
+				CE94C0A026BB55C500375467 /* IssueDetailPopUpViewModel.swift in Sources */,
 				BD9A8C9126B2F5F30080D052 /* CommentModificationViewController.swift in Sources */,
 				BD1D3734266F5D9800B51184 /* IssueTableViewCell.swift in Sources */,
 				BD1F86FC2684C87E005A6FA8 /* LabelListViewModel.swift in Sources */,
@@ -891,6 +898,7 @@
 				CEDBD77826A84C9300F0131D /* FilterCondition.swift in Sources */,
 				CE91C40126AED1110008D2FB /* FilterViewModel.swift in Sources */,
 				CEB0B4192685A4DB00554D32 /* MilestoneListViewModel.swift in Sources */,
+				CE94C0A226BB739100375467 /* IssueDetailPopUpUseCase.swift in Sources */,
 				CEA84DF7267B760F0006CC2E /* TabBarRootController.swift in Sources */,
 				CE71835E2671EB78008B287F /* FilterTableViewCell.swift in Sources */,
 				BD85EE3926B3ED02005B7D76 /* CommentModificationViewModel.swift in Sources */,

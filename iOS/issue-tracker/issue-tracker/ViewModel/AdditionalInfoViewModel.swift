@@ -1,13 +1,13 @@
 import Foundation
 import Combine
 
+enum IssueAdditionalInfo: String {
+    case label = "레이블"
+    case milestone = "마일스톤"
+    case assignee = "담당자"
+}
+
 class AdditionalInfoViewModel {
-    
-    enum IssueAdditionalInfo: String {
-        case label = "레이블"
-        case milestone = "마일스톤"
-        case assignee = "담당자"
-    }
     
     @Published private var isEmptyInfoIndex: Bool
     @Published private var additionalInfo: [AdditionalInfo]
