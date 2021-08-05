@@ -5,7 +5,7 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
 
     @IBOutlet weak var issueTitle: UILabel!
     @IBOutlet weak var issueNumber: UILabel!
-    @IBOutlet weak var issueState: UILabel!
+    @IBOutlet weak var issueStateView: IssueStateView!
     @IBOutlet weak var writeTime: UILabel!
     @IBOutlet weak var writer: UILabel!
     @IBOutlet weak var commentTableView: UITableView!
@@ -166,8 +166,8 @@ class IssueDetailViewController: UIViewController, UITextFieldDelegate, CommentM
                 guard let issueDetail = issueDetail else { return }
                 self?.issueTitle.text = issueDetail.title
                 self?.issueNumber.text = "#\(issueDetail.issueID)"
-                self?.issueState.text = "\(issueDetail.isOpen ? "열림" : "닫힘")"
-                self?.writer.text = ",\(issueDetail.writer.username)님이 작성했습니다."
+                self?.issueStateView.configure(text: issueDetail.isOpen ? "열림" : "닫힘", isOpen: issueDetail.isOpen)
+                self?.writer.text = ", \(issueDetail.writer.username)님이 작성했습니다."
                 self?.writeTime.text = self?.issueDetailViewModel.relativeCreatedTime(issueDetail.createdTime)
                 self?.loadImage()
                 self?.commentTableView.reloadData()
@@ -394,7 +394,7 @@ extension IssueDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.userName.text = self.issueDetailViewModel.commentUsername(indexPath: indexPath)
         cell.writeTime.text = self.issueDetailViewModel.commentWriteTime(indexPath: indexPath)
         cell.comment.text = self.issueDetailViewModel.comment(indexPath: indexPath)
-        
+        cell.emojis = self.issueDetailViewModel.emojis(indexPath: indexPath)
         return cell
     }
 }

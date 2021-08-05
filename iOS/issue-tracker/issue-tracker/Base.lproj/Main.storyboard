@@ -551,7 +551,7 @@
                                         <color key="textColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPc-1n-0mZ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPc-1n-0mZ" customClass="IssueStateView" customModule="issue_tracker" customModuleProvider="target">
                                         <rect key="frame" x="16" y="65.5" width="75.5" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eK7-ea-BHD">
@@ -588,6 +588,10 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="stateImageView" destination="eK7-ea-BHD" id="b1x-v5-tGn"/>
+                                            <outlet property="stateLabel" destination="gVJ-7K-XxJ" id="tnT-kR-GfQ"/>
+                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8분 전," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAK-Bg-SPg">
                                         <rect key="frame" x="99.5" y="69.5" width="49" height="20.5"/>
@@ -694,7 +698,7 @@
                         <outlet property="commentTableView" destination="80g-ZA-KO8" id="ohm-r0-2E2"/>
                         <outlet property="commentTextField" destination="rFI-3l-fCp" id="fbk-UB-AEg"/>
                         <outlet property="issueNumber" destination="8z4-rL-XiE" id="MVo-SI-BY9"/>
-                        <outlet property="issueState" destination="gVJ-7K-XxJ" id="D2P-xB-Po4"/>
+                        <outlet property="issueStateView" destination="JPc-1n-0mZ" id="3HX-Tx-z6F"/>
                         <outlet property="issueTitle" destination="H6X-H1-wil" id="8lN-ap-xkm"/>
                         <outlet property="writeTime" destination="IAK-Bg-SPg" id="N7z-Yr-fQE"/>
                         <outlet property="writer" destination="b2Q-Bz-Rpi" id="ODg-v1-ojk"/>

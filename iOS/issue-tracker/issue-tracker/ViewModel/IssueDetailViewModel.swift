@@ -164,4 +164,16 @@ class IssueDetailViewModel {
         return self.commentID
     }
     
+    func emojis(indexPath: IndexPath) -> [String]? {
+        let commentsEmojis = issueDetail?.comments[indexPath.row].emojis.map { $0.id }
+        
+        guard let commentEmojis = commentsEmojis else { return nil }
+        let emojiArray = commentEmojis.map { emojiID -> String in
+            let index = emojiID - 1
+            return self.emojiArray[index]
+        }
+        
+        return emojiArray
+    }
+    
 }
