@@ -69,7 +69,6 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
                     } else {
                         if let username = user?.kakaoAccount?.profile?.nickname, let email = user?.kakaoAccount?.email, let profileImage = user?.kakaoAccount?.profile?.thumbnailImageUrl {
                             let userInfo = LoginDTO(email: email, username: username, profileImage: profileImage.absoluteString)
-                            print(userInfo)
                             self?.loginUseCase.executeSocialLogIn(url: .kakao, userInfo: userInfo, completion: { [weak self] completion in
                                 if completion {
                                     DispatchQueue.main.async {
@@ -119,7 +118,6 @@ extension LoginViewController: GIDSignInDelegate {
         if let username = user.profile.name, let email = user.profile.email,
            let profileImage = user.profile.imageURL(withDimension: dimension) {
             let userInfo = LoginDTO(email: email, username: username, profileImage: profileImage.absoluteString)
-            print(userInfo)
             self.loginUseCase.executeSocialLogIn(url: .google, userInfo: userInfo) { [weak self] completion in
                 if completion {
                     DispatchQueue.main.async {
@@ -147,7 +145,6 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
         let authorization = "\(tokenType) \(accessToken)"
         
         self.loginUseCase.executeFetchingNaverUserInfo(url: naverLoginURL, authorization: authorization) { [weak self] userInfo in
-            print(userInfo)
             self?.loginUseCase.executeSocialLogIn(url: .naver, userInfo: userInfo, completion: { [weak self] completion in
                 if completion {
                     DispatchQueue.main.async {

@@ -10,7 +10,9 @@ class RequestManager {
     
     private func makeAuthorizationRequest(url: URL) -> URLRequest {
         guard let jwt = jwtManager.get() else {
-            return URLRequest(url: url)
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            return request
         }
         
         var request = URLRequest(url: url)
