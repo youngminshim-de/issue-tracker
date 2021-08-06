@@ -26,6 +26,7 @@ class IssueListViewModel {
                 self.errorMessage = error
             case .success(let issueList):
                 self.issueList = issueList
+                self.configureUserPostingsCount()
             }
         }
     }
@@ -102,6 +103,11 @@ class IssueListViewModel {
         } else {
             return self.issueList.issues[indexPath.row].id
         }
+    }
+    
+    private func configureUserPostingsCount() {
+        let wroteCount = self.issueList.issues.filter { $0.writer == MyInfo.shared.id }.count
+        MyInfo.shared.setWroteIssueCount(wroteCount)
     }
     
 }

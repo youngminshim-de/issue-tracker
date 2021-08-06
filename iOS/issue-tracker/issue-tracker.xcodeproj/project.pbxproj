@@ -121,6 +121,8 @@
 		CEAD45E7268C54590076D765 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DFF267B863F0006CC2E /* UserInfoViewModel.swift */; };
 		CEAD45E8268C5C0E0076D765 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DF2267B0D350006CC2E /* EndPoint.swift */; };
 		CEAD45E9268C5C190076D765 /* UserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA84DFC267B7E7D0006CC2E /* UserInfoResponseDTO.swift */; };
+		CEB0526126BD185800069CAC /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0526026BD185800069CAC /* MyInfoViewController.swift */; };
+		CEB0526326BD1B7B00069CAC /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0526226BD1B7B00069CAC /* MyInfoViewModel.swift */; };
 		CEB0B4132685A2AD00554D32 /* MilestoneListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0B4122685A2AD00554D32 /* MilestoneListUseCase.swift */; };
 		CEB0B4152685A33D00554D32 /* MilestoneListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0B4142685A33D00554D32 /* MilestoneListResponseDTO.swift */; };
 		CEB0B4172685A3E600554D32 /* MilestoneList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0B4162685A3E600554D32 /* MilestoneList.swift */; };
@@ -264,6 +266,8 @@
 		CEA84DFC267B7E7D0006CC2E /* UserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponseDTO.swift; sourceTree = "<group>"; };
 		CEA84DFF267B863F0006CC2E /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		CEAD45E4268C54500076D765 /* UserInfoViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModelTest.swift; sourceTree = "<group>"; };
+		CEB0526026BD185800069CAC /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		CEB0526226BD1B7B00069CAC /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
 		CEB0B4122685A2AD00554D32 /* MilestoneListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneListUseCase.swift; sourceTree = "<group>"; };
 		CEB0B4142685A33D00554D32 /* MilestoneListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneListResponseDTO.swift; sourceTree = "<group>"; };
 		CEB0B4162685A3E600554D32 /* MilestoneList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneList.swift; sourceTree = "<group>"; };
@@ -431,6 +435,7 @@
 				CEA0F3A426AA6DCA006BA3E0 /* IssueDetailPopUpViewController.swift */,
 				BD9A8C9026B2F5F30080D052 /* CommentModificationViewController.swift */,
 				CE94C0A326BB91D300375467 /* IssueEditViewController.swift */,
+				CEB0526026BD185800069CAC /* MyInfoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				CE94C09F26BB55C500375467 /* IssueDetailPopUpViewModel.swift */,
 				BD85EE3826B3ED02005B7D76 /* CommentModificationViewModel.swift */,
 				CE94C0A526BB936F00375467 /* IssueEditViewModel.swift */,
+				CEB0526226BD1B7B00069CAC /* MyInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -902,6 +908,7 @@
 				CEBF140D26787CF00009BB75 /* LoginHelper.swift in Sources */,
 				BD11B4E226A0586B004429A9 /* AdditionalInfoUseCase.swift in Sources */,
 				BD1B183D26A5B28C006188C5 /* IssueAdditionUseCase.swift in Sources */,
+				CEB0526126BD185800069CAC /* MyInfoViewController.swift in Sources */,
 				CE81A5E0268242D100D71888 /* IssueListViewModel.swift in Sources */,
 				CE976391268213A60025CEC3 /* IssueList.swift in Sources */,
 				CE94C0B026BBDF9C00375467 /* IssueStateView.swift in Sources */,
@@ -932,6 +939,7 @@
 				CE91C40126AED1110008D2FB /* FilterViewModel.swift in Sources */,
 				CE94C0A626BB936F00375467 /* IssueEditViewModel.swift in Sources */,
 				CEB0B4192685A4DB00554D32 /* MilestoneListViewModel.swift in Sources */,
+				CEB0526326BD1B7B00069CAC /* MyInfoViewModel.swift in Sources */,
 				CE94C0A226BB739100375467 /* IssueDetailPopUpUseCase.swift in Sources */,
 				CEA84DF7267B760F0006CC2E /* TabBarRootController.swift in Sources */,
 				CE71835E2671EB78008B287F /* FilterTableViewCell.swift in Sources */,

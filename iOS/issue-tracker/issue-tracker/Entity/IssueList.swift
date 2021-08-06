@@ -12,6 +12,7 @@ struct Issue {
     let title: String
     let comment: String
     let milestone: String
+    let writer: Int
     let labels: [Label]
     
 }

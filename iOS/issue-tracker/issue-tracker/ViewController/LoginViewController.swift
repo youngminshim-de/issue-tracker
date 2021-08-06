@@ -180,3 +180,5 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     }
     
 }
+
+extension LoginViewController: Identifying { }

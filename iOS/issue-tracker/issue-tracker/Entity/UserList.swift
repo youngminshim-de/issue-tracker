@@ -23,6 +23,7 @@ class MyInfo {
     var email: String
     var userName: String
     var profileImage: String
+    var postingsCount: Int
     
     private init() {
         self.id = 0
@@ -30,6 +31,7 @@ class MyInfo {
         self.email = ""
         self.userName = ""
         self.profileImage = ""
+        self.postingsCount = 0
     }
     
     func setMyInfo(_ myInfo: UserInfoDTO) {
@@ -38,6 +40,10 @@ class MyInfo {
         self.email = myInfo.email ?? ""
         self.userName = myInfo.username
         self.profileImage = myInfo.profileImage
+    }
+    
+    func setWroteIssueCount(_ count: Int) {
+        self.postingsCount = count
     }
     
 }

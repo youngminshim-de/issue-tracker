@@ -17,4 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
+    func changeRootViewController(_ viewController: UIViewController) {
+        guard let window = self.window else {
+            return
+        }
+        
+        window.rootViewController = viewController
+        
+        UIView.transition(with: window, duration: 0.8, options: [.transitionCurlUp], animations: nil, completion: nil)
+    }
+    
 }

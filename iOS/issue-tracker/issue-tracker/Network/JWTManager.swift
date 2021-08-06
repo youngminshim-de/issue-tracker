@@ -32,4 +32,14 @@ struct JWTManager: JWTManageable {
         return status == noErr
     }
     
+    func remove() -> Bool {
+        let keyChainQuery: NSDictionary = [
+            kSecClass: kSecClassCertificate
+        ]
+        
+        let status = SecItemDelete(keyChainQuery)
+        
+        return status == errSecSuccess
+    }
+    
 }
