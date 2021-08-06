@@ -76,7 +76,7 @@ extension IssueTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let targetSize = IssueLabelCollectionViewCell.fittingSize(height: 30, name: labels?[indexPath.item].title)
+        let targetSize = IssueLabelCollectionViewCell.fittingSize(height: 35, name: labels?[indexPath.item].title)
         
         return targetSize
     }

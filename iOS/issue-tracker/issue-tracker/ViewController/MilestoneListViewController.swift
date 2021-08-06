@@ -16,6 +16,11 @@ class MilestoneListViewController: UIViewController, AdditionViewControllerDeleg
         milestoneTabelView.register(MilestoneTableViewCell.nib, forCellReuseIdentifier: MilestoneTableViewCell.identifier)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        milestoneListViewModel.fetchMilestoneList()
+    }
+    
     private func bind() {
         milestoneListViewModel.didUpdateMilestoneList()
             .sink { [weak self] _ in
@@ -26,8 +31,6 @@ class MilestoneListViewController: UIViewController, AdditionViewControllerDeleg
             .sink { [weak self] _ in
                 self?.milestoneListViewModel.fetchMilestoneList()
             }.store(in: &subscriptions)
-        
-        milestoneListViewModel.fetchMilestoneList()
     }
     
     private func configureTableViewFooterView() {
