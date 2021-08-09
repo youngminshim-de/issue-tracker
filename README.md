@@ -1,5 +1,4 @@
 
-
 <p align="center">
 <img width="400" alt="이슈트래커" src="https://user-images.githubusercontent.com/45817559/128732226-9c57e53a-5592-490d-84c0-a6e70dd7146e.png">
 </p>
