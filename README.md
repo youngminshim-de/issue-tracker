@@ -74,6 +74,25 @@
 - 이슈 필터 기능 (각 섹션별로 1개)
 - `이슈 상태`, `사용자 관련 이슈`, `작성자`, `레이블`, `마일스톤` 섹션 존재
 
+### 이슈 선택
+
+|<img src="https://user-images.githubusercontent.com/45817559/128711112-b1b75efc-daea-4c59-9f08-597e7ca92074.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128711136-3cd532ea-d0f3-4ed4-93e5-8548d024dc21.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128711146-0e643c3b-1cc4-4b8b-8532-fb571d48c9ea.gif" width="300">|
+|:---:|:---:|:---:|
+|이슈 개별 선택|이슈 전체 선택|이슈 선택 동작 화면|
+
+- 이슈 선택(개별 선택, 전체 선택)을 통해 닫기 기능 구현
+
+### 이슈 등록
+
+|<img src="https://user-images.githubusercontent.com/45817559/128715374-8c02ab63-a32e-4eaa-830e-2dc7fe2e3849.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128712789-fe27bd7d-8a05-4fd6-8725-0ae17765e2b4.gif" width="300">|
+|:---:|:---:|
+|이슈 등록|이슈 등록 동작 화면|
+
+- 새로운 이슈 등록(제목, 코멘트, 레이블, 마일스톤, 담당자)
+- 제목 및 코멘트 입력시 저장 버튼 활성화
+- 마크다운 문법 형식으로 미리보기 구현
+- 코멘트에 사진 등록 가능
+
 ### 이슈 추가 & 레이블 화면
 
 <p align="center">
