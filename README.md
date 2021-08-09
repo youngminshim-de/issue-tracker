@@ -15,42 +15,46 @@
 
 
 
-### BackEnd
+## BackEnd
 - 👉[백엔드 기술스택](https://github.com/Sonjh1306/issue-tracker/wiki/%EB%B0%B1%EC%97%94%EB%93%9C-%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D)
 - **DB Schema**
 
-![issue-tracker](https://user-images.githubusercontent.com/46085281/122386485-e5b17600-cfa8-11eb-8469-0f46b21ffd0a.png)
-
+<p align="center">
+<img width="800" alt="BE1" src="https://user-images.githubusercontent.com/46085281/122386485-e5b17600-cfa8-11eb-8469-0f46b21ffd0a.png">
+</p>
 
 - **Server Structure**
- ![](https://i.imgur.com/801OpXj.png)
+ 
+<p align="center">
+<img width="800" alt="BE2" src="https://i.imgur.com/801OpXj.png">
+</p>
+ 
 - 👉[Postman Mockup API](https://documenter.getpostman.com/view/15041629/TzeWHTpw)
 - 👉[Swagger API Documents](http://www.sionn.net/swagger-ui.html#/)
 
 
-## 데모 (미완성)
-### iOS 
+## iOS 
 
-### 로그인 화면 (GitHub Login)
+### 로그인 화면 (Social Login)
 
-<p align="center">
-<img width="250" alt="1" src="https://user-images.githubusercontent.com/45817559/122515334-4217a280-d048-11eb-973b-5bbf8ad595ca.gif">
-</p>
+|<img src="https://user-images.githubusercontent.com/45817559/128681767-abb7706c-6975-424f-b0a1-3688622c8eb6.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128678641-bca1b39f-9cd6-4597-a486-428bdd8e28a5.gif" width="300">|
+|:---:|:---:|
+|Login 화면|Login 동작 화면|
 
-- GitHub 로그인 구현
-- 로그인 성공시 다음 페이지로 이동
-- 하단 TabBar에 유저의 GitHub Profile Image 적용
+
+- 소셜 로그인 구현(GitHub, Google, Kakao, Naver)
+- 하단 TabBar에 유저의 Profile Image 적용
 
 
 ### 이슈 리스트 화면
 
-<p align="center">
-<img width="250" alt="2" src="https://user-images.githubusercontent.com/45817559/122516200-6fb11b80-d049-11eb-85f0-ab2acfd63502.gif">
-</p>
+|<img src="https://user-images.githubusercontent.com/45817559/128685346-0fd59263-f54c-40b0-a522-29ca31fcaf14.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128685910-dc9e4b1b-25e4-46d9-a5b3-ddac9bca7835.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128685382-e85cdd87-7794-4a22-91d7-3ea349db9e0b.png" width="300">|
+|:---:|:---:|:---:|
+|이슈 리스트|이슈 동적 셀|이슈 스와이프|
 
-- 테이블뷰를 아래로 당기면 SearchBar 두둥등장 (동시에 테이블뷰 하단에 있는 안내 문구가 사라짐)
-- 왼쪽 상단의 필터 버튼을 누르면 이슈를 필터별로 나열 (네트워크 미구현)
-- 오른쪽 상단의 선택 버튼을 누르면 이슈 선택창으로 이동 (네트워크, 선택 미구현)
+- 로그인시 최초 화면에는 전체 열린 이슈 출력
+- 각 이슈 내용, 레이블 갯수 및 크기, 마일스톤 유무에 따라 동적 크기 할당
+- 스와이프 기능을 통해 이슈 삭제 및 닫기 구현
 
 
 ### 이슈 추가 & 레이블 화면
