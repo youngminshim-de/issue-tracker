@@ -56,6 +56,23 @@
 - 각 이슈 내용, 레이블 갯수 및 크기, 마일스톤 유무에 따라 동적 크기 할당
 - 스와이프 기능을 통해 이슈 삭제 및 닫기 구현
 
+### 이슈 검색
+
+|<img src="https://user-images.githubusercontent.com/45817559/128687848-8aaea72c-d9a8-41fc-90e2-f5ab83784788.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128686809-b9ae4132-26d5-47a7-aa9c-eae570e5dc66.gif" width="300">|
+|:---:|:---:|
+|이슈 검색|이슈 검색 동작 화면|
+
+- 검색 기능을 통해 이슈 필터링
+
+### 이슈 필터
+
+|<img src="https://user-images.githubusercontent.com/45817559/128688758-8d41156a-185f-4604-a84c-feaf6d6293c2.png" width="300">|<img src="https://user-images.githubusercontent.com/45817559/128688857-fae54a4c-6f27-40c7-be22-113235995367.gif" width="300">|
+|:---:|:---:|
+|이슈 필터|이슈 필터 동작 화면|
+
+- 상단의 필터 버튼을 통해 필터 화면 출력
+- 이슈 필터 기능 (각 섹션별로 1개)
+- `이슈 상태`, `사용자 관련 이슈`, `작성자`, `레이블`, `마일스톤` 섹션 존재
 
 ### 이슈 추가 & 레이블 화면
 
