@@ -16,6 +16,11 @@ class LabelListViewController: UIViewController, AdditionViewControllerDelegate 
         labelTableView.register(LabelTableViewCell.nib, forCellReuseIdentifier: LabelTableViewCell.identifier)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        labelListViewModel.fetchLabelList()
+    }
+    
     private func bind() {
         labelListViewModel.didUpdateLabelList()
             .sink { [weak self] _ in
