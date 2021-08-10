@@ -135,6 +135,7 @@ public class IssueService {
         Issue issue = issueRepository.findById(issueId).orElseThrow(IssueNotFoundException::new);
         Set<IssueAssignee> issueAssignees = userService.modifyIssueAssignees(issue, issueAssigneeIdsRequest);
         issue.editIssueAssignees(issueAssignees);
+        issueRepository.save(issue);
     }
 
     @Transactional
@@ -142,6 +143,7 @@ public class IssueService {
         Issue issue = issueRepository.findById(issueId).orElseThrow(IssueNotFoundException::new);
         List<IssueLabel> issueLabels = labelService.modifyIssueLabels(issue, issueLabelIdsRequest);
         issue.editIssueLabels(issueLabels);
+        issueRepository.save(issue);
     }
 
     public void modifyMilestone(Long issueId, IssueMilestoneRequest issueMilestoneRequest) {
