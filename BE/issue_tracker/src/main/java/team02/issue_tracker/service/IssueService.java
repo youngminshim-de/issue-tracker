@@ -135,6 +135,7 @@ public class IssueService {
         Issue issue = issueRepository.findById(issueId).orElseThrow(IssueNotFoundException::new);
         Set<IssueAssignee> issueAssignees = userService.modifyIssueAssignees(issue, issueAssigneeIdsRequest);
         issue.editIssueAssignees(issueAssignees);
+        issueRepository.save(issue);
     }
 
     @Transactional
