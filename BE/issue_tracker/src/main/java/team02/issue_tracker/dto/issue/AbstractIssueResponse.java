@@ -49,6 +49,7 @@ public abstract class AbstractIssueResponse {
     private List<IssueLabelResponse> toLabelResponses(List<IssueLabel> issueLabels) {
         return issueLabels.stream()
                 .map(IssueLabel::getLabel)
+                .distinct()
                 .map(IssueLabelResponse::new)
                 .sorted(Comparator.comparing(IssueLabelResponse::getId))
                 .collect(Collectors.toList());
