@@ -36,6 +36,12 @@ public class CommentController {
         return ApiResult.ok();
     }
 
+    @DeleteMapping("/{commentId}")
+    public ApiResult<String> deleteComment(@PathVariable Long commentId) {
+        commentService.deleteComment(commentId);
+        return ApiResult.ok();
+    }
+
     @ApiOperation(value = "이모지 조회", notes = "이모지를 전체 조회합니다.")
     @GetMapping("/emojis")
     public ApiResult<List<EmojiResponse>> showAllEmojis() {

@@ -8,6 +8,7 @@ import team02.issue_tracker.domain.IssueLabel;
 import team02.issue_tracker.dto.UserResponse;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,13 +42,16 @@ public abstract class AbstractIssueResponse {
         return issueAssignees.stream()
                 .map(IssueAssignee::getAssignee)
                 .map(UserResponse::new)
+                .sorted(Comparator.comparing(UserResponse::getId))
                 .collect(Collectors.toList());
     }
 
     private List<IssueLabelResponse> toLabelResponses(List<IssueLabel> issueLabels) {
         return issueLabels.stream()
                 .map(IssueLabel::getLabel)
+                .distinct()
                 .map(IssueLabelResponse::new)
+                .sorted(Comparator.comparing(IssueLabelResponse::getId))
                 .collect(Collectors.toList());
     }
 }
